@@ -1,21 +1,22 @@
 /* ============================================================
    AdvanceIT Navbar — "Fluid Intelligence" Design
    Transparent on hero, solid navy on scroll
-   Logo: dark version on dark bg, light version on light bg
+   Logo: new SVG (white version — works on dark navbar bg)
    ============================================================ */
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/RHzsmnslexFfsTDS.jpg";
+// New SVG logo — white/cyan version works perfectly on dark navy navbar
+const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
 
 const navLinks = [
-  { label: "Services", href: "#services", hasDropdown: false },
-  { label: "AI Solutions", href: "#ai-solutions", hasDropdown: false },
-  { label: "About", href: "#about", hasDropdown: false },
-  { label: "Why Us", href: "#why-us", hasDropdown: false },
-  { label: "Contact", href: "#contact", hasDropdown: false },
+  { label: "Services", href: "#services" },
+  { label: "AI Solutions", href: "#ai-solutions" },
+  { label: "About", href: "#about" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -52,24 +53,19 @@ export default function Navbar() {
       >
         <div className="container">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
+            {/* Logo — SVG scales naturally, height fixed for nav bar */}
             <a
               href="#"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-2 flex-shrink-0"
+              className="flex items-center flex-shrink-0"
+              aria-label="AdvanceIT Home"
             >
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden">
-                {/* Show dark logo portion (top half of the combined image) */}
-                <img
-                  src={LOGO_URL}
-                  alt="AdvanceIT Logo"
-                  className="absolute top-0 left-0 w-full"
-                  style={{ height: "200%", objectFit: "cover", objectPosition: "top center" }}
-                />
-              </div>
-              <span className="font-display font-700 text-xl text-white">
-                Advance<span className="text-cyan">IT</span>
-              </span>
+              <img
+                src={LOGO_URL}
+                alt="AdvanceIT"
+                className="h-12 lg:h-14 w-auto object-contain"
+                style={{ maxWidth: "220px" }}
+              />
             </a>
 
             {/* Desktop Nav */}
@@ -78,7 +74,7 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
-                  className="px-4 py-2 text-sm font-body font-500 text-white/80 hover:text-white hover:text-cyan transition-colors duration-200 rounded-lg hover:bg-white/5"
+                  className="px-4 py-2 text-sm font-body font-500 text-white/80 hover:text-[#00C8D4] transition-colors duration-200 rounded-lg hover:bg-white/5"
                 >
                   {link.label}
                 </button>

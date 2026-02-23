@@ -6,7 +6,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Mail, Phone, Linkedin, Twitter, Github } from "lucide-react";
 
-const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/RHzsmnslexFfsTDS.jpg";
+const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
 
 const footerLinks = {
   Services: [
@@ -34,18 +34,13 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            <div className="flex items-center gap-2 mb-4">
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden">
-                <img
-                  src={LOGO_URL}
-                  alt="AdvanceIT Logo"
-                  className="absolute top-0 left-0 w-full"
-                  style={{ height: "200%", objectFit: "cover", objectPosition: "top center" }}
-                />
-              </div>
-              <span className="font-display font-700 text-xl text-white">
-                Advance<span className="text-[#00C8D4]">IT</span>
-              </span>
+            <div className="mb-4">
+              <img
+                src={LOGO_URL}
+                alt="AdvanceIT"
+                className="h-14 w-auto object-contain"
+                style={{ maxWidth: "220px" }}
+              />
             </div>
 
             <p className="font-body text-sm text-white/50 leading-relaxed mb-6 max-w-xs">
