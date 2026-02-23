@@ -56,14 +56,14 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={14} className="text-[#00C8D4] flex-shrink-0" />
-                <a href="mailto:hello@advanceit.com.au" className="font-body text-xs text-white/45 hover:text-[#00C8D4] transition-colors">
-                  hello@advanceit.com.au
+                <a href="mailto:admin@advanseit.com.au" className="font-body text-xs text-white/45 hover:text-[#00C8D4] transition-colors">
+                  admin@advanseit.com.au
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={14} className="text-[#00C8D4] flex-shrink-0" />
-                <a href="tel:+61731234567" className="font-body text-xs text-white/45 hover:text-[#00C8D4] transition-colors">
-                  +61 7 3123 4567
+                <a href="tel:0481261679" className="font-body text-xs text-white/45 hover:text-[#00C8D4] transition-colors">
+                  0481 261 679
                 </a>
               </div>
             </div>

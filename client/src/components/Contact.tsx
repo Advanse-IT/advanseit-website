@@ -6,6 +6,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 
 const services = [
   "Web Design & Development",
@@ -26,7 +28,17 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const submitMutation = trpc.contact.submit.useMutation({
+    onSuccess: () => {
+      setSubmitted(true);
+    },
+    onError: (err) => {
+      toast.error("Failed to send message. Please try again or email us directly.", {
+        description: err.message,
+      });
+    },
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -36,13 +48,16 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1500);
+    submitMutation.mutate({
+      name: form.name,
+      email: form.email,
+      company: form.company || undefined,
+      service: form.service || undefined,
+      message: form.message,
+    });
   };
+
+  const loading = submitMutation.isPending;
 
   return (
     <section id="contact" className="section-py bg-[#0D1B2E] relative overflow-hidden">
@@ -119,10 +134,10 @@ export default function Contact() {
                   <div>
                     <div className="font-display font-600 text-sm text-white mb-0.5">Email Us</div>
                     <a
-                      href="mailto:hello@advanceit.com.au"
+                      href="mailto:admin@advanseit.com.au"
                       className="font-body text-sm text-white/55 hover:text-[#00C8D4] transition-colors"
                     >
-                      hello@advanceit.com.au
+                      admin@advanseit.com.au
                     </a>
                   </div>
                 </div>
@@ -134,10 +149,10 @@ export default function Contact() {
                   <div>
                     <div className="font-display font-600 text-sm text-white mb-0.5">Call Us</div>
                     <a
-                      href="tel:+61731234567"
+                      href="tel:0481261679"
                       className="font-body text-sm text-white/55 hover:text-[#00C8D4] transition-colors"
                     >
-                      +61 7 3123 4567
+                      0481 261 679
                     </a>
                   </div>
                 </div>
