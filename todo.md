@@ -29,3 +29,4 @@
 - [ ] Add ABN number to footer (currently placeholder: 12 345 678 901)
 - [ ] Add Google Analytics or custom analytics integration
 - [ ] Add cookie consent banner (GDPR/Australian Privacy Act compliance)
+- [x] Fix favicon: add navy blue (#0D1B2E) background so it's not transparent
