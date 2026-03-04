@@ -31,3 +31,8 @@
 - [ ] Add cookie consent banner (GDPR/Australian Privacy Act compliance)
 - [x] Fix favicon: add navy blue (#0D1B2E) background so it's not transparent
 - [x] Fix SEO: shorten meta description to under 160 characters (now 136 chars)
+- [x] SEO: Per-page keyword focus with dynamic meta tags (react-helmet-async)
+- [x] SEO: Generate and serve robots.txt and sitemap.xml
+- [x] SEO: Implement LocalBusiness JSON-LD structured data (Brisbane + AU cities)
+- [x] SEO: Branded Open Graph image (1200x630) + full OG/Twitter card meta tags
+- [x] SEO: Weekly SEO reporting template document (SEO-Weekly-Report-Template.md)

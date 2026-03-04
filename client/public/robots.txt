@@ -1,0 +1,12 @@
+# robots.txt — AdvanceIT (https://advanseit.com.au)
+# Generated for maximum search engine indexing coverage
+
+User-agent: *
+Allow: /
+
+# Block crawling of API and internal routes
+Disallow: /api/
+Disallow: /api/trpc/
+
+# Sitemap location
+Sitemap: https://advanseit.com.au/sitemap.xml

@@ -15,10 +15,14 @@ import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 
 export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <SEO page="home" canonicalPath="/" />
+      <LocalBusinessSchema />
       <Navbar />
       <Hero />
       <Services />
