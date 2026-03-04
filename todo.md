@@ -30,3 +30,4 @@
 - [ ] Add Google Analytics or custom analytics integration
 - [ ] Add cookie consent banner (GDPR/Australian Privacy Act compliance)
 - [x] Fix favicon: add navy blue (#0D1B2E) background so it's not transparent
+- [x] Fix SEO: shorten meta description to under 160 characters (now 136 chars)
