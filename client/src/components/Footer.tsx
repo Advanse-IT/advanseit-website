@@ -14,7 +14,7 @@ const XLogo = ({ size = 15 }: { size?: number }) => (
   </svg>
 );
 
-const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
+const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/IXgYLeAuYjWgUTBq.svg";
 
 // Section anchor links
 const serviceLinks = [

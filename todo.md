@@ -47,3 +47,7 @@
 - [x] Legal: Create Cookie Policy page
 - [x] Legal: Add cookie consent banner (localStorage persistence)
 - [x] Legal: Update footer links to point to legal pages (new Legal column in footer)
+- [ ] Logo: Update website with new Group789.svg logo (navbar, footer, favicon)
+- [ ] Logo: Create favicon PNG (icon mark only, navy background) from Group789.svg
+- [ ] Logo: Create LinkedIn company icon 300x300 (icon mark, navy background)
+- [ ] Logo: Create LinkedIn cover page 1128x191 (logo right, tagline, navy/cyan theme)

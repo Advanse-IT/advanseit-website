@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 // New SVG logo — white/cyan version works perfectly on dark navy navbar
-const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
+const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/IXgYLeAuYjWgUTBq.svg";
 
 const navLinks = [
   { label: "Services", href: "#services" },
