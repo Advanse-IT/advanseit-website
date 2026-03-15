@@ -5,6 +5,7 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Mail, Phone, Linkedin } from "lucide-react";
+import { Link } from "wouter";
 
 // X (formerly Twitter) logo as inline SVG — official X mark
 const XLogo = ({ size = 15 }: { size?: number }) => (
@@ -15,23 +16,39 @@ const XLogo = ({ size = 15 }: { size?: number }) => (
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
 
-const footerLinks = {
-  Services: [
-    "Web Design & Development",
-    "App Development",
-    "Custom Software",
-    "Testing & QA",
-    "AI Solutions",
-    "IT Staffing",
-  ],
-  Company: ["About Us", "Our Process", "Why AdvanseIT", "Careers", "Blog"],
-  Resources: ["Case Studies", "Tech Stack", "Privacy Policy", "Terms of Service"],
-};
+// Section anchor links
+const serviceLinks = [
+  { label: "Web Design & Development", anchor: "#services" },
+  { label: "App Development", anchor: "#services" },
+  { label: "Custom Software", anchor: "#services" },
+  { label: "Testing & QA", anchor: "#services" },
+  { label: "AI Solutions", anchor: "#ai-solutions" },
+  { label: "IT Staffing", anchor: "#services" },
+];
+
+const companyLinks = [
+  { label: "About Us", anchor: "#about" },
+  { label: "Our Process", anchor: "#why-us" },
+  { label: "Why AdvanseIT", anchor: "#why-us" },
+  { label: "Contact Us", anchor: "#contact" },
+];
+
+// Legal links — these navigate to dedicated pages
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Cookie Policy", href: "/cookies" },
+];
 
 export default function Footer() {
-  const handleNavClick = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const handleAnchorClick = (anchor: string) => {
+    const el = document.querySelector(anchor);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // If not on home page, navigate home first then scroll
+      window.location.href = `/${anchor}`;
+    }
   };
 
   return (
@@ -42,12 +59,14 @@ export default function Footer() {
           <div className="lg:col-span-2">
             {/* Logo */}
             <div className="mb-4">
-              <img
-                src={LOGO_URL}
-                alt="AdvanseIT"
-                className="h-14 w-auto object-contain"
-                style={{ maxWidth: "220px" }}
-              />
+              <Link href="/">
+                <img
+                  src={LOGO_URL}
+                  alt="AdvanseIT"
+                  className="h-14 w-auto object-contain cursor-pointer"
+                  style={{ maxWidth: "220px" }}
+                />
+              </Link>
             </div>
 
             <p className="font-body text-sm text-white/50 leading-relaxed mb-6 max-w-xs">
@@ -76,35 +95,67 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="font-display font-700 text-sm text-white mb-4">{category}</h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link}>
-                    <button
-                      onClick={() => {
-                        if (category === "Services") handleNavClick("#services");
-                        else if (category === "Company") handleNavClick("#about");
-                        else handleNavClick("#contact");
-                      }}
-                      className="font-body text-sm text-white/45 hover:text-[#00C8D4] transition-colors text-left"
-                    >
-                      {link}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Services Column */}
+          <div>
+            <h4 className="font-display font-700 text-sm text-white mb-4">Services</h4>
+            <ul className="space-y-2.5">
+              {serviceLinks.map(({ label, anchor }) => (
+                <li key={label}>
+                  <button
+                    onClick={() => handleAnchorClick(anchor)}
+                    className="font-body text-sm text-white/45 hover:text-[#00C8D4] transition-colors text-left"
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company Column */}
+          <div>
+            <h4 className="font-display font-700 text-sm text-white mb-4">Company</h4>
+            <ul className="space-y-2.5">
+              {companyLinks.map(({ label, anchor }) => (
+                <li key={label}>
+                  <button
+                    onClick={() => handleAnchorClick(anchor)}
+                    className="font-body text-sm text-white/45 hover:text-[#00C8D4] transition-colors text-left"
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div>
+            <h4 className="font-display font-700 text-sm text-white mb-4">Legal</h4>
+            <ul className="space-y-2.5">
+              {legalLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="font-body text-sm text-white/45 hover:text-[#00C8D4] transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-white/35">
-            © {new Date().getFullYear()} AdvanseIT Pty Ltd. All rights reserved. ABN: 12 656 409 850
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <p className="font-body text-xs text-white/35">
+              © {new Date().getFullYear()} AdvanseIT Pty Ltd. All rights reserved.
+            </p>
+            <span className="hidden sm:inline text-white/20 text-xs">|</span>
+            <p className="font-body text-xs text-white/25">ABN: 12 656 409 850</p>
+          </div>
 
           {/* Social Links */}
           <div className="flex items-center gap-3">

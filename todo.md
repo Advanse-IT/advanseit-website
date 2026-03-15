@@ -42,3 +42,8 @@
 - [x] Footer: Update X/Twitter link to https://x.com/AdvanseIT
 - [x] Footer: Remove GitHub link
 - [x] Footer: Replace Twitter bird icon with X logo SVG
+- [x] Legal: Create Terms & Conditions page (Australian law compliant)
+- [x] Legal: Create Privacy Policy page (Australian Privacy Act 1988)
+- [x] Legal: Create Cookie Policy page
+- [x] Legal: Add cookie consent banner (localStorage persistence)
+- [x] Legal: Update footer links to point to legal pages (new Legal column in footer)

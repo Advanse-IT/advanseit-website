@@ -10,12 +10,18 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import CookieConsent from "./components/CookieConsent";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/terms"} component={TermsAndConditions} />
+      <Route path={"/privacy"} component={PrivacyPolicy} />
+      <Route path={"/cookies"} component={CookiePolicy} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -29,6 +35,8 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          {/* Cookie consent banner — shown on first visit */}
+          <CookieConsent />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
