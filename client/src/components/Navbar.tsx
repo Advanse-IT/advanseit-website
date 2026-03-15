@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Navbar — "Fluid Intelligence" Design
+   AdvanseIT Navbar — "Fluid Intelligence" Design
    Transparent on hero, solid navy on scroll
    Logo: new SVG (white version — works on dark navbar bg)
    ============================================================ */
@@ -58,11 +58,11 @@ export default function Navbar() {
               href="#"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className="flex items-center flex-shrink-0"
-              aria-label="AdvanceIT Home"
+              aria-label="AdvanseIT Home"
             >
               <img
                 src={LOGO_URL}
-                alt="AdvanceIT"
+                alt="AdvanseIT"
                 className="h-12 lg:h-14 w-auto object-contain"
                 style={{ maxWidth: "220px" }}
               />

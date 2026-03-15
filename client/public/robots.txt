@@ -1,4 +1,4 @@
-# robots.txt — AdvanceIT (https://advanseit.com.au)
+# robots.txt — AdvanseIT (https://advanseit.com.au)
 # Generated for maximum search engine indexing coverage
 
 User-agent: *

@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT CTA Banner — "Fluid Intelligence"
+   AdvanseIT CTA Banner — "Fluid Intelligence"
    Cyan gradient banner with strong call to action
    ============================================================ */
 
@@ -68,7 +68,7 @@ export default function CTABanner() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-body text-lg text-white/60 max-w-xl mx-auto mb-10"
         >
-          Join the growing number of Australian businesses that trust AdvanceIT 
+          Join the growing number of Australian businesses that trust AdvanseIT 
           to deliver smarter, faster, and more cost-effective technology solutions.
         </motion.p>
 

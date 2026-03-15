@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Testimonials Section — "Fluid Intelligence"
+   AdvanseIT Testimonials Section — "Fluid Intelligence"
    White background with client quotes carousel
    ============================================================ */
 
@@ -13,7 +13,7 @@ const testimonials = [
     role: "CEO, RetailTech Pty Ltd",
     location: "Brisbane, QLD",
     quote:
-      "AdvanceIT transformed our outdated inventory system into an AI-powered platform that cut our operational costs by 35%. Their team's expertise and responsiveness made the whole process seamless.",
+      "AdvanseIT transformed our outdated inventory system into an AI-powered platform that cut our operational costs by 35%. Their team's expertise and responsiveness made the whole process seamless.",
     rating: 5,
     initials: "SM",
   },
@@ -22,7 +22,7 @@ const testimonials = [
     role: "CTO, FinServe Australia",
     location: "Sydney, NSW",
     quote:
-      "We needed a custom app built fast and within budget. AdvanceIT delivered in 8 weeks — on time, on budget, and with quality that exceeded our expectations. The AI-first approach was a game-changer.",
+      "We needed a custom app built fast and within budget. AdvanseIT delivered in 8 weeks — on time, on budget, and with quality that exceeded our expectations. The AI-first approach was a game-changer.",
     rating: 5,
     initials: "JT",
   },
@@ -40,7 +40,7 @@ const testimonials = [
     role: "Operations Manager, LogiCorp",
     location: "Brisbane, QLD",
     quote:
-      "The testing services AdvanceIT provided caught critical bugs before launch that would have cost us thousands. Their automated QA pipeline is now a permanent part of our development process.",
+      "The testing services AdvanseIT provided caught critical bugs before launch that would have cost us thousands. Their automated QA pipeline is now a permanent part of our development process.",
     rating: 5,
     initials: "MO",
   },

@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT About Section — "Fluid Intelligence"
+   AdvanseIT About Section — "Fluid Intelligence"
    White background, asymmetric layout with team image
    Brisbane focus, company story and values
    ============================================================ */
@@ -77,7 +77,7 @@ export default function About() {
               className="space-y-4 font-body text-base text-[#4A6580] leading-relaxed"
             >
               <p>
-                Founded in Brisbane, AdvanceIT was built on a simple belief: every Australian 
+                Founded in Brisbane, AdvanseIT was built on a simple belief: every Australian 
                 business — regardless of size — deserves access to world-class technology solutions 
                 at a price that makes sense.
               </p>
@@ -133,7 +133,7 @@ export default function About() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={TEAM_IMG}
-                alt="AdvanceIT Brisbane Team"
+                alt="AdvanseIT Brisbane Team"
                 className="w-full h-80 lg:h-[480px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E]/30 to-transparent" />

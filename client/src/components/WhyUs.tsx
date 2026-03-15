@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Why Us Section — "Fluid Intelligence"
+   AdvanseIT Why Us Section — "Fluid Intelligence"
    Dark navy background, process steps + differentiators
    Includes tech stack logos and process flow
    ============================================================ */
@@ -99,7 +99,7 @@ export default function WhyUs() {
           >
             <span className="w-2 h-2 rounded-full bg-[#00C8D4]" />
             <span className="text-sm font-body font-600 text-[#00C8D4] tracking-wide">
-              Why AdvanceIT
+              Why AdvanseIT
             </span>
           </motion.div>
 

@@ -1,5 +1,5 @@
 /**
- * LocalBusinessSchema — AdvanceIT
+ * LocalBusinessSchema — AdvanseIT
  *
  * Injects JSON-LD structured data for Google's Local Business rich results.
  * Covers Brisbane (HQ) and prominent Australian cities to maximise local
@@ -17,8 +17,8 @@ const schema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService"],
   "@id": "https://advanseit.com.au/#business",
-  name: "AdvanceIT",
-  alternateName: "Advance IT",
+  name: "AdvanseIT",
+  alternateName: "Advanse IT",
   description:
     "Brisbane-based IT company delivering cost-effective, AI-first web design, app development, custom software, testing, AI solutions, and IT staffing services across Australia.",
   url: "https://advanseit.com.au",
@@ -169,7 +169,7 @@ const schema = {
   },
   sameAs: [
     "https://www.linkedin.com/company/advanceit-au",
-    "https://twitter.com/AdvanceIT_AU",
+    "https://twitter.com/AdvanseIT_AU",
   ],
   knowsAbout: [
     "Web Design",

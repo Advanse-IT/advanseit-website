@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Hero Section — "Fluid Intelligence"
+   AdvanseIT Hero Section — "Fluid Intelligence"
    Full-viewport dark navy with aurora background image
    Animated headline, stats counter, dual CTA buttons
    ============================================================ */

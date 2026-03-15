@@ -1,4 +1,4 @@
-# AdvanceIT — Weekly SEO Monitoring Report
+# AdvanseIT — Weekly SEO Monitoring Report
 
 **Website:** [advanseit.com.au](https://advanseit.com.au)
 **Reporting Period:** `WEEK_START_DATE` to `WEEK_END_DATE`
@@ -50,7 +50,7 @@ Monitor the primary target keyword for each page/section. Rankings are pulled fr
 | Testing / QA | software testing Brisbane | `___` | `___` | `___` | Top 10 |
 | AI Solutions (`/#ai-solutions`) | AI solutions Brisbane | `___` | `___` | `___` | Top 5 |
 | IT Staffing | IT staffing Brisbane | `___` | `___` | `___` | Top 10 |
-| About (`/#about`) | AdvanceIT Brisbane | `___` | `___` | `___` | Top 3 |
+| About (`/#about`) | AdvanseIT Brisbane | `___` | `___` | `___` | Top 3 |
 | Contact (`/#contact`) | IT quote Brisbane | `___` | `___` | `___` | Top 10 |
 
 **Secondary Keywords to Watch:**
@@ -67,7 +67,7 @@ Monitor the primary target keyword for each page/section. Rankings are pulled fr
 
 ## 3. Local SEO Performance
 
-AdvanceIT targets Brisbane as the primary market, with secondary coverage across Sydney, Melbourne, Perth, Adelaide, Canberra, and the Gold Coast.
+AdvanseIT targets Brisbane as the primary market, with secondary coverage across Sydney, Melbourne, Perth, Adelaide, Canberra, and the Gold Coast.
 
 | Metric | This Week | Last Week | Change |
 |---|---|---|---|
@@ -188,7 +188,7 @@ _List any toxic links to disavow or outreach opportunities identified._
 
 Check 2–3 key competitors' rankings for the primary Brisbane IT keywords.
 
-| Keyword | AdvanceIT | Competitor A | Competitor B | Competitor C |
+| Keyword | AdvanseIT | Competitor A | Competitor B | Competitor C |
 |---|---|---|---|---|
 | IT company Brisbane | `___` | `___` | `___` | `___` |
 | web design Brisbane | `___` | `___` | `___` | `___` |
@@ -231,4 +231,4 @@ Complete this section only for the first report to establish a performance basel
 
 ---
 
-*This report template was generated for AdvanceIT (advanseit.com.au) as part of the site's SEO implementation. Update the `WEEK_START_DATE`, `WEEK_END_DATE`, and `REPORT_DATE` fields at the top of each weekly report. Archive completed reports in a dated folder (e.g., `SEO-Reports/2026-W10.md`) for trend analysis.*
+*This report template was generated for AdvanseIT (advanseit.com.au) as part of the site's SEO implementation. Update the `WEEK_START_DATE`, `WEEK_END_DATE`, and `REPORT_DATE` fields at the top of each weekly report. Archive completed reports in a dated folder (e.g., `SEO-Reports/2026-W10.md`) for trend analysis.*

@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Contact Section — "Fluid Intelligence"
+   AdvanseIT Contact Section — "Fluid Intelligence"
    Dark navy background with contact form + info
    ============================================================ */
 

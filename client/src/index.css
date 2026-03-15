@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Design System — "Fluid Intelligence"
+   AdvanseIT Design System — "Fluid Intelligence"
    Design Movement: Organic Modernism meets Tech Minimalism
    Color Philosophy: Deep Navy (#0D1B2E) + Cyan (#00C8D4)
    Typography: Outfit (display) + Nunito Sans (body)
@@ -48,7 +48,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* AdvanceIT Brand Colors */
+  /* AdvanseIT Brand Colors */
   --color-navy: oklch(0.18 0.055 243);
   --color-navy-dark: oklch(0.13 0.045 243);
   --color-navy-light: oklch(0.24 0.055 243);
@@ -152,7 +152,7 @@
     }
   }
 
-  /* AdvanceIT Custom Components */
+  /* AdvanseIT Custom Components */
   .font-display {
     font-family: 'Outfit', sans-serif;
   }

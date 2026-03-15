@@ -1,5 +1,5 @@
 /**
- * SEO Component — AdvanceIT
+ * SEO Component — AdvanseIT
  * Manages per-page title, description, keywords, Open Graph, and Twitter Card tags
  * using react-helmet-async for SSR-safe head injection.
  *
@@ -13,19 +13,19 @@
  * Testing / QA       → "software testing services Brisbane", "QA testing Australia"
  * AI Solutions       → "AI solutions Brisbane", "AI development Australia"
  * IT Staffing        → "IT staffing Brisbane", "IT outsourcing Australia"
- * About              → "AdvanceIT Brisbane", "IT company Queensland"
+ * About              → "AdvanseIT Brisbane", "IT company Queensland"
  * Contact            → "contact IT company Brisbane", "get IT quote Brisbane"
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 import { Helmet } from "react-helmet-async";
 
-const SITE_NAME = "AdvanceIT";
+const SITE_NAME = "AdvanseIT";
 const SITE_URL = "https://advanseit.com.au";
 const OG_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/HdTBZOVgOmaFOEAz.png";
 const OG_IMAGE_WIDTH = "1200";
 const OG_IMAGE_HEIGHT = "630";
-const TWITTER_HANDLE = "@AdvanceIT_AU";
+const TWITTER_HANDLE = "@AdvanseIT_AU";
 
 export type SEOPage =
   | "home"
@@ -41,7 +41,7 @@ export type SEOPage =
 
 interface SEOProps {
   page?: SEOPage;
-  /** Override title (appended with " | AdvanceIT") */
+  /** Override title (appended with " | AdvanseIT") */
   title?: string;
   /** Override description (50–160 chars) */
   description?: string;
@@ -70,7 +70,7 @@ const PAGE_META: Record<
   services: {
     title: "Our Services — Web, App, AI & IT Staffing",
     description:
-      "Explore AdvanceIT's full range of IT services: web design, app development, AI solutions, QA testing, and IT staffing across Australia.",
+      "Explore AdvanseIT's full range of IT services: web design, app development, AI solutions, QA testing, and IT staffing across Australia.",
     keywords: [
       "IT services Brisbane",
       "web design Brisbane",
@@ -109,7 +109,7 @@ const PAGE_META: Record<
   "custom-software": {
     title: "Custom Software Development Brisbane",
     description:
-      "Bespoke software solutions designed for your business. AdvanceIT delivers scalable, AI-powered custom software from Brisbane.",
+      "Bespoke software solutions designed for your business. AdvanseIT delivers scalable, AI-powered custom software from Brisbane.",
     keywords: [
       "custom software development Brisbane",
       "bespoke software Brisbane",
@@ -134,7 +134,7 @@ const PAGE_META: Record<
   "ai-solutions": {
     title: "AI Solutions & Development Brisbane",
     description:
-      "Harness the power of AI for your business. AdvanceIT delivers AI integrations, automation, and machine learning solutions from Brisbane.",
+      "Harness the power of AI for your business. AdvanseIT delivers AI integrations, automation, and machine learning solutions from Brisbane.",
     keywords: [
       "AI solutions Brisbane",
       "artificial intelligence development Brisbane",
@@ -159,11 +159,11 @@ const PAGE_META: Record<
     ],
   },
   about: {
-    title: "About AdvanceIT — Brisbane IT Company",
+    title: "About AdvanseIT — Brisbane IT Company",
     description:
-      "Learn about AdvanceIT, a Brisbane-based IT company delivering cost-effective, AI-first technology solutions to businesses across Australia.",
+      "Learn about AdvanseIT, a Brisbane-based IT company delivering cost-effective, AI-first technology solutions to businesses across Australia.",
     keywords: [
-      "AdvanceIT Brisbane",
+      "AdvanseIT Brisbane",
       "IT company Brisbane",
       "technology company Queensland",
       "Brisbane software company",
@@ -171,9 +171,9 @@ const PAGE_META: Record<
     ],
   },
   contact: {
-    title: "Contact AdvanceIT — Get a Free IT Quote",
+    title: "Contact AdvanseIT — Get a Free IT Quote",
     description:
-      "Get in touch with AdvanceIT in Brisbane for a free consultation and project quote. We respond within 24 hours.",
+      "Get in touch with AdvanseIT in Brisbane for a free consultation and project quote. We respond within 24 hours.",
     keywords: [
       "contact IT company Brisbane",
       "IT quote Brisbane",
@@ -216,7 +216,7 @@ export default function SEO({
       <meta property="og:image" content={OG_IMAGE} />
       <meta property="og:image:width" content={OG_IMAGE_WIDTH} />
       <meta property="og:image:height" content={OG_IMAGE_HEIGHT} />
-      <meta property="og:image:alt" content="AdvanceIT — AI-First IT Solutions Brisbane" />
+      <meta property="og:image:alt" content="AdvanseIT — AI-First IT Solutions Brisbane" />
       <meta property="og:locale" content="en_AU" />
 
       {/* ── Twitter / X Card ── */}
@@ -225,7 +225,7 @@ export default function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
-      <meta name="twitter:image:alt" content="AdvanceIT — AI-First IT Solutions Brisbane" />
+      <meta name="twitter:image:alt" content="AdvanseIT — AI-First IT Solutions Brisbane" />
 
       {/* ── Geo / Local ── */}
       <meta name="geo.region" content="AU-QLD" />

@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT AI Solutions Section — "Fluid Intelligence"
+   AdvanseIT AI Solutions Section — "Fluid Intelligence"
    Dark navy background with AI brain image
    Highlights AI-first approach and cost optimisation
    ============================================================ */

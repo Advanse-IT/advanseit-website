@@ -1,4 +1,4 @@
-# AdvanceIT Website Design Ideas
+# AdvanseIT Website Design Ideas
 
 ## Brand Analysis
 - Primary color: Deep Navy (#0D1B2E / #0F2340)
@@ -164,4 +164,4 @@
 
 ## Selected Design: Option C — "Fluid Intelligence"
 
-This approach best represents AdvanceIT's brand: technically sophisticated yet approachable, with the navy/cyan palette from the logo flowing naturally through alternating sections. The organic shapes soften what could otherwise feel cold and corporate, while the gradient animations convey the "AI-first" and "innovative" positioning.
+This approach best represents AdvanseIT's brand: technically sophisticated yet approachable, with the navy/cyan palette from the logo flowing naturally through alternating sections. The organic shapes soften what could otherwise feel cold and corporate, while the gradient animations convey the "AI-first" and "innovative" positioning.

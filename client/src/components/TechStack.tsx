@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Tech Stack Section — "Fluid Intelligence"
+   AdvanseIT Tech Stack Section — "Fluid Intelligence"
    White background, scrolling logo marquee
    ============================================================ */
 

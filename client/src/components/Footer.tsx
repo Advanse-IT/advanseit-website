@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Footer — "Fluid Intelligence"
+   AdvanseIT Footer — "Fluid Intelligence"
    Dark navy footer with links, social, and copyright
    ============================================================ */
 
@@ -17,7 +17,7 @@ const footerLinks = {
     "AI Solutions",
     "IT Staffing",
   ],
-  Company: ["About Us", "Our Process", "Why AdvanceIT", "Careers", "Blog"],
+  Company: ["About Us", "Our Process", "Why AdvanseIT", "Careers", "Blog"],
   Resources: ["Case Studies", "Tech Stack", "Privacy Policy", "Terms of Service"],
 };
 
@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="mb-4">
               <img
                 src={LOGO_URL}
-                alt="AdvanceIT"
+                alt="AdvanseIT"
                 className="h-14 w-auto object-contain"
                 style={{ maxWidth: "220px" }}
               />
@@ -96,7 +96,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-white/35">
-            © {new Date().getFullYear()} AdvanceIT Pty Ltd. All rights reserved. ABN: 12 345 678 901
+            © {new Date().getFullYear()} AdvanseIT Pty Ltd. All rights reserved. ABN: 12 345 678 901
           </p>
 
           {/* Social Links */}

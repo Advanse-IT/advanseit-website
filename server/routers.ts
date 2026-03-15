@@ -35,7 +35,7 @@ async function sendContactEmail(data: {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 0;">
       <div style="background: linear-gradient(135deg, #0D1B2E 0%, #0a3d5c 100%); padding: 32px 40px; border-radius: 8px 8px 0 0;">
-        <h1 style="color: #00C8D4; margin: 0; font-size: 24px; font-weight: 700;">AdvanceIT</h1>
+        <h1 style="color: #00C8D4; margin: 0; font-size: 24px; font-weight: 700;">AdvanseIT</h1>
         <p style="color: rgba(255,255,255,0.7); margin: 4px 0 0; font-size: 14px;">New Contact Form Submission</p>
       </div>
       <div style="background: #ffffff; padding: 32px 40px; border-radius: 0 0 8px 8px; border: 1px solid #e5e7eb; border-top: none;">
@@ -67,12 +67,12 @@ async function sendContactEmail(data: {
           <a href="mailto:${data.email}" style="display: inline-block; background: linear-gradient(135deg, #0193CC, #01D0CC); color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 600;">Reply to ${data.name}</a>
         </div>
       </div>
-      <p style="text-align: center; color: #9ca3af; font-size: 12px; margin: 16px 0;">AdvanceIT Pty Ltd · Brisbane, Queensland, Australia</p>
+      <p style="text-align: center; color: #9ca3af; font-size: 12px; margin: 16px 0;">AdvanseIT Pty Ltd · Brisbane, Queensland, Australia</p>
     </div>
   `;
 
   await transporter.sendMail({
-    from: `"AdvanceIT Website" <${smtpUser}>`,
+    from: `"AdvanseIT Website" <${smtpUser}>`,
     to: toEmail,
     replyTo: data.email,
     subject: `New Enquiry from ${data.name}${data.service ? ` — ${data.service}` : ""}`,

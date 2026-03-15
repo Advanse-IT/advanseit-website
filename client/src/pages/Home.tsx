@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Home Page — "Fluid Intelligence"
+   AdvanseIT Home Page — "Fluid Intelligence"
    Assembles all sections in order with smooth flow
    ============================================================ */
 

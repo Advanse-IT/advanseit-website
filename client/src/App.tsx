@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT App — "Fluid Intelligence" Design System
+   AdvanseIT App — "Fluid Intelligence" Design System
    Light theme (white sections) with dark navy accents
    ============================================================ */
 

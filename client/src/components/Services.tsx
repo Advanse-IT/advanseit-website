@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Services Section — "Fluid Intelligence"
+   AdvanseIT Services Section — "Fluid Intelligence"
    Light white background with animated service cards
    6 services with icons, descriptions, hover effects
    ============================================================ */

@@ -1,4 +1,4 @@
-# AdvanceIT Website TODO
+# AdvanseIT Website TODO
 
 ## Completed
 - [x] Project scaffold and design system (navy/cyan brand palette)
@@ -36,3 +36,4 @@
 - [x] SEO: Implement LocalBusiness JSON-LD structured data (Brisbane + AU cities)
 - [x] SEO: Branded Open Graph image (1200x630) + full OG/Twitter card meta tags
 - [x] SEO: Weekly SEO reporting template document (SEO-Weekly-Report-Template.md)
+- [x] Rebrand: Replaced ALL "AdvanseIT" references across every source file (was AdvanceIT)

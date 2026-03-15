@@ -1,5 +1,5 @@
 /* ============================================================
-   AdvanceIT Web Dev Showcase — "Fluid Intelligence"
+   AdvanseIT Web Dev Showcase — "Fluid Intelligence"
    White section with web dev workspace image + app dev image
    Alternating layout to break monotony
    ============================================================ */
