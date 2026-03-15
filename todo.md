@@ -41,3 +41,4 @@
 - [x] Footer: Update LinkedIn link to https://www.linkedin.com/company/advanseit
 - [x] Footer: Update X/Twitter link to https://x.com/AdvanseIT
 - [x] Footer: Remove GitHub link
+- [x] Footer: Replace Twitter bird icon with X logo SVG

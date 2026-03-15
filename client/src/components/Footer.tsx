@@ -4,7 +4,14 @@
    ============================================================ */
 
 import { motion } from "framer-motion";
-import { MapPin, Mail, Phone, Linkedin, Twitter } from "lucide-react";
+import { MapPin, Mail, Phone, Linkedin } from "lucide-react";
+
+// X (formerly Twitter) logo as inline SVG — official X mark
+const XLogo = ({ size = 15 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
 
@@ -102,9 +109,9 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex items-center gap-3">
             {[
-              { Icon: Linkedin, href: "https://www.linkedin.com/company/advanseit", label: "LinkedIn" },
-              { Icon: Twitter, href: "https://x.com/AdvanseIT", label: "X (Twitter)" },
-            ].map(({ Icon, href, label }) => (
+              { label: "LinkedIn", href: "https://www.linkedin.com/company/advanseit", icon: <Linkedin size={15} /> },
+              { label: "X", href: "https://x.com/AdvanseIT", icon: <XLogo size={15} /> },
+            ].map(({ label, href, icon }) => (
               <a
                 key={label}
                 href={href}
@@ -113,7 +120,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-white/40 hover:text-[#00C8D4] hover:border-[#00C8D4]/30 transition-all"
               >
-                <Icon size={15} />
+                {icon}
               </a>
             ))}
           </div>
