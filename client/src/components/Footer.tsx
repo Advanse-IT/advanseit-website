@@ -4,7 +4,7 @@
    ============================================================ */
 
 import { motion } from "framer-motion";
-import { MapPin, Mail, Phone, Linkedin, Twitter, Github } from "lucide-react";
+import { MapPin, Mail, Phone, Linkedin, Twitter } from "lucide-react";
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/tvGUeOVhUQagHxoF.svg";
 
@@ -96,20 +96,21 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-white/35">
-            © {new Date().getFullYear()} AdvanseIT Pty Ltd. All rights reserved. ABN: 12 345 678 901
+            © {new Date().getFullYear()} AdvanseIT Pty Ltd. All rights reserved. ABN: 12 656 409 850
           </p>
 
           {/* Social Links */}
           <div className="flex items-center gap-3">
             {[
-              { Icon: Linkedin, href: "#", label: "LinkedIn" },
-              { Icon: Twitter, href: "#", label: "Twitter" },
-              { Icon: Github, href: "#", label: "GitHub" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/company/advanseit", label: "LinkedIn" },
+              { Icon: Twitter, href: "https://x.com/AdvanseIT", label: "X (Twitter)" },
             ].map(({ Icon, href, label }) => (
               <a
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-white/40 hover:text-[#00C8D4] hover:border-[#00C8D4]/30 transition-all"
               >
                 <Icon size={15} />

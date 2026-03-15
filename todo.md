@@ -37,3 +37,7 @@
 - [x] SEO: Branded Open Graph image (1200x630) + full OG/Twitter card meta tags
 - [x] SEO: Weekly SEO reporting template document (SEO-Weekly-Report-Template.md)
 - [x] Rebrand: Replaced ALL "AdvanseIT" references across every source file (was AdvanceIT)
+- [x] Footer: Update ABN to 12 656 409 850
+- [x] Footer: Update LinkedIn link to https://www.linkedin.com/company/advanseit
+- [x] Footer: Update X/Twitter link to https://x.com/AdvanseIT
+- [x] Footer: Remove GitHub link
