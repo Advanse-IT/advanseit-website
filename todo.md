@@ -91,3 +91,6 @@
 - [x] Services: sitemap.xml updated with all 6 service URLs at priority 0.90–0.95
 - [x] Services: AISEOSchema ItemList URLs updated to point to dedicated service pages
 - [x] Services: ServicePageTemplate component with Service + BreadcrumbList + FAQPage JSON-LD per page
+
+## Bug Fixes
+- [x] Fix: Page navigation does not scroll to top — added global ScrollToTop component to App.tsx (fires on every route change via useLocation)

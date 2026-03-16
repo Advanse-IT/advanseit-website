@@ -22,9 +22,12 @@ import CustomSoftwarePage from "./pages/services/CustomSoftware";
 import AISolutionsPage from "./pages/services/AISolutions";
 import TestingPage from "./pages/services/Testing";
 import ITStaffingPage from "./pages/services/ITStaffing";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Router() {
   return (
+    <>
+    <ScrollToTop />
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/blog"} component={Blog} />
@@ -41,6 +44,7 @@ function Router() {
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
+    </>
   );
 }
 
