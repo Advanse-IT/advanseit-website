@@ -90,7 +90,7 @@ export default function CTABanner() {
             href="tel:+61481261679"
             className="btn-outline-white flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base"
           >
-            Call +61 481 261 679
+            Call Us Now
           </a>
         </motion.div>
       </div>
