@@ -37,7 +37,8 @@ export type SEOPage =
   | "ai-solutions"
   | "it-staffing"
   | "about"
-  | "contact";
+  | "contact"
+  | "blog";
 
 interface SEOProps {
   page?: SEOPage;
@@ -180,6 +181,19 @@ const PAGE_META: Record<
       "free IT consultation Brisbane",
       "hire IT company Australia",
       "IT project quote Queensland",
+    ],
+  },
+  blog: {
+    title: "Blog & Insights — AI, Web Dev, IT Staffing",
+    description:
+      "Expert articles on AI, web development, app development, IT staffing, and cost-effective technology solutions for Australian businesses.",
+    keywords: [
+      "IT blog Brisbane",
+      "AI insights Australia",
+      "web development tips Brisbane",
+      "app development blog Australia",
+      "IT staffing insights Queensland",
+      "technology blog Brisbane",
     ],
   },
 };

@@ -5,6 +5,7 @@ import { publicProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import { blogRouter } from "./blogRouter";
 
 // ─── Email helper ────────────────────────────────────────────────────────────
 async function sendContactEmail(data: {
@@ -94,6 +95,8 @@ export const appRouter = router({
       return { success: true } as const;
     }),
   }),
+
+  blog: blogRouter,
 
   contact: router({
     submit: publicProcedure

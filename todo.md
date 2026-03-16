@@ -24,7 +24,17 @@
 
 ## Pending / Future
 - [ ] Add real portfolio / case studies section with client projects
-- [ ] Add blog / articles section
+- [x] Blog: Database schema for posts (title, slug, content, cover_image, inline_images, tags, status, published_at)
+- [x] Blog: tRPC API for blog CRUD and public listing
+- [x] Blog: Automated pipeline - trending topic fetcher + LLM writer + image generation
+- [x] Blog: Public blog listing page with cover images
+- [x] Blog: Article detail page with cover image + inline images
+- [x] Blog: Cross-platform repurposing content (LinkedIn, Medium, Reddit variants)
+- [x] Blog: Schedule automated generation Tuesdays and Fridays 8am AEST (node-cron)
+- [x] Blog: Navbar updated with Blog link (active state highlight)
+- [x] Blog: sitemap.xml updated with /blog route
+- [x] Blog: SEO meta tags per article (Helmet, OG, Twitter Card)
+- [x] Blog: 22 vitest tests passing (blog + legal + contact + auth)
 - [ ] Connect LinkedIn, Twitter, GitHub social links to real profiles
 - [ ] Add ABN number to footer (currently placeholder: 12 345 678 901)
 - [ ] Add Google Analytics or custom analytics integration
@@ -47,7 +57,7 @@
 - [x] Legal: Create Cookie Policy page
 - [x] Legal: Add cookie consent banner (localStorage persistence)
 - [x] Legal: Update footer links to point to legal pages (new Legal column in footer)
-- [ ] Logo: Update website with new Group789.svg logo (navbar, footer, favicon)
-- [ ] Logo: Create favicon PNG (icon mark only, navy background) from Group789.svg
-- [ ] Logo: Create LinkedIn company icon 300x300 (icon mark, navy background)
-- [ ] Logo: Create LinkedIn cover page 1128x191 (logo right, tagline, navy/cyan theme)
+- [x] Logo: Update website with new Group789.svg logo (navbar, footer, favicon)
+- [x] Logo: Create favicon PNG (icon mark only, navy background) from Group789.svg
+- [x] Logo: Create LinkedIn company icon 300x300 (icon mark, navy background)
+- [x] Logo: Create LinkedIn cover page 1128x191 (logo right, tagline, navy/cyan theme)

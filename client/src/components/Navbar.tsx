@@ -7,21 +7,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 // New SVG logo — white/cyan version works perfectly on dark navy navbar
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/IXgYLeAuYjWgUTBq.svg";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "AI Solutions", href: "#ai-solutions" },
-  { label: "About", href: "#about" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "#services", type: "hash" },
+  { label: "AI Solutions", href: "#ai-solutions", type: "hash" },
+  { label: "About", href: "#about", type: "hash" },
+  { label: "Why Us", href: "#why-us", type: "hash" },
+  { label: "Blog", href: "/blog", type: "page" },
+  { label: "Contact", href: "#contact", type: "hash" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location, navigate] = useLocation();
+  const isOnHomePage = location === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,11 +35,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, type: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (type === "page") {
+      navigate(href);
+      return;
+    }
+    // Hash link — if on home page, scroll; otherwise navigate home then scroll
+    if (isOnHomePage) {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      navigate("/");
+      // After navigation, wait for DOM then scroll
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
     }
   };
 
@@ -48,15 +66,22 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? "bg-[#0D1B2E]/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-white/5"
-            : "bg-transparent"
+            : "bg-[#0D1B2E]/80 backdrop-blur-sm"
         }`}
       >
         <div className="container">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo — SVG scales naturally, height fixed for nav bar */}
             <a
-              href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                if (isOnHomePage) {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  navigate("/");
+                }
+              }}
               className="flex items-center flex-shrink-0"
               aria-label="AdvanseIT Home"
             >
@@ -73,8 +98,12 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <button
                   key={link.label}
-                  onClick={() => handleNavClick(link.href)}
-                  className="px-4 py-2 text-sm font-body font-500 text-white/80 hover:text-[#00C8D4] transition-colors duration-200 rounded-lg hover:bg-white/5"
+                  onClick={() => handleNavClick(link.href, link.type)}
+                  className={`px-4 py-2 text-sm font-body font-500 transition-colors duration-200 rounded-lg hover:bg-white/5 ${
+                    link.type === "page" && location.startsWith(link.href)
+                      ? "text-[#00C8D4]"
+                      : "text-white/80 hover:text-[#00C8D4]"
+                  }`}
                 >
                   {link.label}
                 </button>
@@ -84,7 +113,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <button
-                onClick={() => handleNavClick("#contact")}
+                onClick={() => handleNavClick("#contact", "hash")}
                 className="btn-primary px-5 py-2.5 rounded-lg text-sm"
               >
                 Get a Free Quote
@@ -120,15 +149,19 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-left px-4 py-3 text-white/80 hover:text-white font-body font-500 text-base rounded-lg hover:bg-white/5 transition-colors"
+                  onClick={() => handleNavClick(link.href, link.type)}
+                  className={`text-left px-4 py-3 font-body font-500 text-base rounded-lg hover:bg-white/5 transition-colors ${
+                    link.type === "page" && location.startsWith(link.href)
+                      ? "text-[#00C8D4]"
+                      : "text-white/80 hover:text-white"
+                  }`}
                 >
                   {link.label}
                 </motion.button>
               ))}
               <div className="pt-3 border-t border-white/10">
                 <button
-                  onClick={() => handleNavClick("#contact")}
+                  onClick={() => handleNavClick("#contact", "hash")}
                   className="btn-primary w-full px-5 py-3 rounded-lg text-sm text-center"
                 >
                   Get a Free Quote
