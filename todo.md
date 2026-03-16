@@ -117,3 +117,8 @@
 - [x] Service pages: pt-24 sm:pt-32, px-4 sm:px-6, heading text-3xl sm:text-4xl, CTA buttons full-width on mobile
 - [x] FAQ accordion: px-4 sm:px-6, py-4 sm:py-5 touch targets
 - [x] All 22 tests pass after all mobile fixes
+
+## Content Fixes
+- [ ] Fix phone number: update to +61 481 261 679 (tel: link +61481261679) across all files
+- [x] Fix CTABanner "Call Us Now" button to display +61 481 261 679 visibly
+- [x] Fix PrivacyPolicy.tsx PHONE constant to +61 481 261 679

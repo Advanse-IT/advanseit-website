@@ -87,10 +87,10 @@ export default function CTABanner() {
             <ArrowRight size={18} />
           </button>
           <a
-            href="tel:+61731234567"
+            href="tel:+61481261679"
             className="btn-outline-white flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base"
           >
-            Call Us Now
+            Call +61 481 261 679
           </a>
         </motion.div>
       </div>

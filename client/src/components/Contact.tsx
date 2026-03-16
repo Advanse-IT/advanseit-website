@@ -149,10 +149,10 @@ export default function Contact() {
                   <div>
                     <div className="font-display font-600 text-sm text-white mb-0.5">Call Us</div>
                     <a
-                      href="tel:0481261679"
+                      href="tel:+61481261679"
                       className="font-body text-sm text-white/55 hover:text-[#00C8D4] transition-colors"
                     >
-                      0481 261 679
+                      +61 481 261 679
                     </a>
                   </div>
                 </div>

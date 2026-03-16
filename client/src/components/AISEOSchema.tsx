@@ -154,7 +154,7 @@ const faqSchema = {
       name: "How much does it cost to build a website with AdvanseIT?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AdvanseIT offers competitive, transparent pricing for Australian businesses. Small business websites typically start from $2,000 AUD, while custom web applications are priced based on scope and complexity. AdvanseIT provides free consultations and fixed-price quotes. Contact admin@advanseit.com.au or call 0481 261 679 for a no-obligation quote.",
+        text: "AdvanseIT offers competitive, transparent pricing for Australian businesses. Small business websites typically start from $2,000 AUD, while custom web applications are priced based on scope and complexity. AdvanseIT provides free consultations and fixed-price quotes. Contact admin@advanseit.com.au or call +61 481 261 679 for a no-obligation quote.",
       },
     },
     {
@@ -229,7 +229,7 @@ const howToSchema = {
       "@type": "HowToStep",
       position: 1,
       name: "Free Consultation",
-      text: "Contact AdvanseIT via email (admin@advanseit.com.au) or phone (0481 261 679) to discuss your project requirements. The team will schedule a free 30-minute discovery call to understand your goals, timeline, and budget.",
+      text: "Contact AdvanseIT via email (admin@advanseit.com.au) or phone (+61 481 261 679) to discuss your project requirements. The team will schedule a free 30-minute discovery call to understand your goals, timeline, and budget.",
       url: `${SITE_URL}/#contact`,
     },
     {
