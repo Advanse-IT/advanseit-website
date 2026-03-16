@@ -77,3 +77,17 @@
 - [x] Blog posts: full OG article meta (published_time, modified_time, section, publisher)
 - [x] Twitter handle corrected to @AdvanseIT across SEO and BlogPost components
 - [x] sitemap.xml: updated lastmod timestamps to 2026-03-16
+
+## AI SEO Suggestions 2 & 3
+- [x] Speakable: Hero subheading marked class="speakable" + SpeakableSpecification JSON-LD in Hero.tsx
+- [x] Services: Built /services/web-design dedicated page (benefits, process, tech stack, FAQ, CTA, SEO)
+- [x] Services: Built /services/app-development dedicated page
+- [x] Services: Built /services/custom-software dedicated page
+- [x] Services: Built /services/ai-solutions dedicated page
+- [x] Services: Built /services/testing dedicated page
+- [x] Services: Built /services/it-staffing dedicated page
+- [x] Services: All 6 routes added to App.tsx
+- [x] Services: Navbar updated with hover dropdown listing all 6 service pages (desktop + mobile accordion)
+- [x] Services: sitemap.xml updated with all 6 service URLs at priority 0.90–0.95
+- [x] Services: AISEOSchema ItemList URLs updated to point to dedicated service pages
+- [x] Services: ServicePageTemplate component with Service + BreadcrumbList + FAQPage JSON-LD per page

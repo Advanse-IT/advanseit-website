@@ -7,6 +7,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const HERO_BG =
   "https://private-us-east-1.manuscdn.com/sessionFile/37fQNGQqqG3bNP4NtPOLV7/sandbox/zJvQS07fxaI6Q7ymj4vzLy-img-1_1771758218000_na1fn_aGVyby1iZw.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMzdmUU5HUXFxRzNiTlA0TnRQT0xWNy9zYW5kYm94L3pKdlFTMDdmeGFJNlE3eW1qNHZ6THktaW1nLTFfMTc3MTc1ODIxODAwMF9uYTFmbl9hR1Z5YnkxaVp3LmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=CBbVynUbhCZivmLUmeDaJC1x0wLoXXNVcTIDqx2QpDf0FnD8qzIwCUlJ-ZOh7yDI6ss2-Tad~9JPOzR2dNbMmNUZ8DEJRCfvM9zt20OPlUaVG5031Iz1PTEyNamRPKbg6hszfN6ewjoLdTRPAw3H-sd-orpvzZ-cj~vGDHpZyB3GVSRT6i6Bu8pzE1O8yvPAtQAoQ6Ph9PsdWXpjfpw7rMxooLMZq--Rn5zPNgNRqwt6VBPiuhxGYlZ~XvOduS5Pwz4ooD76dQlcJTVuvnufk3Bn0KsXPENMp6El9wcQkcLXAjhE1Bff7qAmrYUWrc17Kdkps~N9BJ9sJ4JYjlcM8w__";
@@ -74,6 +75,14 @@ export default function Hero() {
   };
 
   return (
+    <>
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SpeakableSpecification",
+        cssSelector: [".speakable"],
+      }, null, 2)}</script>
+    </Helmet>
     <section
       id="home"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
@@ -125,16 +134,17 @@ export default function Hero() {
             <span className="text-gradient-cyan">Smart IT</span>
           </motion.h1>
 
-          {/* Subheading */}
+          {/* Subheading — marked speakable for voice search & AI audio responses */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-body text-lg sm:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed"
+            className="speakable font-body text-lg sm:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed"
           >
-            Cost-effective web design, app development, AI projects, and IT staffing solutions 
-            tailored for Australian businesses. We put AI at the heart of everything we build 
-            — so you get more, for less.
+            AdvanseIT is a Brisbane-based Australian IT company (ABN 12 656 409 850) specialising
+            in AI-first web design, app development, custom software, AI chatbots, software testing,
+            and IT staffing. We deliver cost-effective, enterprise-quality technology solutions to
+            Australian businesses — putting AI at the heart of everything we build.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -202,5 +212,6 @@ export default function Hero() {
         </svg>
       </div>
     </section>
+    </>
   );
 }

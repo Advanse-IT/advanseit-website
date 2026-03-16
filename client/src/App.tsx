@@ -16,6 +16,12 @@ import CookiePolicy from "./pages/CookiePolicy";
 import CookieConsent from "./components/CookieConsent";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import WebDesignPage from "./pages/services/WebDesign";
+import AppDevelopmentPage from "./pages/services/AppDevelopment";
+import CustomSoftwarePage from "./pages/services/CustomSoftware";
+import AISolutionsPage from "./pages/services/AISolutions";
+import TestingPage from "./pages/services/Testing";
+import ITStaffingPage from "./pages/services/ITStaffing";
 
 function Router() {
   return (
@@ -23,6 +29,12 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
+      <Route path={"/services/web-design"} component={WebDesignPage} />
+      <Route path={"/services/app-development"} component={AppDevelopmentPage} />
+      <Route path={"/services/custom-software"} component={CustomSoftwarePage} />
+      <Route path={"/services/ai-solutions"} component={AISolutionsPage} />
+      <Route path={"/services/testing"} component={TestingPage} />
+      <Route path={"/services/it-staffing"} component={ITStaffingPage} />
       <Route path={"/terms"} component={TermsAndConditions} />
       <Route path={"/privacy"} component={PrivacyPolicy} />
       <Route path={"/cookies"} component={CookiePolicy} />

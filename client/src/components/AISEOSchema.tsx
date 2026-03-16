@@ -283,7 +283,7 @@ const servicesListSchema = {
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Country", name: "Australia" },
         serviceType: "Web Design and Development",
-        url: `${SITE_URL}/#services`,
+        url: `${SITE_URL}/services/web-design`,
       },
     },
     {
@@ -297,7 +297,7 @@ const servicesListSchema = {
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Country", name: "Australia" },
         serviceType: "Mobile App Development",
-        url: `${SITE_URL}/#services`,
+        url: `${SITE_URL}/services/app-development`,
       },
     },
     {
@@ -311,7 +311,7 @@ const servicesListSchema = {
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Country", name: "Australia" },
         serviceType: "Custom Software Development",
-        url: `${SITE_URL}/#services`,
+        url: `${SITE_URL}/services/custom-software`,
       },
     },
     {
@@ -325,7 +325,7 @@ const servicesListSchema = {
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Country", name: "Australia" },
         serviceType: "Artificial Intelligence Solutions",
-        url: `${SITE_URL}/#ai-solutions`,
+        url: `${SITE_URL}/services/ai-solutions`,
       },
     },
     {
@@ -339,7 +339,7 @@ const servicesListSchema = {
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Country", name: "Australia" },
         serviceType: "Software Testing and Quality Assurance",
-        url: `${SITE_URL}/#services`,
+        url: `${SITE_URL}/services/testing`,
       },
     },
     {
@@ -353,7 +353,7 @@ const servicesListSchema = {
         provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Country", name: "Australia" },
         serviceType: "IT Staffing and Outsourcing",
-        url: `${SITE_URL}/#services`,
+        url: `${SITE_URL}/services/it-staffing`,
       },
     },
   ],
