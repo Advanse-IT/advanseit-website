@@ -12,6 +12,7 @@ import { trpc } from "@/lib/trpc";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import ReadingProgress from "@/components/ReadingProgress";
 
 const SITE_URL = "https://advanseit.com.au";
 
@@ -132,6 +133,7 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <ReadingProgress />
       <Helmet>
         <title>{post.title} | AdvanseIT Blog</title>
         <meta name="description" content={post.excerpt ?? ""} />

@@ -14,6 +14,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import CookieConsent from "./components/CookieConsent";
+import BackToTop from "./components/BackToTop";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import WebDesignPage from "./pages/services/WebDesign";
@@ -57,6 +58,8 @@ function App() {
           <Router />
           {/* Cookie consent banner — shown on first visit */}
           <CookieConsent />
+          {/* Back-to-top floating button — appears after 400px scroll */}
+          <BackToTop />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

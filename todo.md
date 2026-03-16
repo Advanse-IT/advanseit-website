@@ -94,3 +94,8 @@
 
 ## Bug Fixes
 - [x] Fix: Page navigation does not scroll to top — added global ScrollToTop component to App.tsx (fires on every route change via useLocation)
+
+## UX Improvements
+- [x] Back-to-top: Sticky floating button (BackToTop.tsx) appears after 400px scroll, smooth-scrolls to top, fade+scale animation via Framer Motion
+- [x] Related Services: Row of 3 other service cards at bottom of each service page (ServicePageTemplate.tsx)
+- [x] Blog progress bar: Thin 3px cyan reading progress bar at top of blog post pages (ReadingProgress.tsx)

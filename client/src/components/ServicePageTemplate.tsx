@@ -19,6 +19,45 @@ const LOGO_URL =
 const OG_IMAGE =
   "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/HdTBZOVgOmaFOEAz.png";
 
+const ALL_SERVICES = [
+  {
+    slug: "web-design",
+    title: "Web Design & Development",
+    description: "Responsive websites and web apps built for performance and conversion.",
+    icon: "🌐",
+  },
+  {
+    slug: "app-development",
+    title: "App Development",
+    description: "Native and cross-platform iOS & Android apps for your business.",
+    icon: "📱",
+  },
+  {
+    slug: "custom-software",
+    title: "Custom Software",
+    description: "Bespoke software tailored to your unique workflows and processes.",
+    icon: "⚙️",
+  },
+  {
+    slug: "ai-solutions",
+    title: "AI Solutions",
+    description: "Chatbots, ML models, and AI automation that drive real results.",
+    icon: "🤖",
+  },
+  {
+    slug: "testing",
+    title: "Software Testing & QA",
+    description: "Manual and automated testing to ship with confidence.",
+    icon: "✅",
+  },
+  {
+    slug: "it-staffing",
+    title: "IT Staffing & Outsourcing",
+    description: "Pre-vetted developers, testers, and designers on demand.",
+    icon: "👥",
+  },
+];
+
 export interface ServiceFAQ {
   question: string;
   answer: string;
@@ -431,6 +470,45 @@ export default function ServicePageTemplate({
           </motion.div>
         </div>
       </section>
+
+      {/* ── Related Services ── */}
+      {(() => {
+        const related = ALL_SERVICES.filter((s) => s.slug !== slug).slice(0, 3);
+        return (
+          <section className="py-16 bg-slate-50">
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="text-center mb-10">
+                <h2 className="text-2xl font-bold text-[#0D1B2E] mb-2">
+                  Explore Related Services
+                </h2>
+                <p className="text-slate-500 text-sm">
+                  AdvanseIT offers a full suite of IT solutions for Australian businesses.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {related.map((s) => (
+                  <Link key={s.slug} href={`/services/${s.slug}`}>
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.2 }}
+                      className="p-6 bg-white rounded-2xl border border-slate-100 hover:border-cyan-200 hover:shadow-md transition-all cursor-pointer h-full"
+                    >
+                      <div className="text-3xl mb-3">{s.icon}</div>
+                      <h3 className="font-bold text-[#0D1B2E] mb-2">{s.title}</h3>
+                      <p className="text-slate-500 text-sm leading-relaxed">
+                        {s.description}
+                      </p>
+                      <div className="mt-4 flex items-center gap-1 text-cyan-600 text-sm font-semibold">
+                        Learn more <ArrowRight size={14} />
+                      </div>
+                    </motion.div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       <Footer />
     </div>
