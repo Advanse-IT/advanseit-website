@@ -103,6 +103,10 @@
     font-family: 'Nunito Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  html {
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
@@ -338,8 +342,15 @@
 
   /* Section padding */
   .section-py {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-py {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
   }
 
   @media (min-width: 1024px) {

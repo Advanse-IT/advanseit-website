@@ -99,3 +99,21 @@
 - [x] Back-to-top: Sticky floating button (BackToTop.tsx) appears after 400px scroll, smooth-scrolls to top, fade+scale animation via Framer Motion
 - [x] Related Services: Row of 3 other service cards at bottom of each service page (ServicePageTemplate.tsx)
 - [x] Blog progress bar: Thin 3px cyan reading progress bar at top of blog post pages (ReadingProgress.tsx)
+
+## Mobile Responsiveness Audit & Fixes
+- [x] Global: Added overflow-x:hidden to html/body in index.css
+- [x] Navbar: Fixed corrupted JSX div in mobile menu; Services dropdown accordion works on mobile
+- [x] Hero: text-3xl on xs screens, pt-20 sm:pt-24, CTA buttons full-width on mobile (flex-col sm:flex-row)
+- [x] Services section: Cards already grid-cols-1 md:grid-cols-2 lg:grid-cols-3 — confirmed correct
+- [x] AISection: heading text-3xl sm:text-5xl
+- [x] About: heading text-3xl sm:text-5xl, CTA buttons flex-col sm:flex-row w-full sm:w-auto
+- [x] WhyUs: heading text-3xl sm:text-5xl
+- [x] Testimonials: heading text-3xl sm:text-5xl
+- [x] CTABanner: heading text-3xl sm:text-5xl, buttons flex-col sm:flex-row
+- [x] Contact: heading text-3xl sm:text-5xl, form already responsive
+- [x] Footer: already uses sm:grid-cols-2 and flex-col sm:flex-row — confirmed correct
+- [x] Blog listing: px-4 sm:px-6, py-10 sm:py-16, heading text-3xl sm:text-4xl
+- [x] Blog post: px-4 sm:px-6, py-8 sm:py-12, heading text-2xl sm:text-3xl
+- [x] Service pages: pt-24 sm:pt-32, px-4 sm:px-6, heading text-3xl sm:text-4xl, CTA buttons full-width on mobile
+- [x] FAQ accordion: px-4 sm:px-6, py-4 sm:py-5 touch targets
+- [x] All 22 tests pass after all mobile fixes

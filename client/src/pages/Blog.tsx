@@ -104,12 +104,12 @@ export default function Blog() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-[#0D1B2E] pt-32 pb-20 relative overflow-hidden">
+      <section className="bg-[#0D1B2E] pt-28 pb-16 sm:pt-32 sm:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl" />
         </div>
-        <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export default function Blog() {
               <Rss size={14} className="text-cyan-400" />
               <span className="text-cyan-400 text-sm font-medium">Insights & Articles</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
               AdvanseIT <span className="text-cyan-400">Blog</span>
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -136,7 +136,7 @@ export default function Blog() {
       </section>
 
       {/* Blog grid */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (

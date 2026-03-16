@@ -106,7 +106,7 @@ export default function Hero() {
       <div className="absolute bottom-1/3 left-10 w-48 h-48 rounded-full bg-cyan-400/8 blur-2xl animate-float" style={{ animationDelay: "2s" }} />
 
       {/* Content */}
-      <div className="relative z-10 container pt-24 pb-16">
+      <div className="relative z-10 container pt-20 sm:pt-24 pb-12 sm:pb-16">
         <div className="max-w-4xl">
           {/* Badge */}
           <motion.div
@@ -126,7 +126,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="font-display font-800 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.05] mb-6"
+            className="font-display font-800 text-3xl sm:text-5xl lg:text-7xl xl:text-8xl text-white leading-[1.1] mb-6"
           >
             Advance Your
             <br />
@@ -139,7 +139,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="speakable font-body text-lg sm:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed"
+            className="speakable font-body text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mb-8 leading-relaxed"
           >
             AdvanseIT is a Brisbane-based Australian IT company (ABN 12 656 409 850) specialising
             in AI-first web design, app development, custom software, AI chatbots, software testing,
@@ -152,18 +152,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-wrap gap-4 mb-16"
+            className="flex flex-col sm:flex-row gap-3 mb-12"
           >
             <button
               onClick={handleContact}
-              className="btn-primary flex items-center gap-2 px-7 py-4 rounded-xl text-base"
+              className="btn-primary flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-base w-full sm:w-auto"
             >
               Get a Free Quote
               <ArrowRight size={18} />
             </button>
             <button
               onClick={handleServices}
-              className="btn-outline-white flex items-center gap-2 px-7 py-4 rounded-xl text-base"
+              className="btn-outline-white flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-base w-full sm:w-auto"
             >
               Explore Services
             </button>
@@ -174,11 +174,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/10"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10"
           >
             {stats.map((stat, i) => (
-              <div key={i} className="text-center sm:text-left">
-                <div className="font-display font-800 text-3xl sm:text-4xl text-[#00C8D4] leading-none mb-1">
+              <div key={i} className="text-center">
+                <div className="font-display font-800 text-2xl sm:text-3xl text-[#00C8D4] leading-none mb-1">
                   <CountUp target={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="font-body text-sm text-white/50">{stat.label}</div>

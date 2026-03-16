@@ -66,7 +66,7 @@ export default function FAQ() {
       className="py-20 bg-white"
       aria-label="Frequently Asked Questions"
     >
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 text-cyan-700 text-sm font-medium px-4 py-1.5 rounded-full mb-4">
@@ -98,7 +98,7 @@ export default function FAQ() {
                 <button
                   onClick={() => toggle(i)}
                   aria-expanded={isOpen}
-                  className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left hover:bg-slate-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-inset"
+                  className="w-full flex items-start justify-between gap-3 px-4 sm:px-6 py-4 sm:py-5 text-left hover:bg-slate-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-inset"
                 >
                   <span className="font-semibold text-[#0D1B2E] text-base leading-snug">
                     {faq.question}
@@ -110,7 +110,7 @@ export default function FAQ() {
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-5">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-5">
                     <p className="text-slate-600 leading-relaxed text-[0.95rem]">
                       {faq.answer}
                     </p>

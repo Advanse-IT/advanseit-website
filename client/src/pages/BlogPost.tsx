@@ -49,7 +49,7 @@ export default function BlogPost() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <div className="max-w-3xl mx-auto px-6 py-32 animate-pulse">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-24 sm:py-32 animate-pulse">
           <div className="h-8 bg-gray-200 rounded w-3/4 mb-4" />
           <div className="h-4 bg-gray-200 rounded w-1/3 mb-8" />
           <div className="aspect-[16/9] bg-gray-200 rounded-2xl mb-8" />
@@ -66,7 +66,7 @@ export default function BlogPost() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <div className="max-w-3xl mx-auto px-6 py-32 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center">
           <h1 className="text-3xl font-bold text-gray-800 mb-4">Article Not Found</h1>
           <p className="text-gray-500 mb-8">This article may have been moved or doesn't exist.</p>
           <Link href="/blog">
@@ -178,7 +178,7 @@ export default function BlogPost() {
         </div>
       )}
 
-      <div className="max-w-3xl mx-auto px-6 py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Back link */}
         <Link href="/blog">
           <span className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-600 transition-colors cursor-pointer mb-8">
@@ -199,7 +199,7 @@ export default function BlogPost() {
           )}
 
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             {post.title}
           </h1>
 

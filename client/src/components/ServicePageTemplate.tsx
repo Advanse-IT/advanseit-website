@@ -246,12 +246,12 @@ export default function ServicePageTemplate({
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="relative bg-[#0D1B2E] pt-32 pb-24 overflow-hidden">
+      <section className="relative bg-[#0D1B2E] pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0D1B2E] via-[#0D1B2E] to-[#0a2540]" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-cyan-400/5 blur-3xl -translate-y-1/3 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-cyan-400/5 blur-3xl translate-y-1/3 -translate-x-1/3" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex items-center gap-2 text-sm text-white/40">
@@ -288,7 +288,7 @@ export default function ServicePageTemplate({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-800 text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6"
+            className="font-display font-800 text-3xl sm:text-4xl lg:text-6xl text-white leading-tight mb-6"
           >
             {heroHeadline}
           </motion.h1>
@@ -297,7 +297,7 @@ export default function ServicePageTemplate({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="speakable text-lg text-white/70 max-w-2xl mb-10 leading-relaxed"
+            className="speakable text-base sm:text-lg text-white/70 max-w-2xl mb-8 leading-relaxed"
           >
             {heroSubheading}
           </motion.p>
@@ -306,15 +306,15 @@ export default function ServicePageTemplate({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-col sm:flex-row gap-3"
           >
             <Link href="/#contact">
-              <span className="inline-flex items-center gap-2 bg-[#00C8D4] hover:bg-[#00b5c0] text-[#0D1B2E] font-bold px-6 py-3.5 rounded-xl transition-colors cursor-pointer">
+              <span className="inline-flex items-center justify-center gap-2 bg-[#00C8D4] hover:bg-[#00b5c0] text-[#0D1B2E] font-bold px-6 py-3.5 rounded-xl transition-colors cursor-pointer w-full sm:w-auto">
                 Get a Free Quote <ArrowRight size={16} />
               </span>
             </Link>
             <Link href="/#services">
-              <span className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white/80 hover:text-white font-semibold px-6 py-3.5 rounded-xl transition-colors cursor-pointer">
+              <span className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white/80 hover:text-white font-semibold px-6 py-3.5 rounded-xl transition-colors cursor-pointer w-full sm:w-auto">
                 <ArrowLeft size={16} /> All Services
               </span>
             </Link>
@@ -434,7 +434,7 @@ export default function ServicePageTemplate({
 
       {/* ── CTA ── */}
       <section className="py-20 bg-[#0D1B2E]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -454,15 +454,15 @@ export default function ServicePageTemplate({
               Talk to our team today about your project. We'll provide a
               detailed proposal and fixed-price quote within 48 hours.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/#contact">
-                <span className="inline-flex items-center gap-2 bg-[#00C8D4] hover:bg-[#00b5c0] text-[#0D1B2E] font-bold px-8 py-4 rounded-xl transition-colors cursor-pointer">
+                <span className="inline-flex items-center justify-center gap-2 bg-[#00C8D4] hover:bg-[#00b5c0] text-[#0D1B2E] font-bold px-8 py-4 rounded-xl transition-colors cursor-pointer w-full sm:w-auto">
                   Get a Free Quote <ArrowRight size={16} />
                 </span>
               </Link>
               <a
                 href="mailto:admin@advanseit.com.au"
-                className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white/80 hover:text-white font-semibold px-8 py-4 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white/80 hover:text-white font-semibold px-8 py-4 rounded-xl transition-colors break-all text-sm sm:text-base"
               >
                 admin@advanseit.com.au
               </a>
@@ -476,7 +476,7 @@ export default function ServicePageTemplate({
         const related = ALL_SERVICES.filter((s) => s.slug !== slug).slice(0, 3);
         return (
           <section className="py-16 bg-slate-50">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
               <div className="text-center mb-10">
                 <h2 className="text-2xl font-bold text-[#0D1B2E] mb-2">
                   Explore Related Services

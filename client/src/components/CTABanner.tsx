@@ -54,7 +54,7 @@ export default function CTABanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display font-800 text-4xl sm:text-5xl lg:text-6xl text-white mb-5 leading-tight"
+          className="font-display font-800 text-3xl sm:text-5xl lg:text-6xl text-white mb-5 leading-tight"
         >
           Start Your Project Today.
           <br />
@@ -77,18 +77,18 @@ export default function CTABanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center"
         >
           <button
             onClick={handleContact}
-            className="btn-primary flex items-center gap-2 px-8 py-4 rounded-xl text-base"
+            className="btn-primary flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base"
           >
             Get Your Free Quote
             <ArrowRight size={18} />
           </button>
           <a
             href="tel:+61731234567"
-            className="btn-outline-white flex items-center gap-2 px-8 py-4 rounded-xl text-base"
+            className="btn-outline-white flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base"
           >
             Call Us Now
           </a>

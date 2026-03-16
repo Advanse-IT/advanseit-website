@@ -119,14 +119,14 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-6 flex flex-wrap gap-4"
+              className="mt-6 flex flex-col sm:flex-row gap-3"
             >
               <button
                 onClick={() => {
                   const el = document.querySelector("#contact");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="btn-primary px-6 py-3.5 rounded-xl text-sm"
+                className="btn-primary px-6 py-3.5 rounded-xl text-sm w-full sm:w-auto text-center"
               >
                 Work With Us
               </button>
@@ -135,7 +135,7 @@ export default function About() {
                   const el = document.querySelector("#why-us");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3.5 rounded-xl text-sm font-display font-600 text-[#0D1B2E] border-2 border-[#0D1B2E]/20 hover:border-[#00C8D4] hover:text-[#0099A8] transition-colors"
+                className="px-6 py-3.5 rounded-xl text-sm font-display font-600 text-[#0D1B2E] border-2 border-[#0D1B2E]/20 hover:border-[#00C8D4] hover:text-[#0099A8] transition-colors w-full sm:w-auto text-center"
               >
                 Why Choose Us
               </button>

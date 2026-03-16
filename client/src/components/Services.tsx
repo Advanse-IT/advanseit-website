@@ -99,7 +99,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-800 text-4xl sm:text-5xl text-[#0D1B2E] mb-4"
+            className="font-display font-800 text-3xl sm:text-5xl text-[#0D1B2E] mb-4"
           >
             End-to-End IT Services
             <br />

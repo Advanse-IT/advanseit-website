@@ -86,7 +86,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-800 text-4xl sm:text-5xl text-white mb-4"
+            className="font-display font-800 text-3xl sm:text-5xl text-white mb-4"
           >
             Ready to Advance
             <br />

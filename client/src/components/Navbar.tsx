@@ -121,7 +121,7 @@ export default function Navbar() {
               <img
                 src={LOGO_URL}
                 alt="AdvanseIT"
-                className="h-12 lg:h-14 w-auto object-contain"
+                className="h-10 lg:h-14 w-auto object-contain"
                 style={{ maxWidth: "220px" }}
               />
             </a>
@@ -218,7 +218,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Toggle */}
             <button
-              className="lg:hidden p-2 text-white/80 hover:text-white"
+              className="lg:hidden p-3 -mr-1 text-white/80 hover:text-white touch-manipulation"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -238,7 +238,7 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed top-16 left-0 right-0 z-40 bg-[#0D1B2E]/98 backdrop-blur-xl border-b border-white/10 shadow-2xl max-h-[85vh] overflow-y-auto"
           >
-            <div className="container py-6 flex flex-col gap-1">
+            <div className="container py-4 flex flex-col gap-0.5">
               {navLinks.map((link, i) => {
                 if (link.type === "dropdown") {
                   return (
