@@ -1,12 +1,54 @@
 # robots.txt — AdvanseIT (https://advanseit.com.au)
-# Generated for maximum search engine indexing coverage
+# Optimised for traditional search engines AND AI crawlers (AEO/GEO)
+# Last updated: 2026-03-16
 
+# ── Traditional search engines ───────────────────────────────────────────────
 User-agent: *
 Allow: /
-
-# Block crawling of API and internal routes
 Disallow: /api/
 Disallow: /api/trpc/
 
-# Sitemap location
+# ── OpenAI crawlers ───────────────────────────────────────────────────────────
+# GPTBot: training data for ChatGPT and OpenAI models
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT-User: live retrieval when users ask ChatGPT questions
+User-agent: ChatGPT-User
+Allow: /
+
+# OAI-SearchBot: real-time retrieval and indexing for OpenAI search
+User-agent: OAI-SearchBot
+Allow: /
+
+# ── Anthropic (Claude) ────────────────────────────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# ── Perplexity ────────────────────────────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+# ── Google AI ─────────────────────────────────────────────────────────────────
+# Google-Extended: controls use of content for Gemini AI and Vertex AI
+User-agent: Google-Extended
+Allow: /
+
+# ── Apple ─────────────────────────────────────────────────────────────────────
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Meta AI ───────────────────────────────────────────────────────────────────
+User-agent: FacebookBot
+Allow: /
+
+# ── Cohere ────────────────────────────────────────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── Sitemap and LLM context file ─────────────────────────────────────────────
 Sitemap: https://advanseit.com.au/sitemap.xml
+# LLM context: https://advanseit.com.au/llms.txt

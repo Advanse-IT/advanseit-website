@@ -13,16 +13,19 @@ import TechStack from "@/components/TechStack";
 import WhyUs from "@/components/WhyUs";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import LocalBusinessSchema from "@/components/LocalBusinessSchema";
+import AISEOSchema from "@/components/AISEOSchema";
 
 export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <SEO page="home" canonicalPath="/" />
       <LocalBusinessSchema />
+      <AISEOSchema />
       <Navbar />
       <Hero />
       <Services />
@@ -33,6 +36,7 @@ export default function Home() {
       <WhyUs />
       <Testimonials />
       <CTABanner />
+      <FAQ />
       <Contact />
       <Footer />
     </div>

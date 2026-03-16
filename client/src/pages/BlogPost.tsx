@@ -97,21 +97,69 @@ export default function BlogPost() {
     inlineImages = [];
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": postUrl,
+    headline: post.title,
+    description: post.excerpt ?? "",
+    url: postUrl,
+    datePublished: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+    dateModified: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+    author: {
+      "@type": "Organization",
+      name: "AdvanseIT",
+      url: "https://advanseit.com.au",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://advanseit.com.au/#organization",
+      name: "AdvanseIT",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png",
+      },
+    },
+    image: post.coverImageUrl
+      ? { "@type": "ImageObject", url: post.coverImageUrl, width: 1200, height: 630 }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+    keywords: Array.isArray(post.tags) ? post.tags.join(", ") : (post.tags ?? ""),
+    articleSection: post.category ?? "Technology",
+    inLanguage: "en-AU",
+    isPartOf: { "@id": "https://advanseit.com.au/#website" },
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
         <title>{post.title} | AdvanseIT Blog</title>
         <meta name="description" content={post.excerpt ?? ""} />
+        <meta name="author" content="AdvanseIT" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="AdvanseIT" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt ?? ""} />
-        {post.coverImageUrl && <meta property="og:image" content={post.coverImageUrl} />}
         <meta property="og:url" content={postUrl} />
-        <meta property="og:type" content="article" />
+        {post.coverImageUrl && <meta property="og:image" content={post.coverImageUrl} />}
+        {post.coverImageUrl && <meta property="og:image:width" content="1200" />}
+        {post.coverImageUrl && <meta property="og:image:height" content="630" />}
+        <meta property="og:locale" content="en_AU" />
+        {post.publishedAt && <meta property="article:published_time" content={new Date(post.publishedAt).toISOString()} />}
+        {post.updatedAt && <meta property="article:modified_time" content={new Date(post.updatedAt).toISOString()} />}
+        <meta property="article:publisher" content="https://www.linkedin.com/company/advanseit" />
+        <meta property="article:section" content={post.category ?? "Technology"} />
+        {/* Twitter / X Card */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@AdvanseIT" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.excerpt ?? ""} />
         {post.coverImageUrl && <meta name="twitter:image" content={post.coverImageUrl} />}
         <link rel="canonical" href={postUrl} />
+        {/* Article JSON-LD for AI grounding */}
+        <script type="application/ld+json">{JSON.stringify(articleSchema, null, 2)}</script>
       </Helmet>
 
       <Navbar />

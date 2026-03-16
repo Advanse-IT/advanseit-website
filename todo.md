@@ -61,3 +61,19 @@
 - [x] Logo: Create favicon PNG (icon mark only, navy background) from Group789.svg
 - [x] Logo: Create LinkedIn company icon 300x300 (icon mark, navy background)
 - [x] Logo: Create LinkedIn cover page 1128x191 (logo right, tagline, navy/cyan theme)
+
+## AI SEO Optimisation (AEO/GEO)
+- [x] robots.txt: Allow all major AI crawlers (GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, Applebot-Extended, FacebookBot, cohere-ai, Google-Extended)
+- [x] Create /llms.txt — curated Markdown overview of site for LLM context (services, FAQs, contact, key pages)
+- [x] Structured data: AISEOSchema component — FAQPage (10 Q&A), HowTo (5 steps), Service ItemList (6 services)
+- [x] Structured data: WebSite + SiteLinksSearchBox schema
+- [x] Structured data: Enhanced Organization schema with taxID, foundingDate, contactPoint, knowsAbout
+- [x] Structured data: Article schema for blog posts (datePublished, dateModified, author, publisher, image)
+- [x] Add FAQ section to homepage (AEO — 8 direct-answer accordions for AI citation)
+- [x] Add E-E-A-T trust signals: ABN badge, Brisbane QLD badge, Founded 2023 badge in About section
+- [x] Optimise home meta description with ABN, entity-rich language, and expanded keyword set
+- [x] Add canonical tags to all pages (already present, confirmed)
+- [x] Add AI/GEO meta tags: author, article:publisher, speakable-selector, googlebot, bingbot
+- [x] Blog posts: full OG article meta (published_time, modified_time, section, publisher)
+- [x] Twitter handle corrected to @AdvanseIT across SEO and BlogPost components
+- [x] sitemap.xml: updated lastmod timestamps to 2026-03-16

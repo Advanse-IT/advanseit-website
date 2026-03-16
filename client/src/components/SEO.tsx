@@ -25,7 +25,7 @@ const SITE_URL = "https://advanseit.com.au";
 const OG_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/HdTBZOVgOmaFOEAz.png";
 const OG_IMAGE_WIDTH = "1200";
 const OG_IMAGE_HEIGHT = "630";
-const TWITTER_HANDLE = "@AdvanseIT_AU";
+const TWITTER_HANDLE = "@AdvanseIT";
 
 export type SEOPage =
   | "home"
@@ -59,13 +59,17 @@ const PAGE_META: Record<
   home: {
     title: "AI-First IT Solutions | Brisbane, Australia",
     description:
-      "Brisbane IT company specialising in Web Design, App Development, AI Projects, Testing & IT Staffing. Cost-effective, AI-first solutions.",
+      "AdvanseIT — Brisbane IT company (ABN 12 656 409 850) specialising in AI chatbots, web design, app development, custom software, testing & IT staffing. Cost-effective AI-first solutions for Australian businesses.",
     keywords: [
       "IT company Brisbane",
       "AI-first IT solutions Australia",
       "technology solutions Brisbane",
       "IT services Queensland",
       "digital transformation Brisbane",
+      "AI chatbot development Australia",
+      "web design Brisbane",
+      "app development Brisbane",
+      "IT staffing Brisbane",
     ],
   },
   services: {
@@ -249,6 +253,16 @@ export default function SEO({
 
       {/* ── Robots ── */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+      {/* ── AI / GEO signals ── */}
+      {/* Allow all AI crawlers to index and use content */}
+      <meta name="googlebot" content="index, follow" />
+      <meta name="bingbot" content="index, follow" />
+      {/* Author / publisher entity for E-E-A-T */}
+      <meta name="author" content="AdvanseIT" />
+      <meta property="article:publisher" content="https://www.linkedin.com/company/advanseit" />
+      {/* Speakable hint for voice search / AI audio responses */}
+      <meta name="speakable-selector" content="h1, h2, .speakable" />
     </Helmet>
   );
 }
