@@ -2,15 +2,15 @@
  * AdvanseIT Blog Scheduler
  * ─────────────────────────────────────────────────────────────────────────────
  * Runs the blog generation pipeline twice per week:
- *   • Tuesday  08:00 AEST (UTC+10) → Monday  22:00 UTC
- *   • Friday   08:00 AEST (UTC+10) → Thursday 22:00 UTC
+ *   • Tuesday   09:00 AEST (UTC+10) → Monday    23:00 UTC
+ *   • Thursday  09:00 AEST (UTC+10) → Wednesday 23:00 UTC
  *
- * AEST is UTC+10 (no daylight saving in Queensland).
+ * AEST is UTC+10 (no daylight saving in Queensland / Brisbane).
  * node-cron uses server-local time; the server runs in UTC, so we subtract 10h.
  *
- * Cron format: second minute hour day-of-month month day-of-week
- *   Tuesday  08:00 AEST = Monday    22:00 UTC → "0 22 * * 1"
- *   Friday   08:00 AEST = Thursday  22:00 UTC → "0 22 * * 4"
+ * Cron format: minute hour day-of-month month day-of-week
+ *   Tuesday   09:00 AEST = Monday    23:00 UTC → "0 23 * * 1"
+ *   Thursday  09:00 AEST = Wednesday 23:00 UTC → "0 23 * * 3"
  */
 
 import cron from "node-cron";
@@ -23,17 +23,17 @@ export function startBlogScheduler(): void {
   if (schedulerStarted) return;
   schedulerStarted = true;
 
-  console.log("[BlogScheduler] Starting — Tuesday & Friday 08:00 AEST");
+  console.log("[BlogScheduler] Starting — Tuesday & Thursday 09:00 AEST (Brisbane)");
 
-  // Tuesday 08:00 AEST = Monday 22:00 UTC
-  cron.schedule("0 22 * * 1", async () => {
-    console.log("[BlogScheduler] Tuesday 08:00 AEST — running generation pipeline");
+  // Tuesday 09:00 AEST = Monday 23:00 UTC
+  cron.schedule("0 23 * * 1", async () => {
+    console.log("[BlogScheduler] Tuesday 09:00 AEST — running generation pipeline");
     await runPipelineWithNotification();
   });
 
-  // Friday 08:00 AEST = Thursday 22:00 UTC
-  cron.schedule("0 22 * * 4", async () => {
-    console.log("[BlogScheduler] Friday 08:00 AEST — running generation pipeline");
+  // Thursday 09:00 AEST = Wednesday 23:00 UTC
+  cron.schedule("0 23 * * 3", async () => {
+    console.log("[BlogScheduler] Thursday 09:00 AEST — running generation pipeline");
     await runPipelineWithNotification();
   });
 }

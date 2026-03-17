@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, title, status FROM blog_posts ORDER BY id DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user KAe4rPZW1MLEKU7.root --database 46aycdFer38FM2C5SBqyLk --execute SELECT id, title, status FROM blog_posts ORDER BY id DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Smart Savings: How Australian SMEs Can Leverage AI to Cut IT Costs in 2026",
+      "status": "review"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tstatus\n1\tSmart Savings: How Australian SMEs Can Leverage AI to Cut IT Costs in 2026\treview\n",
+  "stderr": "",
+  "execution_time_ms": 1629
+}

@@ -122,3 +122,10 @@
 - [ ] Fix phone number: update to +61 481 261 679 (tel: link +61481261679) across all files
 - [x] Fix CTABanner "Call Us Now" button to display +61 481 261 679 visibly
 - [x] Fix PrivacyPolicy.tsx PHONE constant to +61 481 261 679
+
+## Blog Scheduler Fix
+- [x] Fix cron: changed schedule to Tuesday & Thursday 09:00 AEST (Mon/Wed 23:00 UTC)
+- [x] Trigger manual blog generation run for missed Tuesday 17 March run
+- [x] Blog: Changed pipeline to auto-publish (status = 'published', publishedAt = new Date())
+- [x] Blog: Published existing draft article (id=1) via SQL UPDATE
+- [x] Blog: Scheduler corrected to Tuesday & Thursday 09:00 AEST (Mon/Wed 23:00 UTC)

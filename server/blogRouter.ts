@@ -232,7 +232,7 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
           }
         }
 
-        // 5. Save to database as "review" status (admin approves before publishing)
+        // 5. Save to database — auto-publish immediately
         const slug = slugify(article.title);
         const post: InsertBlogPost = {
           slug,
@@ -243,7 +243,8 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
           inlineImages: inlineImages.length > 0 ? inlineImages : undefined,
           category: article.category,
           tags: article.tags,
-          status: "review",
+          status: "published",
+          publishedAt: new Date(),
           aiGenerated: true,
           trendingTopic: topic,
           linkedinPost: article.linkedinPost,
