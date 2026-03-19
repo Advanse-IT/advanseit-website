@@ -57,9 +57,9 @@ const PAGE_META: Record<
   { title: string; description: string; keywords: string[] }
 > = {
   home: {
-    title: "AI-First Web & App Development | Brisbane IT Company",
+    title: "AI-First IT Solutions Brisbane",
     description:
-      "AdvanseIT — Brisbane AI software development company (ABN 12 656 409 850). Web design, app development, custom software, AI chatbots, testing & IT staffing. Cost-effective AI-first solutions for Australian businesses.",
+      "Brisbane AI software company. Web design, app development, custom software, AI chatbots & IT staffing for Australian businesses.",
     keywords: [
       "AI web development Brisbane",
       "app development Brisbane",
@@ -211,8 +211,11 @@ export default function SEO({
   extraKeywords = [],
 }: SEOProps) {
   const meta = PAGE_META[page];
+  const isHome = page === "home" && !titleOverride;
   const fullTitle = titleOverride
     ? `${titleOverride} | ${SITE_NAME}`
+    : isHome
+    ? `${SITE_NAME} | ${meta.title}`
     : `${SITE_NAME} — ${meta.title}`;
   const description = descOverride ?? meta.description;
   const keywords = [...meta.keywords, ...extraKeywords].join(", ");
