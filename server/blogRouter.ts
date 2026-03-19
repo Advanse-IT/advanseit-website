@@ -62,8 +62,6 @@ Return ONLY a JSON array of 6 topic strings. Example format:
             topics: {
               type: "array",
               items: { type: "string" },
-              minItems: 6,
-              maxItems: 6,
             },
           },
           required: ["topics"],

@@ -129,3 +129,10 @@
 - [x] Blog: Changed pipeline to auto-publish (status = 'published', publishedAt = new Date())
 - [x] Blog: Published existing draft article (id=1) via SQL UPDATE
 - [x] Blog: Scheduler corrected to Tuesday & Thursday 09:00 AEST (Mon/Wed 23:00 UTC)
+
+## Thursday 20 March 2026 Fix
+- [x] Diagnose: Thursday 09:00 AEST run missed due to sandbox hibernation (server was down Wed 23:00 UTC)
+- [x] Diagnose: json_schema minItems/maxItems constraints causing silent LLM API failures (postsCreated always 0)
+- [x] Fix: Remove minItems/maxItems from topics json_schema in blogRouter.ts
+- [x] Manual trigger: Generated 2 new articles for Thursday (published successfully)
+- [x] Fix: Updated blogScheduler.ts with catch-up logic — on startup, if a scheduled window was missed in last 24h and no recent post exists, runs pipeline automatically
