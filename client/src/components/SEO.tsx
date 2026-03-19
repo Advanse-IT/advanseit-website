@@ -57,9 +57,9 @@ const PAGE_META: Record<
   { title: string; description: string; keywords: string[] }
 > = {
   home: {
-    title: "AI-First IT Solutions Brisbane",
+    title: "AI-Powered IT for Australian Business",
     description:
-      "Brisbane AI software company. Web design, app development, custom software, AI chatbots & IT staffing for Australian businesses.",
+      "We build websites, apps & AI solutions that drive real results. Brisbane IT company trusted by Australian businesses.",
     keywords: [
       "AI web development Brisbane",
       "app development Brisbane",
