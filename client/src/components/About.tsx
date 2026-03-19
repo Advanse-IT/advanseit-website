@@ -153,7 +153,7 @@ export default function About() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={TEAM_IMG}
-                alt="AdvanseIT Brisbane Team"
+                alt="AdvanseIT Brisbane IT team collaborating on AI-first web and app development projects in Queensland, Australia"
                 className="w-full h-80 lg:h-[480px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E]/30 to-transparent" />

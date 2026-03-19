@@ -15,21 +15,28 @@ export default function CookieConsent() {
 
   useEffect(() => {
     // Show banner only if user hasn't made a choice yet
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) {
-      // Slight delay so it doesn't flash immediately on load
-      const timer = setTimeout(() => setVisible(true), 1500);
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) {
+        // Short delay so it doesn't flash before the page paints
+        const timer = setTimeout(() => setVisible(true), 800);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      // localStorage may be blocked in some browsers (private mode, strict settings)
+      // Show the banner anyway so compliance is maintained
+      const timer = setTimeout(() => setVisible(true), 800);
       return () => clearTimeout(timer);
     }
   }, []);
 
   const accept = () => {
-    localStorage.setItem(STORAGE_KEY, "accepted");
+    try { localStorage.setItem(STORAGE_KEY, "accepted"); } catch { /* ignore */ }
     setVisible(false);
   };
 
   const decline = () => {
-    localStorage.setItem(STORAGE_KEY, "declined");
+    try { localStorage.setItem(STORAGE_KEY, "declined"); } catch { /* ignore */ }
     setVisible(false);
   };
 

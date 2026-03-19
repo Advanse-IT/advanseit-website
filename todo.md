@@ -136,3 +136,13 @@
 - [x] Fix: Remove minItems/maxItems from topics json_schema in blogRouter.ts
 - [x] Manual trigger: Generated 2 new articles for Thursday (published successfully)
 - [x] Fix: Updated blogScheduler.ts with catch-up logic — on startup, if a scheduled window was missed in last 24h and no recent post exists, runs pipeline automatically
+
+## Audit Fixes (March 2026)
+- [x] Fix #1: Hero counter animation bug — counters showing 0+ / 0% on page load
+- [x] Fix #2: Brand name inconsistency — page title reads "AdvanceIT" instead of "AdvanseIT"
+- [x] Fix #3: H1 tag has no SEO keywords — rewrite to include target keywords
+- [x] Fix #4: Cookie consent banner not triggering on deployed site — audit and fix
+- [x] Fix #5: Service card tech-stack tags — replace with outcome-focused language for business buyers
+- [x] Fix #6: Hero headline — strengthen to reinforce AI-First brand promise
+- [x] Fix #7: Image alt text — improve alt text on stock photos to be descriptive and keyword-rich
+- [x] Fix #13: Security/compliance page — list frameworks/standards (Essential 8, ISO alignment, etc.)

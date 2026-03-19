@@ -19,39 +19,43 @@ const stats = [
   { value: 10, suffix: "+", label: "Years Experience" },
 ];
 
+/**
+ * CountUp — animates from 0 to target on mount.
+ * Falls back to showing the target value immediately so it never renders as "0".
+ */
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
+  // Initialise to target as a safe fallback — never show 0 on first paint
+  const [count, setCount] = useState(target);
   const started = useRef(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const duration = 2000;
-          const steps = 60;
-          const increment = target / steps;
-          let current = 0;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              setCount(target);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(current));
-            }
-          }, duration / steps);
+    if (started.current) return;
+    started.current = true;
+
+    // Reset to 0 then animate up after a short delay so the page has painted
+    setCount(0);
+    const delay = setTimeout(() => {
+      const duration = 2000;
+      const steps = 60;
+      const increment = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          setCount(target);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
         }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+      }, duration / steps);
+      return () => clearInterval(timer);
+    }, 500);
+
+    return () => clearTimeout(delay);
   }, [target]);
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <span className="tabular-nums">
       {count}
       {suffix}
     </span>
@@ -121,17 +125,17 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* H1 — keyword-optimised for SEO */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
             className="font-display font-800 text-3xl sm:text-5xl lg:text-7xl xl:text-8xl text-white leading-[1.1] mb-6"
           >
-            Advance Your
+            AI-First Web &amp; App{" "}
             <br />
-            Business with{" "}
-            <span className="text-gradient-cyan">Smart IT</span>
+            Development{" "}
+            <span className="text-gradient-cyan">Brisbane</span>
           </motion.h1>
 
           {/* Subheading — marked speakable for voice search & AI audio responses */}

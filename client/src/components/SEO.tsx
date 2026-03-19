@@ -57,19 +57,20 @@ const PAGE_META: Record<
   { title: string; description: string; keywords: string[] }
 > = {
   home: {
-    title: "AI-First IT Solutions | Brisbane, Australia",
+    title: "AI-First Web & App Development | Brisbane IT Company",
     description:
-      "AdvanseIT — Brisbane IT company (ABN 12 656 409 850) specialising in AI chatbots, web design, app development, custom software, testing & IT staffing. Cost-effective AI-first solutions for Australian businesses.",
+      "AdvanseIT — Brisbane AI software development company (ABN 12 656 409 850). Web design, app development, custom software, AI chatbots, testing & IT staffing. Cost-effective AI-first solutions for Australian businesses.",
     keywords: [
-      "IT company Brisbane",
-      "AI-first IT solutions Australia",
-      "technology solutions Brisbane",
+      "AI web development Brisbane",
+      "app development Brisbane",
+      "Brisbane IT company",
+      "AI software development Australia",
+      "custom software development Brisbane",
+      "AI chatbot development Brisbane",
+      "IT staffing Brisbane",
+      "web design Brisbane",
       "IT services Queensland",
       "digital transformation Brisbane",
-      "AI chatbot development Australia",
-      "web design Brisbane",
-      "app development Brisbane",
-      "IT staffing Brisbane",
     ],
   },
   services: {

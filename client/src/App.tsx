@@ -24,6 +24,7 @@ import AISolutionsPage from "./pages/services/AISolutions";
 import TestingPage from "./pages/services/Testing";
 import ITStaffingPage from "./pages/services/ITStaffing";
 import ScrollToTop from "./components/ScrollToTop";
+import SecurityCompliance from "./pages/SecurityCompliance";
 
 function Router() {
   return (
@@ -42,6 +43,7 @@ function Router() {
       <Route path={"/terms"} component={TermsAndConditions} />
       <Route path={"/privacy"} component={PrivacyPolicy} />
       <Route path={"/cookies"} component={CookiePolicy} />
+      <Route path={"/security"} component={SecurityCompliance} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

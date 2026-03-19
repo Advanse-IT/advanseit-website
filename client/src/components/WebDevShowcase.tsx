@@ -50,7 +50,7 @@ export default function WebDevShowcase() {
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
                 src={WEB_DEV_IMG}
-                alt="Web Development Workspace"
+                alt="AdvanseIT Brisbane developer building a high-performance website on a modern workstation"
                 className="w-full h-72 lg:h-80 object-cover"
               />
             </div>
@@ -147,7 +147,7 @@ export default function WebDevShowcase() {
             <div className="rounded-2xl overflow-hidden shadow-xl max-w-sm mx-auto lg:mx-0 lg:ml-auto">
               <img
                 src={APP_DEV_IMG}
-                alt="App Development"
+                alt="Mobile app development for iOS and Android by AdvanseIT — Brisbane app developers"
                 className="w-full h-96 object-cover"
               />
             </div>

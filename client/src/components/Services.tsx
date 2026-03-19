@@ -4,6 +4,7 @@
    6 services with icons, descriptions, hover effects
    ============================================================ */
 
+import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   Globe,
@@ -20,53 +21,54 @@ const services = [
     icon: Globe,
     title: "Web Design & Development",
     description:
-      "Stunning, high-performance websites crafted with modern frameworks. From landing pages to complex web applications — pixel-perfect and conversion-optimised.",
-    features: ["React / Next.js", "UI/UX Design", "SEO Optimised", "Mobile-First"],
+      "Stunning, high-performance websites that convert visitors into clients. From landing pages to complex web applications — built to rank on Google and drive measurable business growth.",
+    features: ["Higher Conversion Rates", "Google-Ready SEO", "Mobile-First Design", "Fast Load Times"],
+    href: "/services/web-design",
   },
   {
     icon: Smartphone,
     title: "App Development",
     description:
-      "Native and cross-platform mobile apps for iOS and Android. Seamless user experiences backed by robust, scalable architecture.",
-    features: ["React Native", "Flutter", "iOS & Android", "App Store Ready"],
+      "Native and cross-platform mobile apps that your customers will actually use. Seamless experiences on iOS and Android — delivered on time and within budget.",
+    features: ["iOS & Android", "Faster Time to Market", "App Store Launch", "Scalable Architecture"],
+    href: "/services/app-development",
   },
   {
     icon: Code2,
     title: "Custom Software Development",
     description:
-      "Bespoke software solutions engineered to your exact business requirements. We build systems that grow with you — not against you.",
-    features: ["Enterprise Systems", "API Integration", "Cloud-Native", "Scalable"],
+      "Bespoke software engineered to eliminate your manual processes and inefficiencies. We build systems that grow with your business — not against it.",
+    features: ["Process Automation", "System Integration", "Cloud-Native", "Reduced Overheads"],
+    href: "/services/custom-software",
   },
   {
     icon: FlaskConical,
     title: "Testing & QA Services",
     description:
-      "Comprehensive quality assurance to ensure your software is bulletproof. Manual testing, automated pipelines, and performance benchmarking.",
-    features: ["Automated Testing", "Performance QA", "Security Testing", "CI/CD"],
+      "Comprehensive quality assurance so your software launches without costly bugs. Protect your reputation and reduce post-launch support costs with rigorous testing.",
+    features: ["Bug-Free Launches", "Automated Test Suites", "Performance Benchmarking", "Security Testing"],
+    href: "/services/testing",
   },
   {
     icon: Brain,
     title: "AI Projects & Solutions",
     description:
-      "Harness the power of artificial intelligence to automate workflows, gain insights, and build intelligent products. AI-first thinking in every engagement.",
-    features: ["LLM Integration", "ML Pipelines", "AI Automation", "Data Analytics"],
+      "Harness AI to automate workflows, gain competitive insights, and build intelligent products. AI-first thinking that delivers measurable ROI — not just buzzwords.",
+    features: ["Workflow Automation", "AI Chatbots & Agents", "Predictive Analytics", "40% Avg. Cost Savings"],
     featured: true,
+    href: "/services/ai-solutions",
   },
   {
     icon: Users,
     title: "IT Staffing & Outsourcing",
     description:
-      "Access top-tier tech talent without the overhead. Flexible staffing models — from dedicated teams to individual specialists — at competitive rates.",
-    features: ["Dedicated Teams", "Staff Augmentation", "Managed Services", "Cost-Effective"],
+      "Access top-tier Australian tech talent without the overhead of full-time hiring. Flexible staffing models that scale with your project — at competitive rates.",
+    features: ["Dedicated Dev Teams", "Staff Augmentation", "No Recruitment Fees", "Immediate Start"],
+    href: "/services/it-staffing",
   },
 ];
 
 export default function Services() {
-  const handleLearnMore = () => {
-    const el = document.querySelector("#contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="services" className="section-py pb-24 bg-white relative">
       {/* Subtle background pattern */}
@@ -188,8 +190,8 @@ export default function Services() {
                 </div>
 
                 {/* Learn More */}
-                <button
-                  onClick={handleLearnMore}
+                <Link
+                  href={service.href}
                   className={`flex items-center gap-1.5 text-sm font-body font-600 transition-all group ${
                     service.featured
                       ? "text-[#00C8D4] hover:text-white"
@@ -201,7 +203,7 @@ export default function Services() {
                     size={15}
                     className="group-hover:translate-x-1 transition-transform"
                   />
-                </button>
+                </Link>
               </motion.div>
             );
           })}

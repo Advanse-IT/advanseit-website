@@ -38,6 +38,7 @@ const legalLinks = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Cookie Policy", href: "/cookies" },
+  { label: "Security & Compliance", href: "/security" },
 ];
 
 export default function Footer() {

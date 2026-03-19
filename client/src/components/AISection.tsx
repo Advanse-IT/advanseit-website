@@ -118,7 +118,7 @@ export default function AISection() {
             <div className="relative rounded-2xl overflow-hidden glow-cyan">
               <img
                 src={AI_IMG}
-                alt="AI Neural Network"
+                alt="AI neural network visualisation representing AdvanseIT's AI-first software development approach in Brisbane, Australia"
                 className="w-full h-80 lg:h-96 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E]/60 to-transparent" />
