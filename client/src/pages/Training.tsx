@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import {
   Code2, MonitorPlay, Users, Clock, CheckCircle2, Star,
   BookOpen, Zap, Award, ChevronRight, Mail, Phone, MapPin,
-  GraduationCap, Laptop, Calendar, Video
+  GraduationCap, Laptop, Calendar, Video, ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,37 +91,37 @@ const courses = [
 
 const pricingPlans = [
   {
-    name: "Live Classes",
+    name: "Live Class",
     icon: <Users size={24} />,
-    price: "AUD 499",
+    price: "AUD $399",
     period: "per course",
     highlight: true,
-    description: "Full live training experience with instructor interaction, Q&A, and lifetime access to recordings.",
+    description: "Attend all live sessions with Sush, ask questions in real time, and get full recordings to rewatch anytime.",
     features: [
-      "Daily live sessions (60+ days)",
-      "Lifetime access to all recordings",
-      "Live Q&A with instructor",
-      "Real-world projects & assignments",
-      "Tests at regular intervals",
-      "Certificate of completion",
-      "Job placement support",
-      "Private community access",
+      "60 live sessions with Sush",
+      "Full session recordings included",
+      "Live Q&A every single session",
+      "4 mini projects + capstone",
+      "Weekly assessments & personal feedback",
+      "AdvanseIT Certificate of Completion",
+      "30-day post-course support",
+      "Private student community",
     ],
   },
   {
-    name: "Recordings Only",
+    name: "Recording Only",
     icon: <Video size={24} />,
-    price: "AUD 199",
+    price: "AUD $249",
     period: "per course",
     highlight: false,
-    description: "Self-paced access to all recorded sessions. Learn on your own schedule.",
+    description: "Access all session recordings at your own pace — ideal if you cannot attend live sessions.",
     features: [
-      "Lifetime access to all recordings",
-      "Real-world projects & assignments",
-      "Tests at regular intervals",
-      "Certificate of completion",
-      "Community access",
-      "Email support",
+      "All 60 session recordings",
+      "Self-paced access — watch anytime",
+      "4 mini projects + capstone",
+      "Weekly assessments",
+      "AdvanseIT Certificate of Completion",
+      "Community forum access",
     ],
   },
 ];
@@ -223,14 +223,23 @@ export default function Training() {
               Hands-on courses in Java Selenium, AI-powered test automation, and manual QA. Live daily sessions, real-world projects, and lifetime access to recordings — designed for Australian professionals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#courses">
+              <a
+                href="https://training.advanseit.com.au/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button size="lg" className="bg-[#00C8D4] hover:bg-[#00b0bb] text-white font-semibold px-8 w-full sm:w-auto">
-                  View Courses <ChevronRight size={16} className="ml-1" />
+                  Enrol Now →
+                </Button>
+              </a>
+              <a href="#courses">
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 w-full sm:w-auto">
+                  View Courses
                 </Button>
               </a>
               <a href="#enquire">
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 w-full sm:w-auto">
-                  Enquire Now
+                  Enquire
                 </Button>
               </a>
             </div>
@@ -319,9 +328,18 @@ export default function Training() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0D1B2E] mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-[#0D1B2E]/60 text-lg max-w-xl mx-auto">
+            <p className="text-[#0D1B2E]/60 text-lg max-w-xl mx-auto mb-6">
               Choose the plan that suits your learning style. All prices are in Australian dollars (AUD) and include GST.
             </p>
+            <a
+              href="https://training.advanseit.com.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#0D1B2E] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#0193CC] transition-colors"
+            >
+              <span>View Full Course Details & Enrol</span>
+              <ExternalLink size={14} />
+            </a>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {pricingPlans.map((plan, i) => (
@@ -351,14 +369,18 @@ export default function Training() {
                     </li>
                   ))}
                 </ul>
-                <a href="#enquire">
+                <a
+                  href="https://training.advanseit.com.au/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button
                     className={`w-full font-semibold ${plan.highlight
                       ? "bg-[#00C8D4] hover:bg-[#00b0bb] text-white"
                       : "bg-[#0D1B2E] hover:bg-[#0193CC] text-white"
                       }`}
                   >
-                    Enrol Now
+                    Enrol Now →
                   </Button>
                 </a>
               </motion.div>

@@ -157,3 +157,7 @@
 - [x] Add /training to sitemap.xml
 - [x] Wire training enquiry form to backend (email + owner notification + DB log)
 - [x] Retrieve and deliver LinkedIn post copy for Selenium article
+
+## Training Page Sync (March 2026)
+- [x] Update Training page prices to match training.advanseit.com.au
+- [x] Add link/CTA from Training page to training.advanseit.com.au
