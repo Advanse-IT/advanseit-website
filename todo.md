@@ -147,3 +147,6 @@
 - [x] Fix #7: Image alt text — improve alt text on stock photos to be descriptive and keyword-rich
 - [x] Fix #13: Security/compliance page — list frameworks/standards (Essential 8, ISO alignment, etc.)
 - [x] Fix home page SEO title (64→42 chars) and meta description (217→128 chars) to meet 30–60 / 50–160 character limits
+
+## Manual Blog Posts (March 2026)
+- [x] Generate and publish blog post: AI-Powered Test Automation / Java Selenium / AI / AdvanseIT training reference

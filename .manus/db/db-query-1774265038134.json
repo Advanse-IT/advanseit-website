@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, title, slug, status, category, createdAt FROM blog_posts WHERE slug LIKE 'ai-powered-test-automation%' ORDER BY createdAt DESC LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user KAe4rPZW1MLEKU7.root --database 46aycdFer38FM2C5SBqyLk --execute SELECT id, title, slug, status, category, createdAt FROM blog_posts WHERE slug LIKE 'ai-powered-test-automation%' ORDER BY createdAt DESC LIMIT 1;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "AI-Powered Test Automation: How Java Selenium Is Evolving in the Age of Artificial Intelligence",
+      "slug": "ai-powered-test-automation-java-selenium-evolving-age-of-ai-03v6l4",
+      "status": "published",
+      "category": "Software Testing",
+      "createdAt": "2026-03-23 11:23:23"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tstatus\tcategory\tcreatedAt\n90001\tAI-Powered Test Automation: How Java Selenium Is Evolving in the Age of Artificial Intelligence\tai-powered-test-automation-java-selenium-evolving-age-of-ai-03v6l4\tpublished\tSoftware Testing\t2026-03-23 11:23:23\n",
+  "stderr": "",
+  "execution_time_ms": 1580
+}
