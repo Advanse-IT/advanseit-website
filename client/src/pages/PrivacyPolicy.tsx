@@ -13,7 +13,7 @@ const LAST_UPDATED = "15 March 2026";
 const COMPANY_NAME = "AdvanseIT Pty Ltd";
 const ABN = "12 656 409 850";
 const EMAIL = "admin@advanseit.com.au";
-const PHONE = "+61 481 261 679";
+const PHONE = "0481 261 679";
 
 export default function PrivacyPolicy() {
   useEffect(() => {

@@ -63,6 +63,14 @@
     <priority>0.90</priority>
   </url>
 
+  <!-- Training page -->
+  <url>
+    <loc>https://advanseit.com.au/training</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
   <!-- Homepage anchor sections -->
   <url>
     <loc>https://advanseit.com.au/#services</loc>

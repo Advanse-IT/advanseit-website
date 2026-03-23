@@ -152,7 +152,7 @@ export default function Contact() {
                       href="tel:+61481261679"
                       className="font-body text-sm text-white/55 hover:text-[#00C8D4] transition-colors"
                     >
-                      +61 481 261 679
+                      0481 261 679
                     </a>
                   </div>
                 </div>

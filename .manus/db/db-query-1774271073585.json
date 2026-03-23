@@ -1,0 +1,31 @@
+{
+  "query": "SELECT linkedinPost FROM blog_posts WHERE slug LIKE 'ai-powered-test-automation%' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user KAe4rPZW1MLEKU7.root --database 46aycdFer38FM2C5SBqyLk --execute SELECT linkedinPost FROM blog_posts WHERE slug LIKE 'ai-powered-test-automation%' LIMIT 1;",
+  "rows": [
+    {
+      "linkedinPost": "🤖 AI is transforming Java Selenium test automation — and Australian QA teams are taking notice."
+    },
+    {
+      "linkedinPost": "Self-healing locators. AI-generated test scripts. Visual regression that actually works. Predictive test selection that cuts CI time by 70%."
+    },
+    {
+      "linkedinPost": "The teams adopting AI-augmented Selenium today are shipping faster, catching more bugs, and spending less time on maintenance."
+    },
+    {
+      "linkedinPost": "We've just published a deep-dive on how this works in practice — including Java code examples and a practical roadmap for modernising your existing Selenium suite."
+    },
+    {
+      "linkedinPost": "🔗 Read it on the AdvanseIT blog: advanseit.com.au/blog"
+    },
+    {
+      "linkedinPost": "And if your team needs hands-on Java Selenium + AI automation training, we run programs in Brisbane and online across Australia. DM us or visit advanseit.com.au to find out more."
+    },
+    {
+      "linkedinPost": "#TestAutomation #Selenium #Java #AI #QA #SoftwareTesting #AustralianTech #Brisbane"
+    }
+  ],
+  "messages": [],
+  "stdout": "linkedinPost\n🤖 AI is transforming Java Selenium test automation — and Australian QA teams are taking notice.\n\nSelf-healing locators. AI-generated test scripts. Visual regression that actually works. Predictive test selection that cuts CI time by 70%.\n\nThe teams adopting AI-augmented Selenium today are shipping faster, catching more bugs, and spending less time on maintenance.\n\nWe've just published a deep-dive on how this works in practice — including Java code examples and a practical roadmap for modernising your existing Selenium suite.\n\n🔗 Read it on the AdvanseIT blog: advanseit.com.au/blog\n\nAnd if your team needs hands-on Java Selenium + AI automation training, we run programs in Brisbane and online across Australia. DM us or visit advanseit.com.au to find out more.\n\n#TestAutomation #Selenium #Java #AI #QA #SoftwareTesting #AustralianTech #Brisbane\n",
+  "stderr": "",
+  "execution_time_ms": 1728
+}

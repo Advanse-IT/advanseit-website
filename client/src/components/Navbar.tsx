@@ -26,6 +26,7 @@ const navLinks = [
   { label: "About", href: "#about", type: "hash" },
   { label: "Why Us", href: "#why-us", type: "hash" },
   { label: "Blog", href: "/blog", type: "page" },
+  { label: "Training", href: "/training", type: "page" },
   { label: "Contact", href: "#contact", type: "hash" },
 ];
 

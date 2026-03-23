@@ -25,6 +25,7 @@ import TestingPage from "./pages/services/Testing";
 import ITStaffingPage from "./pages/services/ITStaffing";
 import ScrollToTop from "./components/ScrollToTop";
 import SecurityCompliance from "./pages/SecurityCompliance";
+import Training from "./pages/Training";
 
 function Router() {
   return (
@@ -44,6 +45,7 @@ function Router() {
       <Route path={"/privacy"} component={PrivacyPolicy} />
       <Route path={"/cookies"} component={CookiePolicy} />
       <Route path={"/security"} component={SecurityCompliance} />
+      <Route path={"/training"} component={Training} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

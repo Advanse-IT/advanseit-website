@@ -64,3 +64,22 @@ export const blogPosts = mysqlTable("blog_posts", {
 
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = typeof blogPosts.$inferInsert;
+
+/**
+ * Training enquiries — stores form submissions from the /training page.
+ */
+export const trainingEnquiries = mysqlTable("training_enquiries", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Randomly generated 6-digit reference number */
+  refNumber: varchar("refNumber", { length: 10 }).notNull(),
+  name: varchar("name", { length: 200 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 50 }),
+  course: varchar("course", { length: 200 }),
+  plan: varchar("plan", { length: 100 }),
+  message: text("message"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type TrainingEnquiry = typeof trainingEnquiries.$inferSelect;
+export type InsertTrainingEnquiry = typeof trainingEnquiries.$inferInsert;

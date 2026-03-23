@@ -119,7 +119,7 @@
 - [x] All 22 tests pass after all mobile fixes
 
 ## Content Fixes
-- [ ] Fix phone number: update to +61 481 261 679 (tel: link +61481261679) across all files
+- [x] Fix phone number format: update displayed numbers to 0481 261 679 (local format) across all files
 - [x] Fix CTABanner "Call Us Now" button to display +61 481 261 679 visibly
 - [x] Fix PrivacyPolicy.tsx PHONE constant to +61 481 261 679
 
@@ -150,3 +150,10 @@
 
 ## Manual Blog Posts (March 2026)
 - [x] Generate and publish blog post: AI-Powered Test Automation / Java Selenium / AI / AdvanseIT training reference
+
+## Training & LinkedIn (March 2026)
+- [x] Build /training page with course details, pricing (live + recordings), and enquiry form
+- [x] Add Training link to navbar
+- [x] Add /training to sitemap.xml
+- [x] Wire training enquiry form to backend (email + owner notification + DB log)
+- [x] Retrieve and deliver LinkedIn post copy for Selenium article

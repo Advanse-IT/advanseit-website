@@ -29,7 +29,7 @@ const schema = {
     height: 512,
   },
   image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png",
-  telephone: "+61481261679",
+  telephone: "+61-481-261-679",
   email: "admin@advanseit.com.au",
   address: {
     "@type": "PostalAddress",

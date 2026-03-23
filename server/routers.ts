@@ -6,6 +6,8 @@ import { notifyOwner } from "./_core/notification";
 import { z } from "zod";
 import nodemailer from "nodemailer";
 import { blogRouter } from "./blogRouter";
+import { trainingEnquiries } from "../drizzle/schema";
+import { getDb } from "./db";
 
 // ─── Email helper ────────────────────────────────────────────────────────────
 async function sendContactEmail(data: {
@@ -97,6 +99,115 @@ export const appRouter = router({
   }),
 
   blog: blogRouter,
+
+  training: router({
+    enquire: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1).max(200),
+          email: z.string().email().max(320),
+          phone: z.string().max(50).optional(),
+          course: z.string().max(200).optional(),
+          plan: z.string().max(100).optional(),
+          message: z.string().max(5000).optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const refNumber = Math.floor(100000 + Math.random() * 900000).toString();
+        const smtpHost = process.env.SMTP_HOST;
+        const smtpPort = parseInt(process.env.SMTP_PORT ?? "587");
+        const smtpUser = process.env.SMTP_USER;
+        const smtpPass = process.env.SMTP_PASS;
+        const toEmail = "admin@advanseit.com.au";
+
+        // 1. Save to database
+        const db = await getDb();
+        if (db) {
+          await db.insert(trainingEnquiries).values({
+            refNumber,
+            name: input.name,
+            email: input.email,
+            phone: input.phone ?? null,
+            course: input.course ?? null,
+            plan: input.plan ?? null,
+            message: input.message ?? null,
+          }).catch((err: unknown) => {
+            console.error("[Training] DB insert failed:", err);
+          });
+        }
+
+        // 2. Send internal notification email
+        let emailSent = false;
+        if (smtpHost && smtpUser && smtpPass) {
+          try {
+            const transporter = nodemailer.createTransport({
+              host: smtpHost,
+              port: smtpPort,
+              secure: smtpPort === 465,
+              auth: { user: smtpUser, pass: smtpPass },
+            });
+            const internalHtml = `
+              <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+                <h2 style="color:#0D1B2E;">New Training Enquiry — Ref #${refNumber}</h2>
+                <table style="width:100%;border-collapse:collapse;">
+                  <tr><td style="padding:8px 0;color:#6b7280;font-size:13px;font-weight:600;">Name</td><td style="padding:8px 0;color:#111827;">${input.name}</td></tr>
+                  <tr><td style="padding:8px 0;color:#6b7280;font-size:13px;font-weight:600;">Email</td><td style="padding:8px 0;color:#111827;">${input.email}</td></tr>
+                  ${input.phone ? `<tr><td style="padding:8px 0;color:#6b7280;font-size:13px;font-weight:600;">Phone</td><td style="padding:8px 0;color:#111827;">${input.phone}</td></tr>` : ""}
+                  ${input.course ? `<tr><td style="padding:8px 0;color:#6b7280;font-size:13px;font-weight:600;">Course</td><td style="padding:8px 0;color:#111827;">${input.course}</td></tr>` : ""}
+                  ${input.plan ? `<tr><td style="padding:8px 0;color:#6b7280;font-size:13px;font-weight:600;">Plan</td><td style="padding:8px 0;color:#111827;">${input.plan}</td></tr>` : ""}
+                  ${input.message ? `<tr><td style="padding:8px 0;color:#6b7280;font-size:13px;font-weight:600;vertical-align:top;">Message</td><td style="padding:8px 0;color:#111827;">${input.message}</td></tr>` : ""}
+                </table>
+                <p style="color:#9ca3af;font-size:12px;margin-top:24px;">AdvanseIT Pty Ltd · Brisbane, Queensland, Australia</p>
+              </div>
+            `;
+            await transporter.sendMail({
+              from: `"AdvanseIT Training" <${smtpUser}>`,
+              to: toEmail,
+              replyTo: input.email,
+              subject: `New Training Enquiry from ${input.name}${input.course ? ` — ${input.course}` : ""} [Ref #${refNumber}]`,
+              html: internalHtml,
+            });
+            // 3. Send auto-reply to enquirer
+            const autoReplyHtml = `
+              <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+                <h2 style="color:#0D1B2E;">Thanks for your enquiry, ${input.name}!</h2>
+                <p style="color:#374151;">We've received your training enquiry and will be in touch within 1 business day with course dates, pricing, and enrolment details.</p>
+                <p style="color:#374151;">Your enquiry reference number is: <strong style="color:#0193CC;">#${refNumber}</strong></p>
+                <hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0;" />
+                <p style="color:#6b7280;font-size:13px;">If you have any urgent questions, you can reach us at:</p>
+                <p style="color:#374151;font-size:13px;">📧 admin@advanseit.com.au<br/>📞 +61 481 261 679<br/>🌐 advanseit.com.au</p>
+                <p style="color:#9ca3af;font-size:12px;margin-top:24px;">AdvanseIT Pty Ltd · ABN 12 656 409 850 · Brisbane, Queensland, Australia</p>
+              </div>
+            `;
+            await transporter.sendMail({
+              from: `"AdvanseIT Training" <${smtpUser}>`,
+              to: input.email,
+              subject: `Training Enquiry Received — Ref #${refNumber} | AdvanseIT`,
+              html: autoReplyHtml,
+            });
+            emailSent = true;
+          } catch (err) {
+            console.error("[Training] Email send failed:", err);
+          }
+        }
+
+        // 4. Owner notification via Manus as fallback
+        await notifyOwner({
+          title: `New training enquiry from ${input.name}${input.course ? ` — ${input.course}` : ""} [Ref #${refNumber}]`,
+          content: [
+            `**From:** ${input.name} <${input.email}>`,
+            input.phone ? `**Phone:** ${input.phone}` : null,
+            input.course ? `**Course:** ${input.course}` : null,
+            input.plan ? `**Plan:** ${input.plan}` : null,
+            input.message ? `\n**Message:**\n${input.message}` : null,
+          ].filter(Boolean).join("\n"),
+        }).catch(err => {
+          console.warn("[Training] Owner notification failed:", err);
+        });
+
+        return { success: true, refNumber, emailSent };
+      }),
+  }),
 
   contact: router({
     submit: publicProcedure
