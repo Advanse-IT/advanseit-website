@@ -161,3 +161,6 @@
 ## Training Page Sync (March 2026)
 - [x] Update Training page prices to match training.advanseit.com.au
 - [x] Add link/CTA from Training page to training.advanseit.com.au
+
+## Blog Topic Strategy (March 2026)
+- [x] Update blog pipeline: always generate 1 test automation post (with training.advanseit.com.au link) + 1 trending IT/tech topic post

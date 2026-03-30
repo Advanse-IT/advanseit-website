@@ -26,45 +26,35 @@ function estimateReadTime(content: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-// ─── Trending topic fetcher ───────────────────────────────────────────────────
+// ─── Topic generators ────────────────────────────────────────────────────────
 
-async function fetchTrendingTopics(): Promise<string[]> {
-  const prompt = `You are a content strategist for AdvanseIT, an Australian IT company based in Brisbane specialising in:
-- Web Design & Development
-- App Development  
-- Custom Software Development
-- AI Projects & AI-First Solutions
-- Testing & QA Services
-- IT Staffing & Outsourcing
+/** Generates a fresh, specific test automation topic relevant to the current date */
+async function fetchTestAutomationTopic(): Promise<string> {
+  const today = new Date().toLocaleDateString("en-AU", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  const prompt = `You are a content strategist for AdvanseIT, an Australian IT company in Brisbane.
+Today's date: ${today}
 
-Today's date: ${new Date().toLocaleDateString("en-AU", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+Generate ONE highly specific, currently relevant blog topic about software test automation.
+The topic should:
+1. Be specific — not generic (e.g. "How to use AI to auto-heal Selenium locators in 2025" not just "Test automation")
+2. Be relevant to Java, Selenium, TestNG, Cucumber, REST Assured, CI/CD, or AI-powered testing
+3. Appeal to QA engineers, test leads, and developers in Australia
+4. Have strong SEO potential for Australian searches
+5. Be different from common evergreen topics — think about what is trending RIGHT NOW
 
-Generate 6 highly relevant, currently trending blog topic ideas that:
-1. Align with AdvanseIT's services and expertise
-2. Are trending RIGHT NOW in the Australian IT/tech market
-3. Would attract business owners, CTOs, and IT managers in Australia
-4. Mix educational, thought leadership, and practical how-to content
-5. Have strong SEO potential for Australian searches
-
-Return ONLY a JSON array of 6 topic strings. Example format:
-["Topic 1", "Topic 2", "Topic 3", "Topic 4", "Topic 5", "Topic 6"]`;
+Return as JSON with a single "topic" string field.`;
 
   const response = await invokeLLM({
     messages: [{ role: "user", content: prompt }],
     response_format: {
       type: "json_schema",
       json_schema: {
-        name: "trending_topics",
+        name: "test_automation_topic",
         strict: true,
         schema: {
           type: "object",
-          properties: {
-            topics: {
-              type: "array",
-              items: { type: "string" },
-            },
-          },
-          required: ["topics"],
+          properties: { topic: { type: "string" } },
+          required: ["topic"],
           additionalProperties: false,
         },
       },
@@ -73,19 +63,62 @@ Return ONLY a JSON array of 6 topic strings. Example format:
 
   const rawContent = response.choices?.[0]?.message?.content;
   const content = typeof rawContent === "string" ? rawContent : null;
-  if (!content) return [];
-
+  if (!content) return "AI-Powered Test Automation with Java Selenium in 2025";
   try {
     const parsed = JSON.parse(content);
-    return parsed.topics ?? [];
+    return parsed.topic ?? "AI-Powered Test Automation with Java Selenium in 2025";
   } catch {
-    return [];
+    return "AI-Powered Test Automation with Java Selenium in 2025";
+  }
+}
+
+/** Generates a trending IT/tech topic for Australian business audiences */
+async function fetchTrendingITTopic(): Promise<string> {
+  const today = new Date().toLocaleDateString("en-AU", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  const prompt = `You are a content strategist for AdvanseIT, an Australian IT company in Brisbane specialising in web design, app development, AI solutions, and IT staffing.
+Today's date: ${today}
+
+Generate ONE highly specific, currently trending blog topic about IT or technology for Australian businesses.
+The topic should:
+1. Be trending RIGHT NOW in the Australian IT/tech market (think about recent industry news, new tools, regulatory changes, AI developments)
+2. Appeal to business owners, CTOs, and IT managers in Australia
+3. Align with at least one of: web development, app development, AI/automation, cloud, cybersecurity, digital transformation, or IT outsourcing
+4. Have strong SEO potential for Australian searches
+5. Be specific and timely — not a generic evergreen topic
+
+Return as JSON with a single "topic" string field.`;
+
+  const response = await invokeLLM({
+    messages: [{ role: "user", content: prompt }],
+    response_format: {
+      type: "json_schema",
+      json_schema: {
+        name: "trending_it_topic",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: { topic: { type: "string" } },
+          required: ["topic"],
+          additionalProperties: false,
+        },
+      },
+    },
+  });
+
+  const rawContent = response.choices?.[0]?.message?.content;
+  const content = typeof rawContent === "string" ? rawContent : null;
+  if (!content) return "How Australian Businesses Are Using AI to Cut IT Costs in 2025";
+  try {
+    const parsed = JSON.parse(content);
+    return parsed.topic ?? "How Australian Businesses Are Using AI to Cut IT Costs in 2025";
+  } catch {
+    return "How Australian Businesses Are Using AI to Cut IT Costs in 2025";
   }
 }
 
 // ─── Article generator ────────────────────────────────────────────────────────
 
-async function generateArticle(topic: string): Promise<{
+async function generateArticle(topic: string, isTestAutomation = false): Promise<{
   title: string;
   excerpt: string;
   content: string;
@@ -97,6 +130,16 @@ async function generateArticle(topic: string): Promise<{
   redditPost: string;
   imagePrompts: { coverPrompt: string; inlinePrompts: Array<{ prompt: string; caption: string; altText: string }> };
 }> {
+  const trainingInstructions = isTestAutomation
+    ? `
+- This is a TEST AUTOMATION article. You MUST include a dedicated section (H2 or H3) promoting AdvanseIT's Java Selenium & AI Test Automation Training program. The section should:
+  - Mention that AdvanseIT runs live, instructor-led Java Selenium training for Australian QA engineers and developers
+  - Include a Markdown hyperlink to the training site: [AdvanseIT Java Selenium Training](https://training.advanseit.com.au/)
+  - Mention key details: 60 live sessions, 9 weeks, Brisbane in-person + online across Australia, two plans (Live Class AUD $399, Recording Only AUD $249)
+  - Feel natural and helpful, not like an ad — position it as a resource for readers who want to upskill
+- The LinkedIn post for this article MUST also include a link to https://training.advanseit.com.au/ and mention the training program`
+    : "";
+
   const prompt = `You are a senior technology writer for AdvanseIT, an Australian IT company in Brisbane.
 
 Write a comprehensive, high-quality blog article about: "${topic}"
@@ -107,8 +150,8 @@ The article should:
 - Include practical, actionable advice for Australian businesses
 - Reference Australian market context where relevant
 - Naturally mention AdvanseIT's expertise (web design, app development, AI, testing, IT staffing) without being overly promotional
-- End with a subtle CTA to contact AdvanseIT
-- Be SEO-optimised for Australian searches
+- End with a subtle CTA to contact AdvanseIT at https://advanseit.com.au/contact
+- Be SEO-optimised for Australian searches${trainingInstructions}
 
 Also generate:
 1. A LinkedIn post (150–200 words, hook-first, 3–5 hashtags, professional tone)
@@ -203,16 +246,27 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
     const db = await getDb();
     if (!db) throw new Error("Database not available");
 
-    // 1. Get trending topics
-    const topics = topicOverride ? [topicOverride] : await fetchTrendingTopics();
-    const topicsToProcess = topics.slice(0, 2); // Generate 2 articles per run
+    // 1. Determine topics: always 1 test automation + 1 trending IT topic
+    let topicsToProcess: Array<{ topic: string; isTestAutomation: boolean }>;
+    if (topicOverride) {
+      topicsToProcess = [{ topic: topicOverride, isTestAutomation: false }];
+    } else {
+      console.log("[Blog] Fetching test automation topic...");
+      const testTopic = await fetchTestAutomationTopic();
+      console.log("[Blog] Fetching trending IT topic...");
+      const trendingTopic = await fetchTrendingITTopic();
+      topicsToProcess = [
+        { topic: testTopic, isTestAutomation: true },
+        { topic: trendingTopic, isTestAutomation: false },
+      ];
+    }
 
-    for (const topic of topicsToProcess) {
+    for (const { topic, isTestAutomation } of topicsToProcess) {
       try {
-        console.log(`[Blog] Generating article for topic: "${topic}"`);
+        console.log(`[Blog] Generating article for topic: "${topic}" (isTestAutomation: ${isTestAutomation})`);
 
         // 2. Generate article content
-        const article = await generateArticle(topic);
+        const article = await generateArticle(topic, isTestAutomation);
 
         // 3. Generate cover image
         console.log(`[Blog] Generating cover image for: "${article.title}"`);
