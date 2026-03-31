@@ -167,3 +167,6 @@
 
 ## Blog Global Audience Update (March 2026)
 - [x] Update blog pipeline: test automation posts should be global audience (not Australia-specific) — target QA engineers worldwide including Indian students in Australia and India
+
+## Manual Blog Run (31 March 2026)
+- [x] Generate 2 new blog posts using updated global topic pipeline (1 test automation + 1 trending IT)
