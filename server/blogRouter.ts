@@ -31,16 +31,16 @@ function estimateReadTime(content: string): number {
 /** Generates a fresh, specific test automation topic relevant to the current date */
 async function fetchTestAutomationTopic(): Promise<string> {
   const today = new Date().toLocaleDateString("en-AU", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-  const prompt = `You are a content strategist for AdvanseIT, an Australian IT company in Brisbane.
+  const prompt = `You are a content strategist for AdvanseIT, a global IT training and solutions company.
 Today's date: ${today}
 
 Generate ONE highly specific, currently relevant blog topic about software test automation.
 The topic should:
 1. Be specific — not generic (e.g. "How to use AI to auto-heal Selenium locators in 2025" not just "Test automation")
 2. Be relevant to Java, Selenium, TestNG, Cucumber, REST Assured, CI/CD, or AI-powered testing
-3. Appeal to QA engineers, test leads, and developers in Australia
-4. Have strong SEO potential for Australian searches
-5. Be different from common evergreen topics — think about what is trending RIGHT NOW
+3. Appeal to QA engineers, test leads, and developers globally — including those in India, Australia, and other English-speaking markets
+4. Have strong global SEO potential
+5. Be different from common evergreen topics — think about what is trending RIGHT NOW in the QA/testing world
 
 Return as JSON with a single "topic" string field.`;
 
@@ -132,26 +132,32 @@ async function generateArticle(topic: string, isTestAutomation = false): Promise
 }> {
   const trainingInstructions = isTestAutomation
     ? `
-- This is a TEST AUTOMATION article. You MUST include a dedicated section (H2 or H3) promoting AdvanseIT's Java Selenium & AI Test Automation Training program. The section should:
-  - Mention that AdvanseIT runs live, instructor-led Java Selenium training for Australian QA engineers and developers
+- This is a TEST AUTOMATION article targeting a GLOBAL audience of QA engineers and developers. Do NOT frame this as Australia-specific — the content should be universally relevant and useful to readers worldwide, including those in India, Australia, the UK, and the US.
+- You MUST include a dedicated section (H2 or H3) promoting AdvanseIT's Java Selenium & AI Test Automation Training program. The section should:
+  - Mention that AdvanseIT runs live, instructor-led Java Selenium training available online globally
   - Include a Markdown hyperlink to the training site: [AdvanseIT Java Selenium Training](https://training.advanseit.com.au/)
-  - Mention key details: 60 live sessions, 9 weeks, Brisbane in-person + online across Australia, two plans (Live Class AUD $399, Recording Only AUD $249)
+  - Mention key details: 60 live sessions, 9 weeks, online globally, two plans (Live Class AUD $399, Recording Only AUD $249)
   - Feel natural and helpful, not like an ad — position it as a resource for readers who want to upskill
 - The LinkedIn post for this article MUST also include a link to https://training.advanseit.com.au/ and mention the training program`
     : "";
 
-  const prompt = `You are a senior technology writer for AdvanseIT, an Australian IT company in Brisbane.
+  const audienceContext = isTestAutomation
+    ? `a global audience of QA engineers, test leads, and developers (do NOT make this Australia-specific — keep it universally relevant)`
+    : `Australian businesses, CTOs, and IT managers`;
+
+  const prompt = `You are a senior technology writer for AdvanseIT, an IT company with global training reach.
 
 Write a comprehensive, high-quality blog article about: "${topic}"
+
+Target audience: ${audienceContext}
 
 The article should:
 - Be 800–1200 words
 - Use Markdown formatting with H2/H3 headings, bullet points, and bold text
-- Include practical, actionable advice for Australian businesses
-- Reference Australian market context where relevant
+- Include practical, actionable advice
 - Naturally mention AdvanseIT's expertise (web design, app development, AI, testing, IT staffing) without being overly promotional
 - End with a subtle CTA to contact AdvanseIT at https://advanseit.com.au/contact
-- Be SEO-optimised for Australian searches${trainingInstructions}
+- Be SEO-optimised${isTestAutomation ? " for global searches" : " for Australian searches"}${trainingInstructions}
 
 Also generate:
 1. A LinkedIn post (150–200 words, hook-first, 3–5 hashtags, professional tone)

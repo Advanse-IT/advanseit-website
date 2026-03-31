@@ -164,3 +164,6 @@
 
 ## Blog Topic Strategy (March 2026)
 - [x] Update blog pipeline: always generate 1 test automation post (with training.advanseit.com.au link) + 1 trending IT/tech topic post
+
+## Blog Global Audience Update (March 2026)
+- [x] Update blog pipeline: test automation posts should be global audience (not Australia-specific) — target QA engineers worldwide including Indian students in Australia and India
