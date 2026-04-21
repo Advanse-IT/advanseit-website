@@ -8,8 +8,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Zap, TrendingDown, Cpu, BarChart3, CheckCircle2 } from "lucide-react";
 
-const AI_IMG =
-  "https://private-us-east-1.manuscdn.com/sessionFile/37fQNGQqqG3bNP4NtPOLV7/sandbox/zJvQS07fxaI6Q7ymj4vzLy-img-2_1771758218000_na1fn_YWktc2VydmljZXM.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMzdmUU5HUXFxRzNiTlA0TnRQT0xWNy9zYW5kYm94L3pKdlFTMDdmeGFJNlE3eW1qNHZ6THktaW1nLTJfMTc3MTc1ODIxODAwMF9uYTFmbl9ZV2t0YzJWeWRtbGpaWE0uanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=IA97f5y-gAOvfsj5zHTUhInMeLiWHAUdB6M3Wg1Vtb8~Y7o1gYd8V95PyCUIi053uJzpWK7ttBX39TYTk45NAuQZFwjSApX-mU~fJTdTksW40zE5FI4jUY1nW1OQ~EmY~ACRt5yg94MGBXIuz1uZFG3AXYwqEG8mTFwu1HGKNKfeHVpnKFYOuk-I7vR0IQ1jP2a3H6PtdQvywedgMX4YLkRUcPC1oi0d00oCb~kDhcfnryJZ69ArnmhC6K376WKTfLLmfgX3NElYDrYZmrrvUiAnRW4mjDlwsbsG8sQ~hX8tODgOdcjXtp69kMzcX-wO-jBS3kKFS-bJymcrfASjTA__";
+const AI_IMG = "/images/ai-services.jpg";
 
 const aiCapabilities = [
   {

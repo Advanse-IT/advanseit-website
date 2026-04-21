@@ -16,7 +16,7 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://advanseit.com.au";
-const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png";
+const LOGO_URL = "https://advanseit.com.au/images/advanseit-logo-schema.png";
 
 // ── WebSite + SiteLinksSearchBox ──────────────────────────────────────────────
 const websiteSchema = {

@@ -15,9 +15,9 @@ import { useState } from "react";
 
 const SITE_URL = "https://advanseit.com.au";
 const LOGO_URL =
-  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png";
+  "/images/advanseit-logo-schema.png";
 const OG_IMAGE =
-  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/HdTBZOVgOmaFOEAz.png";
+  "/images/og-image-social.png";
 
 const ALL_SERVICES = [
   {

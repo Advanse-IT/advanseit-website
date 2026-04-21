@@ -118,7 +118,7 @@ export default function BlogPost() {
       name: "AdvanseIT",
       logo: {
         "@type": "ImageObject",
-        url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png",
+        url: "/images/advanseit-logo-schema.png",
       },
     },
     image: post.coverImageUrl

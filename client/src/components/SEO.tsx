@@ -22,7 +22,7 @@ import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "AdvanseIT";
 const SITE_URL = "https://advanseit.com.au";
-const OG_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/HdTBZOVgOmaFOEAz.png";
+const OG_IMAGE = "/images/og-image-social.png";
 const OG_IMAGE_WIDTH = "1200";
 const OG_IMAGE_HEIGHT = "630";
 const TWITTER_HANDLE = "@AdvanseIT";

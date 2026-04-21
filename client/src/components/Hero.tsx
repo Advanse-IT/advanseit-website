@@ -9,8 +9,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
-const HERO_BG =
-  "https://private-us-east-1.manuscdn.com/sessionFile/37fQNGQqqG3bNP4NtPOLV7/sandbox/zJvQS07fxaI6Q7ymj4vzLy-img-1_1771758218000_na1fn_aGVyby1iZw.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMzdmUU5HUXFxRzNiTlA0TnRQT0xWNy9zYW5kYm94L3pKdlFTMDdmeGFJNlE3eW1qNHZ6THktaW1nLTFfMTc3MTc1ODIxODAwMF9uYTFmbl9hR1Z5YnkxaVp3LmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=CBbVynUbhCZivmLUmeDaJC1x0wLoXXNVcTIDqx2QpDf0FnD8qzIwCUlJ-ZOh7yDI6ss2-Tad~9JPOzR2dNbMmNUZ8DEJRCfvM9zt20OPlUaVG5031Iz1PTEyNamRPKbg6hszfN6ewjoLdTRPAw3H-sd-orpvzZ-cj~vGDHpZyB3GVSRT6i6Bu8pzE1O8yvPAtQAoQ6Ph9PsdWXpjfpw7rMxooLMZq--Rn5zPNgNRqwt6VBPiuhxGYlZ~XvOduS5Pwz4ooD76dQlcJTVuvnufk3Bn0KsXPENMp6El9wcQkcLXAjhE1Bff7qAmrYUWrc17Kdkps~N9BJ9sJ4JYjlcM8w__";
+const HERO_BG = "/images/hero-bg.jpg";
 
 const stats = [
   { value: 150, suffix: "+", label: "Projects Delivered" },

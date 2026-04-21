@@ -24,11 +24,11 @@ const schema = {
   url: "https://advanseit.com.au",
   logo: {
     "@type": "ImageObject",
-    url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png",
+    url: "/images/advanseit-logo-schema.png",
     width: 512,
     height: 512,
   },
-  image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/ZQDItgJAIEmNJbOO.png",
+  image: "/images/advanseit-logo-schema.png",
   telephone: "+61-481-261-679",
   email: "admin@advanseit.com.au",
   address: {

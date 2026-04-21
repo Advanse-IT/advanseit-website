@@ -7,8 +7,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Award, Lightbulb, Heart, TrendingDown, ShieldCheck } from "lucide-react";
 
-const TEAM_IMG =
-  "https://private-us-east-1.manuscdn.com/sessionFile/37fQNGQqqG3bNP4NtPOLV7/sandbox/zJvQS07fxaI6Q7ymj4vzLy-img-4_1771758215000_na1fn_dGVhbS1jb2xsYWI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMzdmUU5HUXFxRzNiTlA0TnRQT0xWNy9zYW5kYm94L3pKdlFTMDdmeGFJNlE3eW1qNHZ6THktaW1nLTRfMTc3MTc1ODIxNTAwMF9uYTFmbl9kR1ZoYlMxamIyeHNZV0kuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=CrnemqLJztonHVL3OoQfvcx5FFFt3~XLck1ZcoRwH--ek~TrcF~rOsTl7aFhs7z74THSPhi~XD3sNGfZyZjswjNwP7M~8~zgBBJBaypk8eCDWyEjpdKsKSRRpcZc5kSkTupfI-2XuHhgxygrS0JTakHMVFrbfDZ-zNDtAWCWKRJ8HAIj3863MZrD1vID8GHJ37S4agrOZRiCyIwJ3vkvsQLWoOGK5tnVLAMEZJhGpQeH5P8ALYL9YLeqjAWsfeqA5dFqLeXDrui449MMh~kUnf4Bo8pO6neSYmEZB5CR6CK9wWc4duzxNVj-iT4HQaDuVU-aEQdLl3715Eo~UJ~d1Q__";
+const TEAM_IMG = "/images/team-collab.jpg";
 
 const values = [
   {

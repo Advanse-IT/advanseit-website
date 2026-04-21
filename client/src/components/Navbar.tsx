@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe, Smartphone, Code2, Bot, CheckCircle2, Users } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
-const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663374153263/IXgYLeAuYjWgUTBq.svg";
+const LOGO_URL = "/images/logo-navbar.svg";
 
 const serviceLinks = [
   { label: "Web Design & Development", href: "/services/web-design", icon: Globe },
