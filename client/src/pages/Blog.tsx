@@ -13,7 +13,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
-const PLACEHOLDER_COVER = "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80";
+const PLACEHOLDER_COVER = "/images/blog-placeholder.svg";
 
 function formatDate(date: Date | string | null | undefined): string {
   if (!date) return "";

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <rect width="800" height="420" fill="#0D1B2E"/>
+  <rect x="340" y="160" width="120" height="100" rx="8" fill="#0a3d5c" opacity="0.6"/>
+  <circle cx="380" cy="200" r="18" fill="#00C8D4" opacity="0.7"/>
+  <path d="M355 240 L400 195 L435 220 L460 190" stroke="#00C8D4" stroke-width="2" fill="none" opacity="0.5"/>
+  <text x="400" y="300" font-family="sans-serif" font-size="14" fill="#ffffff" opacity="0.4" text-anchor="middle">AdvanseIT Blog</text>
+</svg>
