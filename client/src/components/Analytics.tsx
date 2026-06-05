@@ -1,20 +1,16 @@
 /**
  * Analytics.tsx — AdvanseIT
  *
- * Google Analytics 4 (GA4) — GDPR / Australian Privacy Act compliant.
+ * Google Analytics 4 — Measurement ID: G-56VZJR0KTQ
+ * Australian Privacy Act + GDPR Consent Mode v2 compliant.
  *
  * Behaviour:
- *  • GA4 script is injected into <head> immediately (required for gtag consent mode v2)
- *  • Default consent state: analytics_storage=denied, ad_storage=denied
- *  • When user accepts cookies → consent updated to "granted" → GA4 starts collecting
- *  • When user declines → consent stays denied → GA4 fires no hits
- *  • SPA page_view fired on every wouter route change (critical for single-page apps)
- *  • Conversion events fired for: contact form submit, enquiry form submit
- *
- * Setup:
- *  1. Set VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX in your .env
- *  2. Import <Analytics /> once in App.tsx (already done)
- *  3. Use the exported helpers (trackEvent, trackConversion) anywhere in the app
+ *  • GA4 script injected immediately after <head> (as Google recommends)
+ *  • Consent Mode v2 default: analytics_storage=denied until user accepts cookie banner
+ *  • When user accepts → consent updated to "granted" → GA4 starts collecting
+ *  • When user declines → stays denied → GA4 fires no hits
+ *  • SPA page_view fired on every wouter route change
+ *  • Conversion events on contact form submit
  */
 
 import { useEffect } from "react";
@@ -31,47 +27,46 @@ declare global {
 }
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
+const GA_ID = "G-56VZJR0KTQ";
 const CONSENT_KEY = "advanseit_cookie_consent";
 
-// ── Helpers (exported for use throughout the app) ─────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 /** Fire a custom GA4 event */
 export function trackEvent(
   eventName: string,
   params?: Record<string, string | number | boolean>
 ) {
-  if (typeof window === "undefined" || !window.gtag || !GA_ID) return;
+  if (typeof window === "undefined" || !window.gtag) return;
   window.gtag("event", eventName, params ?? {});
 }
 
-/** Fire a GA4 conversion event (contact form, enquiry, etc.) */
+/** Fire a GA4 conversion / lead event on contact form success */
 export function trackConversion(params?: {
   send_to?: string;
   value?: number;
   currency?: string;
   transaction_id?: string;
 }) {
-  if (typeof window === "undefined" || !window.gtag || !GA_ID) return;
+  if (typeof window === "undefined" || !window.gtag) return;
   window.gtag("event", "conversion", {
     send_to: params?.send_to ?? GA_ID,
     value: params?.value ?? 1,
     currency: params?.currency ?? "AUD",
     transaction_id: params?.transaction_id ?? Date.now().toString(),
   });
-  // Also fire as a lead event for GA4 reports
   window.gtag("event", "generate_lead", {
     currency: "AUD",
     value: params?.value ?? 1,
   });
 }
 
-/** Update GA4 consent mode — call after user accepts cookies */
+/** Grant analytics consent — call when user accepts cookie banner */
 export function grantAnalyticsConsent() {
   if (typeof window === "undefined" || !window.gtag) return;
   window.gtag("consent", "update", {
     analytics_storage: "granted",
-    ad_storage: "denied", // We don't run ads — keep ad_storage denied
+    ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
     functionality_storage: "granted",
@@ -80,7 +75,7 @@ export function grantAnalyticsConsent() {
   window.advanseConsentAccepted = true;
 }
 
-/** Revoke analytics consent — call when user declines */
+/** Revoke analytics consent — call when user declines cookie banner */
 export function revokeAnalyticsConsent() {
   if (typeof window === "undefined" || !window.gtag) return;
   window.gtag("consent", "update", {
@@ -96,9 +91,9 @@ export function revokeAnalyticsConsent() {
 export default function Analytics() {
   const [location] = useLocation();
 
-  // Fire page_view on every SPA route change — critical for GA4 in SPAs
+  // Fire page_view on every SPA route change
   useEffect(() => {
-    if (typeof window === "undefined" || !window.gtag || !GA_ID) return;
+    if (typeof window === "undefined" || !window.gtag) return;
     window.gtag("event", "page_view", {
       page_path: location,
       page_location: window.location.href,
@@ -106,9 +101,9 @@ export default function Analytics() {
     });
   }, [location]);
 
-  // On mount: check existing consent and update GA4 accordingly
+  // On mount: restore consent if user already accepted previously
   useEffect(() => {
-    if (typeof window === "undefined" || !window.gtag || !GA_ID) return;
+    if (typeof window === "undefined" || !window.gtag) return;
     try {
       const saved = localStorage.getItem(CONSENT_KEY);
       if (saved === "accepted") {
@@ -119,12 +114,14 @@ export default function Analytics() {
     }
   }, []);
 
-  // If no GA_ID configured, render nothing
-  if (!GA_ID) return null;
-
   return (
     <Helmet>
-      {/* GA4 — Consent Mode v2 (default denied until user accepts) */}
+      {/*
+        Google tag (gtag.js) — G-56VZJR0KTQ
+        Placed immediately after <head> as recommended by Google.
+        Consent Mode v2 default is DENIED — no data collected until
+        user accepts the cookie banner.
+      */}
       <script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
@@ -145,6 +142,7 @@ export default function Analytics() {
           wait_for_update: 500
         });
 
+        // Google tag — G-56VZJR0KTQ
         gtag('js', new Date());
         gtag('config', '${GA_ID}', {
           send_page_view: false,
