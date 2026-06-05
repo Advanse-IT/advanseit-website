@@ -338,12 +338,12 @@ export default function Contact() {
                   />
                 </div>
 
-                <button
                 {/* Cloudflare Turnstile — only rendered when VITE_TURNSTILE_SITE_KEY is set */}
                 {import.meta.env.VITE_TURNSTILE_SITE_KEY && (
                   <div ref={turnstileRef} className="mb-4" />
                 )}
 
+                <button
                   type="submit"
                   disabled={loading}
                   className="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm disabled:opacity-60"
