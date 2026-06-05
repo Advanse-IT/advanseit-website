@@ -18,12 +18,12 @@ const LOGO_URL = "/images/logo-navbar.svg";
 
 // Section anchor links
 const serviceLinks = [
-  { label: "Web Design & Development", anchor: "#services" },
-  { label: "App Development", anchor: "#services" },
-  { label: "Custom Software", anchor: "#services" },
-  { label: "Testing & QA", anchor: "#services" },
+  { label: "Web Design & Development", href: "/services/web-design" },
+  { label: "App Development", href: "/services/app-development" },
+  { label: "Custom Software", href: "/services/custom-software" },
+  { label: "Testing & QA", href: "/services/testing" },
   { label: "AI Solutions", anchor: "#ai-solutions" },
-  { label: "IT Staffing", anchor: "#services" },
+  { label: "IT Staffing", href: "/services/it-staffing" },
 ];
 
 const companyLinks = [

@@ -22,6 +22,7 @@ import { runBlogGenerationPipeline } from "./blogRouter";
 import { notifyOwner } from "./_core/notification";
 import { getDb } from "./db";
 import { blogPosts } from "../drizzle/schema";
+import { logger } from "./_core/logger";
 
 let schedulerStarted = false;
 
@@ -82,17 +83,17 @@ export function startBlogScheduler(): void {
   if (schedulerStarted) return;
   schedulerStarted = true;
 
-  console.log("[BlogScheduler] Starting — Tuesday & Thursday 09:00 AEST (Brisbane)");
+  logger.info("[BlogScheduler] Starting — Tuesday & Thursday 09:00 AEST (Brisbane)");
 
   // Tuesday 09:00 AEST = Monday 23:00 UTC
   cron.schedule("0 23 * * 1", async () => {
-    console.log("[BlogScheduler] Tuesday 09:00 AEST — running generation pipeline");
+    logger.info("[BlogScheduler] Tuesday 09:00 AEST — running generation pipeline");
     await runPipelineWithNotification();
   });
 
   // Thursday 09:00 AEST = Wednesday 23:00 UTC
   cron.schedule("0 23 * * 3", async () => {
-    console.log("[BlogScheduler] Thursday 09:00 AEST — running generation pipeline");
+    logger.info("[BlogScheduler] Thursday 09:00 AEST — running generation pipeline");
     await runPipelineWithNotification();
   });
 
@@ -102,10 +103,10 @@ export function startBlogScheduler(): void {
     if (!wasMissedRecently()) return;
     const alreadyPublished = await hasRecentPost();
     if (alreadyPublished) {
-      console.log("[BlogScheduler] Catch-up check: recent post found, skipping.");
+      logger.info("[BlogScheduler] Catch-up check: recent post found, skipping.");
       return;
     }
-    console.log("[BlogScheduler] Catch-up: missed scheduled run detected — running pipeline now");
+    logger.info("[BlogScheduler] Catch-up: missed scheduled run detected — running pipeline now");
     await runPipelineWithNotification("catch-up");
   }, 10_000); // 10s delay to let the server fully initialise
 }
@@ -122,7 +123,7 @@ async function runPipelineWithNotification(label = "scheduled"): Promise<void> {
         (result.errors.length > 0 ? `Warnings: ${result.errors.join(", ")}` : "No errors.")
       : `❌ Blog generation (${label}) failed in ${durationSec}s\n\nErrors:\n${result.errors.join("\n")}`;
 
-    console.log("[BlogScheduler]", summary);
+    logger.info("[BlogScheduler]", summary);
 
     await notifyOwner({
       title: result.success

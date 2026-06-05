@@ -1,0 +1,24 @@
+# Cloudflare Pages _redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Trailing slash normalisation
+/services/web-design/    /services/web-design    301
+/services/app-development/  /services/app-development  301
+/services/custom-software/  /services/custom-software  301
+/services/ai-solutions/  /services/ai-solutions  301
+/services/testing/       /services/testing       301
+/services/it-staffing/   /services/it-staffing   301
+/blog/                   /blog                   301
+/privacy/                /privacy                301
+/terms/                  /terms                  301
+
+# Legacy / common misspellings
+/service/*               /services/:splat         301
+/services                /                        301
+
+# Training subdomain redirect
+/training                https://training.advanseit.com.au  301
+/training/*              https://training.advanseit.com.au/:splat  301
+
+# SPA fallback — all unmatched routes serve index.html
+/*                       /index.html              200

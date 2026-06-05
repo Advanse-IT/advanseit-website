@@ -1,0 +1,22 @@
+{
+  "name": "AdvanseIT — AI-Powered IT for Australian Business",
+  "short_name": "AdvanseIT",
+  "description": "Brisbane IT company delivering web design, app development, AI solutions and IT staffing across Australia.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0D1B2E",
+  "theme_color": "#0D1B2E",
+  "lang": "en-AU",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

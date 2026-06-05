@@ -7,7 +7,7 @@ export default function CustomSoftwarePage() {
       slug="custom-software"
       serviceType="Custom Software Development"
       pageTitle="Custom Software Development Brisbane"
-      metaDescription="Bespoke software solutions for Australian businesses. AdvanseIT builds AI-powered custom software, ERP integrations, automation tools, and cloud-native applications from Brisbane. ABN 12 656 409 850."
+      metaDescription="AdvanseIT is a bespoke software development company in Brisbane. We deliver custom software development in Australia and Queensland — AI-powered, scalable, and built for your workflows. ABN 12 656 409 850."
       keywords={[
         "custom software development Brisbane",
         "bespoke software Brisbane",
@@ -18,6 +18,8 @@ export default function CustomSoftwarePage() {
         "API development Brisbane",
         "cloud software development Brisbane",
         "SaaS development Australia",
+        "bespoke software development company",
+        "custom software development Australia",
       ]}
       heroHeadline={
         <>
@@ -26,8 +28,8 @@ export default function CustomSoftwarePage() {
           <span className="text-[#00C8D4]">Built Around Your Business</span>
         </>
       }
-      heroSubheading="AdvanseIT builds bespoke software solutions tailored to your unique business workflows. From ERP integrations and automation tools to cloud-native SaaS platforms — we deliver AI-powered software that eliminates manual work and scales with your growth."
-      schemaDescription="Custom software development for Australian businesses. AdvanseIT builds bespoke software solutions including ERP integrations, business automation tools, cloud-native applications, and AI-powered software from Brisbane, Queensland."
+      heroSubheading="AdvanseIT is a bespoke software development company in Brisbane building tailored solutions for unique business workflows. From ERP integrations and automation tools to cloud-native SaaS platforms — we deliver AI-powered custom software development in Australia that eliminates manual work and scales with your growth."
+      schemaDescription="AdvanseIT delivers custom software development Australia, building bespoke software solutions including ERP integrations, business automation tools, cloud-native applications, and AI-powered software from Brisbane, Queensland."
       benefits={[
         {
           icon: <Puzzle size={20} />,
@@ -70,7 +72,7 @@ export default function CustomSoftwarePage() {
         {
           title: "Requirements Discovery",
           description:
-            "We run structured workshops with your team to map existing workflows, identify pain points, and define the software requirements in detail.",
+            "Our custom software development team Brisbane runs structured workshops to map existing workflows, identify pain points, and define your software requirements in detail.",
         },
         {
           title: "Architecture & Design",
@@ -116,10 +118,10 @@ export default function CustomSoftwarePage() {
         {
           question: "When should I choose custom software over off-the-shelf?",
           answer:
-            "Custom software makes sense when off-the-shelf tools don't fit your workflow, when you need deep integrations with existing systems, or when your process is a competitive advantage you want to protect. We'll give you an honest assessment during the free consultation.",
+            "Custom software development Australia makes sense when off-the-shelf tools don't fit your workflow, when you need deep integrations with existing systems, or when your process is a competitive advantage you want to protect. We'll give you an honest assessment during the free consultation.",
         },
         {
-          question: "How much does custom software cost?",
+          question: "How much does custom software development Australia cost?",
           answer:
             "Custom software projects typically range from $20,000 AUD for a focused automation tool to $200,000+ for a full enterprise platform. We provide a detailed fixed-price quote after a discovery workshop.",
         },
@@ -136,7 +138,7 @@ export default function CustomSoftwarePage() {
         {
           question: "Do you offer ongoing support after delivery?",
           answer:
-            "Yes. We offer monthly support and development retainers covering bug fixes, feature additions, security updates, and infrastructure management.",
+            "Yes. Our custom software development Australia team offers monthly support and development retainers covering bug fixes, feature additions, security updates, and infrastructure management.",
         },
       ]}
     />

@@ -8,6 +8,7 @@ import { invokeLLM } from "./_core/llm";
 import { generateImage } from "./_core/imageGeneration";
 import { storagePut } from "./storage";
 import { nanoid } from "nanoid";
+import { logger } from "./_core/logger";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -257,9 +258,9 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
     if (topicOverride) {
       topicsToProcess = [{ topic: topicOverride, isTestAutomation: false }];
     } else {
-      console.log("[Blog] Fetching test automation topic...");
+      logger.info("[Blog] Fetching test automation topic...");
       const testTopic = await fetchTestAutomationTopic();
-      console.log("[Blog] Fetching trending IT topic...");
+      logger.info("[Blog] Fetching trending IT topic...");
       const trendingTopic = await fetchTrendingITTopic();
       topicsToProcess = [
         { topic: testTopic, isTestAutomation: true },
@@ -269,13 +270,13 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
 
     for (const { topic, isTestAutomation } of topicsToProcess) {
       try {
-        console.log(`[Blog] Generating article for topic: "${topic}" (isTestAutomation: ${isTestAutomation})`);
+        logger.info(`[Blog] Generating article for topic: "${topic}" (isTestAutomation: ${isTestAutomation})`);
 
         // 2. Generate article content
         const article = await generateArticle(topic, isTestAutomation);
 
         // 3. Generate cover image
-        console.log(`[Blog] Generating cover image for: "${article.title}"`);
+        logger.info(`[Blog] Generating cover image for: "${article.title}"`);
         const coverImageUrl = await generateAndUploadImage(
           article.imagePrompts.coverPrompt,
           "cover"
@@ -314,7 +315,7 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
 
         await db.insert(blogPosts).values(post);
         postsCreated++;
-        console.log(`[Blog] Created post: "${article.title}" (slug: ${slug})`);
+        logger.info(`[Blog] Created post: "${article.title}" (slug: ${slug})`);
 
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);

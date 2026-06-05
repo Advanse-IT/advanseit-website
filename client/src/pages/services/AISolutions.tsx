@@ -7,7 +7,7 @@ export default function AISolutionsPage() {
       slug="ai-solutions"
       serviceType="Artificial Intelligence Solutions"
       pageTitle="AI Solutions & Development Brisbane"
-      metaDescription="Custom AI chatbots, machine learning, and AI automation for Australian businesses. AdvanseIT makes enterprise AI accessible to SMEs from Brisbane. ABN 12 656 409 850."
+      metaDescription="AdvanseIT is an AI software development company delivering AI solutions in Brisbane and across Australia. Custom chatbots, machine learning, and AI automation for SMEs. ABN 12 656 409 850."
       keywords={[
         "AI solutions Brisbane",
         "artificial intelligence development Brisbane",
@@ -21,6 +21,8 @@ export default function AISolutionsPage() {
         "AI-first software Australia",
         "computer vision Brisbane",
         "NLP development Australia",
+        "ai software development australia",
+        "ai software development company",
       ]}
       heroHeadline={
         <>
@@ -29,8 +31,8 @@ export default function AISolutionsPage() {
           <span className="text-[#00C8D4]">Enterprise AI for Every Business</span>
         </>
       }
-      heroSubheading="AdvanseIT builds custom AI solutions that make enterprise-grade artificial intelligence accessible to Australian SMEs. From AI chatbots and LLM integrations to machine learning models and computer vision — we deliver AI that creates real business value."
-      schemaDescription="Custom artificial intelligence solutions for Australian businesses. AdvanseIT builds AI chatbots, machine learning models, NLP integrations, computer vision applications, and LLM-powered automation from Brisbane, Queensland."
+      heroSubheading="AdvanseIT is an AI software development company delivering AI solutions Brisbane businesses rely on accessible to Australian SMEs. From AI chatbots and LLM integrations to machine learning models and computer vision — we deliver AI software development in Australia that creates real business value."
+      schemaDescription="AdvanseIT delivers bespoke AI solutions in Brisbane for Australian businesses — AI chatbots, machine learning models, NLP integrations, computer vision applications, and LLM-powered automation from Brisbane, Queensland."
       benefits={[
         {
           icon: <Bot size={20} />,
@@ -60,7 +62,7 @@ export default function AISolutionsPage() {
           icon: <ShieldCheck size={20} />,
           title: "Responsible AI",
           description:
-            "We build AI systems with transparency, bias mitigation, and data privacy at the core — compliant with Australian Privacy Act requirements.",
+            "Our AI solutions Brisbane are built with transparency, bias mitigation, and data privacy at the core — compliant with Australian Privacy Act requirements.",
         },
         {
           icon: <BarChart3 size={20} />,
@@ -73,7 +75,7 @@ export default function AISolutionsPage() {
         {
           title: "AI Opportunity Assessment",
           description:
-            "We identify the highest-value AI opportunities in your business — focusing on use cases with clear ROI and feasible data availability.",
+            "Our AI software development Australia team identifies the highest-value AI opportunities in your business — focusing on use cases with clear ROI and feasible data availability.",
         },
         {
           title: "Data & Feasibility Review",
@@ -116,19 +118,19 @@ export default function AISolutionsPage() {
       ]}
       faqs={[
         {
-          question: "What AI services does AdvanseIT offer?",
+          question: "What AI solutions Brisbane businesses need — what does AdvanseIT offer?",
           answer:
-            "We offer AI chatbot development, LLM integrations (GPT-4, Claude, Gemini), RAG knowledge base systems, machine learning model development, computer vision, NLP, AI process automation, and AI consulting.",
+            "We offer AI software development Australia-wide and in Brisbane: AI chatbot development, LLM integrations (GPT-4, Claude, Gemini), RAG knowledge base systems, machine learning model development, computer vision, NLP, AI process automation, and AI consulting.",
         },
         {
-          question: "How much does an AI chatbot cost?",
+          question: "How much does AI software development Australia cost?",
           answer:
             "A basic AI chatbot integration starts from $5,000 AUD. A custom RAG-powered knowledge base or enterprise AI assistant typically ranges from $15,000–$50,000+ depending on complexity and data volume.",
         },
         {
           question: "Do I need a lot of data to use AI?",
           answer:
-            "Not necessarily. Modern LLMs like GPT-4 and Claude work well with minimal training data using prompt engineering and RAG. For custom ML models, we'll assess your data during the free consultation and advise on feasibility.",
+            "Not necessarily. Our AI software development Australia team works with minimal training data using modern LLMs like GPT-4 and Claude with prompt engineering and RAG. For custom ML models, we'll assess your data during the free consultation.",
         },
         {
           question: "Is my data safe when using AI?",

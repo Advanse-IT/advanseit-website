@@ -1,23 +1,25 @@
 # robots.txt — AdvanseIT (https://advanseit.com.au)
 # Optimised for traditional search engines AND AI crawlers (AEO/GEO)
-# Last updated: 2026-03-16
+# Last updated: 2026-06-03
 
 # ── Traditional search engines ───────────────────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /api/trpc/
+Disallow: /dashboard/
+Disallow: /admin/
+
+# Block access to raw JSON/tRPC endpoints
+Disallow: /api/trpc/
 
 # ── OpenAI crawlers ───────────────────────────────────────────────────────────
-# GPTBot: training data for ChatGPT and OpenAI models
 User-agent: GPTBot
 Allow: /
 
-# ChatGPT-User: live retrieval when users ask ChatGPT questions
 User-agent: ChatGPT-User
 Allow: /
 
-# OAI-SearchBot: real-time retrieval and indexing for OpenAI search
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -33,7 +35,6 @@ User-agent: PerplexityBot
 Allow: /
 
 # ── Google AI ─────────────────────────────────────────────────────────────────
-# Google-Extended: controls use of content for Gemini AI and Vertex AI
 User-agent: Google-Extended
 Allow: /
 
@@ -49,6 +50,19 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-# ── Sitemap and LLM context file ─────────────────────────────────────────────
+# ── Common bad bots / scrapers ────────────────────────────────────────────────
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# ── Sitemaps & LLM context ───────────────────────────────────────────────────
 Sitemap: https://advanseit.com.au/sitemap.xml
-# LLM context: https://advanseit.com.au/llms.txt
+# LLMs.txt: https://advanseit.com.au/llms.txt

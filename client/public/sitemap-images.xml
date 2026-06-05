@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://advanseit.com.au/</loc>
+    <image:image>
+      <image:loc>https://advanseit.com.au/images/hero-bg.jpg</image:loc>
+      <image:title>AdvanseIT — AI-First IT Solutions Brisbane</image:title>
+      <image:caption>Brisbane-based IT company delivering AI-first web design, app development, and custom software across Australia.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://advanseit.com.au/images/og-image-social.png</image:loc>
+      <image:title>AdvanseIT | AI-Powered IT for Australian Business</image:title>
+      <image:caption>AdvanseIT — Brisbane IT company trusted by Australian businesses for web, app, AI and IT staffing.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://advanseit.com.au/images/team-collab.jpg</image:loc>
+      <image:title>AdvanseIT Team — Brisbane IT Professionals</image:title>
+      <image:caption>The AdvanseIT team collaborating on AI and software development projects for Australian businesses.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://advanseit.com.au/services/web-design</loc>
+    <image:image>
+      <image:loc>https://advanseit.com.au/images/webdev-showcase-1.jpg</image:loc>
+      <image:title>Web Design Brisbane — AdvanseIT Portfolio</image:title>
+      <image:caption>Professional responsive web design and development by AdvanseIT, Brisbane.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://advanseit.com.au/images/webdev-showcase-2.jpg</image:loc>
+      <image:title>Web Development Brisbane — AdvanseIT Work Samples</image:title>
+      <image:caption>Custom web applications built by AdvanseIT for Australian businesses.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://advanseit.com.au/services/ai-solutions</loc>
+    <image:image>
+      <image:loc>https://advanseit.com.au/images/ai-services.jpg</image:loc>
+      <image:title>AI Solutions Brisbane — AdvanseIT</image:title>
+      <image:caption>AdvanseIT AI solutions including chatbots, machine learning, and AI automation for Australian businesses.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

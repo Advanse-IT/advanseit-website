@@ -1,42 +1,56 @@
-/* ============================================================
-   AdvanseIT Cookie Consent Banner
-   Shown on first visit; persists preference in localStorage
-   ============================================================ */
+/**
+ * CookieConsent — AdvanseIT
+ *
+ * Australian Privacy Act + GDPR Consent Mode v2 compliant.
+ * - Fires grantAnalyticsConsent() on Accept → GA4 starts collecting
+ * - Fires revokeAnalyticsConsent() on Decline → GA4 stays silent
+ * - Persists choice in localStorage
+ * - Dispatches "cookieConsentChange" custom event for other listeners
+ */
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { X, Cookie } from "lucide-react";
+import { X, Cookie, ShieldCheck } from "lucide-react";
+import { grantAnalyticsConsent, revokeAnalyticsConsent } from "./Analytics";
 
 const STORAGE_KEY = "advanseit_cookie_consent";
+
+function emitConsentEvent(accepted: boolean) {
+  try {
+    window.dispatchEvent(
+      new CustomEvent("cookieConsentChange", { detail: { accepted } })
+    );
+  } catch { /* ignore */ }
+}
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Show banner only if user hasn't made a choice yet
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) {
-        // Short delay so it doesn't flash before the page paints
-        const timer = setTimeout(() => setVisible(true), 800);
+        const timer = setTimeout(() => setVisible(true), 900);
         return () => clearTimeout(timer);
       }
     } catch {
-      // localStorage may be blocked in some browsers (private mode, strict settings)
-      // Show the banner anyway so compliance is maintained
-      const timer = setTimeout(() => setVisible(true), 800);
+      const timer = setTimeout(() => setVisible(true), 900);
       return () => clearTimeout(timer);
     }
   }, []);
 
   const accept = () => {
     try { localStorage.setItem(STORAGE_KEY, "accepted"); } catch { /* ignore */ }
+    grantAnalyticsConsent();
+    emitConsentEvent(true);
     setVisible(false);
   };
 
   const decline = () => {
     try { localStorage.setItem(STORAGE_KEY, "declined"); } catch { /* ignore */ }
+    revokeAnalyticsConsent();
+    emitConsentEvent(false);
     setVisible(false);
   };
 
@@ -50,7 +64,9 @@ export default function CookieConsent() {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50"
           role="dialog"
+          aria-modal="true"
           aria-label="Cookie consent"
+          aria-describedby="cookie-consent-description"
         >
           <div className="bg-[#0D1B2E] border border-white/10 rounded-2xl shadow-2xl p-5">
             {/* Header */}
@@ -62,23 +78,38 @@ export default function CookieConsent() {
               <button
                 onClick={decline}
                 className="text-white/40 hover:text-white/70 transition-colors flex-shrink-0"
-                aria-label="Close"
+                aria-label="Decline and close"
               >
                 <X size={16} />
               </button>
             </div>
 
             {/* Body */}
-            <p className="font-body text-xs text-white/55 leading-relaxed mb-4">
-              We use cookies to improve your experience on our website, analyse traffic, and personalise content. By clicking "Accept All", you consent to our use of cookies. You can manage your preferences or learn more in our{" "}
+            <p
+              id="cookie-consent-description"
+              className="font-body text-xs text-white/55 leading-relaxed mb-4"
+            >
+              We use Google Analytics and essential cookies to improve your experience
+              and understand how visitors use our site. By clicking{" "}
+              <strong className="text-white/70">Accept All</strong>, you consent to
+              analytics cookies. See our{" "}
               <Link
                 href="/cookies"
                 className="text-[#00C8D4] hover:underline"
                 onClick={() => setVisible(false)}
               >
                 Cookie Policy
-              </Link>.
+              </Link>{" "}
+              for details.
             </p>
+
+            {/* Australian Privacy Act compliance note */}
+            <div className="flex items-start gap-2 bg-white/5 rounded-lg px-3 py-2 mb-4">
+              <ShieldCheck size={13} className="text-[#00C8D4] flex-shrink-0 mt-0.5" />
+              <p className="text-white/35 text-[10px] leading-relaxed">
+                Compliant with the Australian Privacy Act 1988. We never sell your data.
+              </p>
+            </div>
 
             {/* Actions */}
             <div className="flex gap-2">

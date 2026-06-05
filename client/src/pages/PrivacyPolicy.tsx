@@ -96,7 +96,7 @@ export default function PrivacyPolicy() {
 
             <Section title="4. Disclosure of Personal Information">
               <p>We may disclose your personal information to:</p>
-              <p><strong>Service providers</strong> — third-party vendors who assist us in operating our website and delivering services (e.g., cloud hosting providers, email platforms, analytics providers), subject to confidentiality obligations.</p>
+              <p><strong>Service providers</strong> — third-party vendors who assist us in operating our website and delivering services (e.g., cloud hosting providers — Cloudflare; email platforms; analytics — Google Analytics 4), subject to confidentiality obligations.</p>
               <p><strong>Professional advisers</strong> — lawyers, accountants, and insurers where necessary.</p>
               <p><strong>Government and regulatory bodies</strong> — where required or authorised by law.</p>
               <p>We do not sell, rent, or trade your personal information to third parties for marketing purposes.</p>

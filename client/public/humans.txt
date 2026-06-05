@@ -1,0 +1,12 @@
+/* TEAM */
+Founder & Lead Engineer: Sush
+Location: Brisbane, Queensland, Australia
+Contact: admin@advanseit.com.au
+
+/* SITE */
+Company: AdvanseIT Pty Ltd (ABN 12 656 409 850)
+URL: https://advanseit.com.au
+Built with: React, TypeScript, Tailwind CSS v4
+Hosted on: Cloudflare Pages
+Language: English (en-AU)
+Last updated: 2026-06-03

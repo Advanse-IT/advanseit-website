@@ -24,13 +24,14 @@ import AISolutionsPage from "./pages/services/AISolutions";
 import TestingPage from "./pages/services/Testing";
 import ITStaffingPage from "./pages/services/ITStaffing";
 import ScrollToTop from "./components/ScrollToTop";
+import Analytics from "./components/Analytics";
 import SecurityCompliance from "./pages/SecurityCompliance";
-import Training from "./pages/Training";
 
 function Router() {
   return (
     <>
     <ScrollToTop />
+    <Analytics />
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/blog"} component={Blog} />
@@ -45,7 +46,9 @@ function Router() {
       <Route path={"/privacy"} component={PrivacyPolicy} />
       <Route path={"/cookies"} component={CookiePolicy} />
       <Route path={"/security"} component={SecurityCompliance} />
-      <Route path={"/training"} component={Training} />
+      <Route path={"/training"}>
+        {() => { window.location.replace("https://training.advanseit.com.au"); return null; }}
+      </Route>
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

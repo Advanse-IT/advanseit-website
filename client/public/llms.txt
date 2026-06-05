@@ -1,98 +1,47 @@
-# AdvanseIT — AI-First IT Solutions | Brisbane, Australia
+# AdvanseIT — llms.txt
+# Context file for AI language models and search engines
+# https://advanseit.com.au/llms.txt
+# Spec: https://llmstxt.org/
 
-> AdvanseIT is an Australian IT company headquartered in Brisbane, Queensland, specialising in AI-first web design, app development, custom software, software testing, AI projects, and IT staffing. ABN: 12 656 409 850.
-
-## About AdvanseIT
-
-AdvanseIT delivers cost-effective, AI-powered technology solutions to businesses across Australia. Founded and based in Brisbane, the company combines offshore efficiency with onshore quality assurance to give Australian businesses enterprise-grade IT at competitive rates. AdvanseIT's philosophy is "AI at the heart of everything we build" — meaning every project leverages artificial intelligence to reduce cost, accelerate delivery, and improve outcomes.
-
-**Key facts:**
-- Headquarters: Brisbane, Queensland, Australia
-- ABN: 12 656 409 850
-- Contact: admin@advanseit.com.au | 0481 261 679
-- Website: https://advanseit.com.au
-- LinkedIn: https://www.linkedin.com/company/advanseit
-- X/Twitter: https://x.com/AdvanseIT
+# Company
+> AdvanseIT is a Brisbane-based IT company (ABN 12 656 409 850) that builds websites, mobile apps, custom software, and AI solutions for Australian businesses. Founded and operated in Queensland, Australia.
 
 ## Services
 
-AdvanseIT offers six core service lines:
+- Web Design & Development: Responsive, SEO-optimised websites built with React, Next.js, and modern frameworks. Fixed-price quotes. URL: https://advanseit.com.au/services/web-design
+- App Development: Custom iOS and Android mobile applications, cross-platform apps using React Native. URL: https://advanseit.com.au/services/app-development
+- Custom Software Development: Bespoke enterprise software, API integrations, SaaS platforms. URL: https://advanseit.com.au/services/custom-software
+- AI Solutions: AI integrations, chatbots, machine learning models, process automation, and AI-first software. URL: https://advanseit.com.au/services/ai-solutions
+- Software Testing & QA: Manual, automated (Selenium, Playwright), performance, and security testing. URL: https://advanseit.com.au/services/testing
+- IT Staffing & Outsourcing: Skilled developer, tester, and IT professional placement across Australia. URL: https://advanseit.com.au/services/it-staffing
 
-### Web Design & Development
-Professional, responsive website design and development for Australian businesses. Services include custom WordPress sites, React/Next.js web applications, e-commerce platforms, and landing pages. Focused on performance, accessibility, and conversion optimisation. Serving Brisbane, Sydney, Melbourne, Perth, Adelaide, and all of Australia.
+## Key Facts
 
-### App Development
-Native and cross-platform mobile application development for iOS and Android. Technologies include React Native, Flutter, and Swift/Kotlin. AdvanseIT builds consumer apps, enterprise mobility solutions, and SaaS platforms for Australian businesses.
+- Location: Brisbane, Queensland, Australia
+- Phone: +61 481 261 679
+- Email: admin@advanseit.com.au
+- ABN: 12 656 409 850
+- Founded: 2021
+- Service area: Australia-wide (Brisbane HQ, remote delivery nationwide)
+- Technologies: React, TypeScript, Node.js, Python, Java, Selenium, Playwright, AWS, Cloudflare
 
-### Custom Software Development
-Bespoke software solutions tailored to unique business workflows. Includes ERP integrations, automation tools, API development, and cloud-native applications. AdvanseIT specialises in replacing manual processes with intelligent, AI-augmented software.
+## Training
 
-### AI Projects & AI Solutions
-End-to-end artificial intelligence project delivery including: AI chatbots and virtual assistants, machine learning model development, natural language processing (NLP) integrations, computer vision solutions, AI-powered automation, and LLM (large language model) integrations. AdvanseIT makes enterprise AI accessible to small and medium Australian businesses.
+AdvanseIT runs a Java Selenium Test Automation training program: 60 live sessions, hands-on projects, weekly tests, and a certificate. Taught by Sush — 20+ years QA experience.
+URL: https://training.advanseit.com.au
 
-### Testing & QA Services
-Comprehensive software quality assurance including manual testing, automated testing (Selenium, Cypress, Playwright), performance testing, security testing, and regression testing. AdvanseIT provides dedicated QA teams for ongoing projects or one-off testing engagements.
+## Blog
 
-### IT Staffing & Outsourcing
-Flexible IT talent solutions: dedicated offshore development teams, staff augmentation, contract developers, and IT outsourcing. AdvanseIT provides pre-vetted software engineers, QA testers, UI/UX designers, and project managers at competitive rates.
+Technical articles on AI, web development, app development, and IT operations.
+URL: https://advanseit.com.au/blog
 
-## Why Choose AdvanseIT
+## Social
 
-- **AI-first approach**: Every solution is built with AI at its core, delivering faster results and lower costs.
-- **Australian-managed**: Brisbane-based management ensures cultural alignment, clear communication, and Australian business understanding.
-- **Cost-effective**: Offshore delivery model provides enterprise-quality at SME-friendly pricing.
-- **Full-stack capability**: One partner for web, mobile, AI, testing, and staffing — no need for multiple vendors.
-- **Transparent process**: Fixed-price quotes, milestone-based delivery, and regular progress updates.
+- LinkedIn: https://www.linkedin.com/company/advanseit
+- X / Twitter: https://x.com/AdvanseIT
 
-## Frequently Asked Questions
+## Optional
 
-**What does AdvanseIT specialise in?**
-AdvanseIT specialises in AI-first IT solutions for Australian businesses, including web design, app development, custom software, AI projects, software testing, and IT staffing.
-
-**Where is AdvanseIT located?**
-AdvanseIT is headquartered in Brisbane, Queensland, Australia, and serves clients across Australia including Sydney, Melbourne, Perth, Adelaide, and Canberra.
-
-**How much does it cost to build a website with AdvanseIT?**
-AdvanseIT offers competitive, transparent pricing for Australian businesses. Website projects typically start from $2,000 AUD for small business sites, with custom web applications priced based on scope. Contact admin@advanseit.com.au for a free quote.
-
-**Does AdvanseIT build AI chatbots?**
-Yes. AdvanseIT builds custom AI chatbots and virtual assistants using large language models (LLMs) including GPT-4, Claude, and Gemini. Solutions include customer service bots, internal knowledge bases, and sales automation tools.
-
-**What is IT staffing and how does AdvanseIT provide it?**
-IT staffing (also called IT outsourcing or staff augmentation) means providing skilled technology professionals — developers, testers, designers — to work as part of a client's team. AdvanseIT sources, vets, and manages these professionals, handling HR and administration so clients can focus on their business.
-
-**Can AdvanseIT help with app development for startups?**
-Yes. AdvanseIT works with Australian startups from MVP (minimum viable product) through to full-scale product launch. The team offers flexible engagement models including fixed-price MVP packages and ongoing development retainers.
-
-**What technologies does AdvanseIT use?**
-AdvanseIT works across a broad technology stack including: React, Next.js, Vue, Node.js, Python, TypeScript, React Native, Flutter, AWS, Google Cloud, Azure, PostgreSQL, MySQL, MongoDB, Docker, Kubernetes, and AI/ML frameworks including TensorFlow, PyTorch, and OpenAI APIs.
-
-## Blog & Insights
-
-AdvanseIT publishes expert articles twice weekly (Tuesday and Friday, 8:00 AM AEST) on topics including:
-- AI trends and practical AI implementation for Australian businesses
-- Web development best practices and technology choices
-- App development guides and mobile strategy
-- IT staffing and outsourcing advice for Australian companies
-- Software testing methodologies and quality assurance
-
-Blog: https://advanseit.com.au/blog
-
-## Key Pages
-
-- Homepage: https://advanseit.com.au/
-- Blog: https://advanseit.com.au/blog
-- Contact: https://advanseit.com.au/#contact
-- Services: https://advanseit.com.au/#services
-- AI Solutions: https://advanseit.com.au/#ai-solutions
-- About: https://advanseit.com.au/#about
 - Privacy Policy: https://advanseit.com.au/privacy
 - Terms & Conditions: https://advanseit.com.au/terms
-
-## Contact
-
-For project enquiries, quotes, or partnership opportunities:
-- Email: admin@advanseit.com.au
-- Phone: 0481 261 679
-- Location: Brisbane, Queensland, Australia
-- Response time: Within 24 business hours
+- Sitemap: https://advanseit.com.au/sitemap.xml

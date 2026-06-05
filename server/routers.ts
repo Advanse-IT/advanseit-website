@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 import nodemailer from "nodemailer";
 import { blogRouter } from "./blogRouter";
 import { trainingEnquiries } from "../drizzle/schema";
@@ -218,6 +219,7 @@ export const appRouter = router({
           company: z.string().max(200).optional(),
           service: z.string().max(100).optional(),
           message: z.string().min(10).max(5000),
+          turnstileToken: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {

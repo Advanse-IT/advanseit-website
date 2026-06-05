@@ -3,10 +3,11 @@
    Dark navy background with contact form + info
    ============================================================ */
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { trackConversion, trackEvent } from "@/components/Analytics";
 import { toast } from "sonner";
 
 const services = [
@@ -28,10 +29,54 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+
+  // Load Cloudflare Turnstile widget
+  useEffect(() => {
+    const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!siteKey || typeof window === "undefined") return;
+
+    // Load Turnstile script if not already loaded
+    if (!document.getElementById("cf-turnstile-script")) {
+      const script = document.createElement("script");
+      script.id = "cf-turnstile-script";
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    // Render widget once script is ready
+    const renderWidget = () => {
+      if (turnstileRef.current && (window as any).turnstile && !turnstileRef.current.children.length) {
+        (window as any).turnstile.render(turnstileRef.current, {
+          sitekey: siteKey,
+          callback: (token: string) => setTurnstileToken(token),
+          "expired-callback": () => setTurnstileToken(""),
+          theme: "dark",
+          size: "normal",
+        });
+      }
+    };
+
+    // Widget may load before or after script
+    if ((window as any).turnstile) {
+      renderWidget();
+    } else {
+      document.getElementById("cf-turnstile-script")?.addEventListener("load", renderWidget);
+    }
+  }, []);
 
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
       setSubmitted(true);
+      // GA4 conversion event — tracked as a lead
+      trackConversion({ value: 1, currency: "AUD" });
+      trackEvent("contact_form_submit", {
+        service: form.service || "general",
+        page_path: window.location.pathname,
+      });
     },
     onError: (err) => {
       toast.error("Failed to send message. Please try again or email us directly.", {
@@ -48,12 +93,16 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    // If Turnstile is configured, require a valid token before submitting
+    if (siteKey && !turnstileToken) return;
     submitMutation.mutate({
       name: form.name,
       email: form.email,
       company: form.company || undefined,
       service: form.service || undefined,
       message: form.message,
+      turnstileToken: turnstileToken || undefined,
     });
   };
 
@@ -290,6 +339,11 @@ export default function Contact() {
                 </div>
 
                 <button
+                {/* Cloudflare Turnstile — only rendered when VITE_TURNSTILE_SITE_KEY is set */}
+                {import.meta.env.VITE_TURNSTILE_SITE_KEY && (
+                  <div ref={turnstileRef} className="mb-4" />
+                )}
+
                   type="submit"
                   disabled={loading}
                   className="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm disabled:opacity-60"

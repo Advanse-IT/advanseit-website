@@ -7,7 +7,7 @@ export default function TestingPage() {
       slug="testing"
       serviceType="Software Testing & Quality Assurance"
       pageTitle="Software Testing & QA Services Brisbane"
-      metaDescription="Comprehensive software testing and QA services in Brisbane. Manual, automated, performance, and security testing for web and mobile apps. AdvanseIT. ABN 12 656 409 850."
+      metaDescription="AdvanseIT delivers expert software testing in Brisbane — manual, automated, performance, and security testing for web and mobile apps. Leading QA services for Australian businesses. ABN 12 656 409 850."
       keywords={[
         "software testing Brisbane",
         "QA testing Brisbane",
@@ -29,7 +29,7 @@ export default function TestingPage() {
           <span className="text-[#00C8D4]">Quality You Can Rely On</span>
         </>
       }
-      heroSubheading="AdvanseIT provides comprehensive software testing and quality assurance services for Australian businesses. From manual exploratory testing to fully automated CI/CD pipelines — we find bugs before your users do."
+      heroSubheading="AdvanseIT provides comprehensive software testing Brisbane and quality assurance services for Australian businesses. From manual exploratory testing to fully automated CI/CD pipelines — our software testing Brisbane company finds bugs before your users do."
       schemaDescription="Comprehensive software testing and quality assurance services for Australian businesses. AdvanseIT provides manual testing, automated testing (Selenium, Cypress, Playwright), performance testing, security testing, and UAT from Brisbane, Queensland."
       benefits={[
         {
@@ -73,7 +73,7 @@ export default function TestingPage() {
         {
           title: "Test Strategy & Planning",
           description:
-            "We review your application, define test scope, and create a detailed test strategy covering test types, tools, environments, and entry/exit criteria.",
+            "Our software testing Brisbane team reviews your application, defines test scope, and creates a detailed test strategy covering test types, tools, environments, and entry/exit criteria.",
         },
         {
           title: "Test Case Design",
@@ -115,19 +115,19 @@ export default function TestingPage() {
       ]}
       faqs={[
         {
-          question: "What types of testing does AdvanseIT offer?",
+          question: "What software testing Brisbane businesses need — what does AdvanseIT offer?",
           answer:
             "We offer manual testing, automated testing (Selenium, Cypress, Playwright), performance and load testing, security testing (OWASP), API testing, regression testing, cross-browser testing, mobile testing, and user acceptance testing (UAT).",
         },
         {
           question: "Can you test our existing application?",
           answer:
-            "Yes. We can test any web or mobile application regardless of the technology stack. We start with a test assessment to understand the application and define the most effective testing approach.",
+            "Yes. Our software testing service in Brisbane can test any web or mobile application regardless of the technology stack. We start with a test assessment to understand your application and define the most effective testing approach.",
         },
         {
           question: "Do you offer ongoing QA retainers?",
           answer:
-            "Yes. We offer monthly QA retainers for teams that need continuous testing support — covering regression testing, new feature testing, and performance monitoring.",
+            "Yes. Our software testing team in Brisbane offers monthly QA retainers for continuous testing support — covering regression testing, new feature testing, and performance monitoring.",
         },
         {
           question: "How do you handle defect reporting?",

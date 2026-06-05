@@ -7,7 +7,7 @@ export default function ITStaffingPage() {
       slug="it-staffing"
       serviceType="IT Staffing & Outsourcing"
       pageTitle="IT Staffing & Outsourcing Brisbane"
-      metaDescription="Flexible IT staffing and outsourcing from Brisbane. Access pre-vetted developers, testers, designers, and project managers. AdvanseIT. ABN 12 656 409 850."
+      metaDescription="AdvanseIT provides outsourced IT staffing and IT outsourcing in Brisbane for Australian businesses. Access pre-vetted developers, testers, and project managers. ABN 12 656 409 850."
       keywords={[
         "IT staffing Brisbane",
         "IT outsourcing Brisbane",
@@ -19,6 +19,8 @@ export default function ITStaffingPage() {
         "hire developers Brisbane",
         "outsource software development Australia",
         "remote IT team Brisbane",
+        "outsourced it staffing",
+        "IT outsourcing Brisbane",
       ]}
       heroHeadline={
         <>
@@ -27,7 +29,7 @@ export default function ITStaffingPage() {
           <span className="text-[#00C8D4]">Scale Your Team Fast</span>
         </>
       }
-      heroSubheading="AdvanseIT provides flexible IT staffing and outsourcing solutions for Australian businesses. Access pre-vetted software engineers, QA testers, UI/UX designers, and project managers — on demand, without the overhead of permanent hiring."
+      heroSubheading="AdvanseIT provides outsourced IT staffing and flexible outsourcing solutions for Australian businesses. Access pre-vetted software engineers, QA testers, UI/UX designers, and project managers — on demand, without the overhead of permanent hiring."
       schemaDescription="IT staffing and outsourcing services for Australian businesses. AdvanseIT provides dedicated development teams, staff augmentation, and IT outsourcing with pre-vetted software engineers, QA testers, and project managers from Brisbane, Queensland."
       benefits={[
         {
@@ -46,7 +48,7 @@ export default function ITStaffingPage() {
           icon: <DollarSign size={20} />,
           title: "Cost-Effective",
           description:
-            "Access skilled IT professionals at 40–60% lower cost than equivalent Australian permanent hires, with no recruitment fees or HR overhead.",
+            "With outsourced IT staffing from AdvanseIT, access skilled IT professionals at 40–60% lower cost than equivalent Australian permanent hires, with no recruitment fees or HR overhead.",
         },
         {
           icon: <RefreshCw size={20} />,
@@ -58,7 +60,7 @@ export default function ITStaffingPage() {
           icon: <Globe size={20} />,
           title: "Australian-Managed",
           description:
-            "Brisbane-based management ensures clear communication, Australian business hours overlap, and accountability for delivery quality.",
+            "Our IT outsourcing in Brisbane ensures clear communication, Australian business hours overlap, and accountability for delivery quality.",
         },
         {
           icon: <ShieldCheck size={20} />,

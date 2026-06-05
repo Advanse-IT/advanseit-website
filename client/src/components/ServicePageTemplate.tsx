@@ -155,11 +155,14 @@ export default function ServicePageTemplate({
       "@id": `${SITE_URL}/#organization`,
       name: "AdvanseIT",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Australia",
-      sameAs: "https://www.wikidata.org/wiki/Q408",
-    },
+    areaServed: [
+      { "@type": "City", name: "Brisbane", sameAs: "https://www.wikidata.org/wiki/Q34932" },
+      { "@type": "City", name: "Gold Coast" },
+      { "@type": "City", name: "Sydney" },
+      { "@type": "City", name: "Melbourne" },
+      { "@type": "State", name: "Queensland" },
+      { "@type": "Country", name: "Australia", sameAs: "https://www.wikidata.org/wiki/Q408" },
+    ],
     url: canonicalUrl,
     image: OG_IMAGE,
   };
@@ -178,7 +181,7 @@ export default function ServicePageTemplate({
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: `${SITE_URL}/#services`,
+        item: `${SITE_URL}/services/${slug}`,
       },
       {
         "@type": "ListItem",
@@ -230,7 +233,17 @@ export default function ServicePageTemplate({
         <meta name="twitter:image" content={OG_IMAGE} />
         {/* Geo */}
         <meta name="geo.region" content="AU-QLD" />
-        <meta name="geo.placename" content="Brisbane" />
+        <meta name="geo.placename" content="Brisbane, Queensland, Australia" />
+        <meta name="geo.position" content="-27.4698;153.0251" />
+        <meta name="ICBM" content="-27.4698, 153.0251" />
+        {/* hreflang */}
+        <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="x-default" href="https://advanseit.com.au/" />
+        {/* OG additions */}
+        <meta property="og:image:alt" content={`${pageTitle} — AdvanseIT Brisbane`} />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:image:alt" content={`${pageTitle} — AdvanseIT Brisbane`} />
         {/* JSON-LD */}
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema, null, 2)}

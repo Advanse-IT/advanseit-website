@@ -100,6 +100,7 @@ export default function Blog() {
         page="blog"
         title="Blog & Insights | AdvanseIT — AI-First IT Solutions Brisbane"
         description="Expert articles on AI, web development, app development, IT staffing, and cost-effective technology solutions for Australian businesses."
+        canonicalPath="/blog"
       />
       <Navbar />
 

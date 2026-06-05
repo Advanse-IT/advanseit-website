@@ -128,7 +128,7 @@ export default function Navbar() {
             </a>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
               {navLinks.map((link) => {
                 if (link.type === "dropdown") {
                   return (

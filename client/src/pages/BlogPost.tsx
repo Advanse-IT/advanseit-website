@@ -100,7 +100,7 @@ export default function BlogPost() {
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "@id": postUrl,
     headline: post.title,
     description: post.excerpt ?? "",
@@ -126,9 +126,24 @@ export default function BlogPost() {
       : undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     keywords: Array.isArray(post.tags) ? post.tags.join(", ") : (post.tags ?? ""),
+    wordCount: post.content ? post.content.split(/\s+/).length : undefined,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2", ".speakable"],
+    },
     articleSection: post.category ?? "Technology",
     inLanguage: "en-AU",
     isPartOf: { "@id": "https://advanseit.com.au/#website" },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://advanseit.com.au/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://advanseit.com.au/blog" },
+      { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+    ],
   };
 
   return (
@@ -160,8 +175,28 @@ export default function BlogPost() {
         <meta name="twitter:description" content={post.excerpt ?? ""} />
         {post.coverImageUrl && <meta name="twitter:image" content={post.coverImageUrl} />}
         <link rel="canonical" href={postUrl} />
+        {/* hreflang */}
+        <link rel="alternate" hrefLang="en-AU" href={postUrl} />
+        <link rel="alternate" hrefLang="en" href={postUrl} />
+        <link rel="alternate" hrefLang="x-default" href="https://advanseit.com.au/" />
+        {/* Keywords from tags */}
+        {post.tags && Array.isArray(post.tags) && post.tags.length > 0 && (
+          <meta name="keywords" content={(post.tags as string[]).join(", ")} />
+        )}
+        {/* Article tags */}
+        {post.tags && Array.isArray(post.tags) && (post.tags as string[]).map((tag) => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
+        {/* OG image fallback */}
+        {!post.coverImageUrl && <meta property="og:image" content="https://advanseit.com.au/images/og-image-social.png" />}
+        {!post.coverImageUrl && <meta property="og:image:width" content="1200" />}
+        {!post.coverImageUrl && <meta property="og:image:height" content="630" />}
+        {/* Geo */}
+        <meta name="geo.region" content="AU-QLD" />
+        <meta name="geo.placename" content="Brisbane, Queensland, Australia" />
         {/* Article JSON-LD for AI grounding */}
         <script type="application/ld+json">{JSON.stringify(articleSchema, null, 2)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema, null, 2)}</script>
       </Helmet>
 
       <Navbar />
