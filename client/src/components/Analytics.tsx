@@ -14,7 +14,6 @@
  */
 
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { useLocation } from "wouter";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -27,7 +26,9 @@ declare global {
 }
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const GA_ID = "G-56VZJR0KTQ";
+// GA4 script + consent default are injected directly in client/index.html
+// (NOT via Helmet) to guarantee correct load order and Cloudflare compatibility.
+const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-56VZJR0KTQ";
 const CONSENT_KEY = "advanseit_cookie_consent";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -114,45 +115,5 @@ export default function Analytics() {
     }
   }, []);
 
-  return (
-    <Helmet>
-      {/*
-        Google tag (gtag.js) — G-56VZJR0KTQ
-        Placed immediately after <head> as recommended by Google.
-        Consent Mode v2 default is DENIED — no data collected until
-        user accepts the cookie banner.
-      */}
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-      />
-      <script>{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag;
-
-        // Consent Mode v2 — default DENIED until user accepts cookie banner
-        gtag('consent', 'default', {
-          analytics_storage: 'denied',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          functionality_storage: 'granted',
-          security_storage: 'granted',
-          wait_for_update: 500
-        });
-
-        // Google tag — G-56VZJR0KTQ
-        gtag('js', new Date());
-        gtag('config', '${GA_ID}', {
-          send_page_view: false,
-          anonymize_ip: true,
-          cookie_flags: 'SameSite=None;Secure',
-          cookie_domain: 'advanseit.com.au',
-          cookie_expires: 63072000,
-          transport_type: 'beacon'
-        });
-      `}</script>
-    </Helmet>
-  );
+  return null;
 }

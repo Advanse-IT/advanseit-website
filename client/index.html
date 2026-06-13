@@ -38,6 +38,45 @@
     </style>
   <!-- LCP preload: hero background image — eliminates render-blocking fetch -->
   <link rel="preload" as="image" href="/images/hero-bg.jpg" fetchpriority="high" />
+
+  <!--
+    Google Analytics 4 — G-56VZJR0KTQ
+    IMPORTANT: Consent Mode v2 default MUST be set before gtag.js loads.
+    Placed directly in index.html (not via react-helmet) to guarantee
+    execution order and prevent Cloudflare / bot-blocking issues.
+  -->
+  <script data-cfasync="false">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    // Step 1: Set consent defaults BEFORE the gtag.js script loads
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <!-- Step 2: Load gtag.js AFTER consent defaults are set -->
+  <script data-cfasync="false" async src="https://www.googletagmanager.com/gtag/js?id=G-56VZJR0KTQ"></script>
+
+  <!-- Step 3: Configure GA4 -->
+  <script data-cfasync="false">
+    gtag('js', new Date());
+    gtag('config', 'G-56VZJR0KTQ', {
+      send_page_view: false,
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+      cookie_domain: 'advanseit.com.au',
+      cookie_expires: 63072000,
+      transport_type: 'beacon'
+    });
+  </script>
   </head>
   <body>
     <div id="root"></div>
