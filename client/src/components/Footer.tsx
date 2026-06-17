@@ -17,12 +17,21 @@ const XLogo = ({ size = 15 }: { size?: number }) => (
 const LOGO_URL = "/images/logo-navbar.svg";
 
 // Section anchor links
+// const serviceLinks = [
+//   { label: "Web Design & Development", href: "/services/web-design" },
+//   { label: "App Development", href: "/services/app-development" },
+//   { label: "Custom Software", href: "/services/custom-software" },
+//   { label: "Testing & QA", href: "/services/testing" },
+//   { label: "AI Solutions", anchor: "#ai-solutions" },
+//   { label: "IT Staffing", href: "/services/it-staffing" },
+// ];
+
 const serviceLinks = [
   { label: "Web Design & Development", href: "/services/web-design" },
   { label: "App Development", href: "/services/app-development" },
   { label: "Custom Software", href: "/services/custom-software" },
   { label: "Testing & QA", href: "/services/testing" },
-  { label: "AI Solutions", anchor: "#ai-solutions" },
+  { label: "AI Solutions", href: "/services/ai-solutions" },
   { label: "IT Staffing", href: "/services/it-staffing" },
 ];
 
