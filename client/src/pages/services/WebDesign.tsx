@@ -30,7 +30,7 @@ export default function WebDesignPage() {
         <>
           Web Design &amp; Development
           <br />
-          <span className="text-[#00C8D4]">Built for Brisbane</span>
+          <span className="text-[#00C8D4]">Built for Brisbanes</span>
         </>
       }
       heroSubheading="AdvanseIT is a web design company Brisbane building professional, responsive websites and web applications for Australian businesses. From small business sites to complex React/Next.js web apps — we deliver fast, SEO-optimised, and conversion-focused digital experiences."
