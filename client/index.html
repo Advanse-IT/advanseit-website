@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
-<script>
+<!-- <script>
   new MutationObserver(function() {
     var titles = document.querySelectorAll('title');
     if (titles.length > 1) {
@@ -14,9 +14,22 @@
       });
     }
   }).observe(document.head, { childList: true, subtree: true });
-</script>
+</script> -->
     <!-- Primary meta (overridden per-page by react-helmet-async) -->
-   
+   <script>
+  var observer = new MutationObserver(function() {
+    var titles = document.querySelectorAll('title');
+    if (titles.length > 1) {
+      titles.forEach(function(t) {
+        if (t.textContent.trim() === '') {
+          t.parentNode.removeChild(t);
+          observer.disconnect();
+        }
+      });
+    }
+  });
+  observer.observe(document.head, { childList: true, subtree: true });
+</script>
      <title>AdvanseIT | AI-Powered IT for Australian Business</title>
     <meta name="description" content="We build websites, apps &amp; AI solutions that drive real results. Brisbane IT company trusted by Australian businesses." /> 
     <meta name="theme-color" content="#0D1B2E" />
