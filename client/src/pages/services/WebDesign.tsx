@@ -30,7 +30,7 @@ export default function WebDesignPage() {
         <>
           Web Design &amp; Development
           <br />
-          <span className="text-[#00C8D4]">Built for Brisbanes</span>
+          <span className="text-[#00C8D4]">Built for Brisbane</span>
         </>
       }
       heroSubheading="AdvanseIT is a web design company Brisbane building professional, responsive websites and web applications for Australian businesses. From small business sites to complex React/Next.js web apps — we deliver fast, SEO-optimised, and conversion-focused digital experiences."
@@ -138,7 +138,7 @@ export default function WebDesignPage() {
             "We build every site with technical SEO best practices. As the go-to web design company Brisbane and a trusted web development company Australia, we also offer ongoing SEO services to improve your rankings. Website developers in Brisbane trust our process.",
         },
         {
-          question: "Do your website developers Brisbane offer maintenance after launch?",
+          question: "Do your website developers Brisbane offer maintenance after launchs?",
           answer:
             "Yes. As your trusted web design company Brisbane, we offer monthly maintenance retainers covering security updates, content changes, performance monitoring, and ongoing development.",
         },
