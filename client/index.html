@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
 <script>
-  // Remove duplicate empty title tags
-  document.addEventListener('DOMContentLoaded', function() {
+  new MutationObserver(function() {
     var titles = document.querySelectorAll('title');
-    titles.forEach(function(t) {
-      if (t.textContent.trim() === '') {
-        t.parentNode.removeChild(t);
-      }
-    });
-  });
+    if (titles.length > 1) {
+      titles.forEach(function(t) {
+        if (t.textContent.trim() === '') {
+          t.parentNode.removeChild(t);
+        }
+      });
+    }
+  }).observe(document.head, { childList: true, subtree: true });
 </script>
     <!-- Primary meta (overridden per-page by react-helmet-async) -->
    
