@@ -106,21 +106,19 @@ export default function Footer() {
           </div>
 
           {/* Services Column */}
-          <div>
-            <h4 className="font-display font-700 text-sm text-white mb-4">Services</h4>
-            <ul className="space-y-2.5">
-              {serviceLinks.map(({ label, anchor }) => (
-                <li key={label}>
-                  <button
-                    onClick={() => handleAnchorClick(anchor)}
-                    className="font-body text-sm text-white/45 hover:text-[#00C8D4] transition-colors text-left"
-                  >
-                    {label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+        
+<div>
+  <h4 className="font-display font-700 text-sm text-white mb-4">Services</h4>
+  <ul className="space-y-2.5">
+    {serviceLinks.map(({ label, href }) => (
+      <li key={label}>
+        <Link href={href} className="font-body text-sm text-white/45 hover:text-[#00C8D4] transition-colors">
+          {label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
           {/* Company Column */}
           <div>
