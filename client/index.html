@@ -103,6 +103,18 @@
       transport_type: 'beacon'
     });
   </script>
+    <script>
+  new MutationObserver(function() {
+    var titles = document.querySelectorAll('title');
+    if (titles.length > 1) {
+      titles.forEach(function(t) {
+        if (t.textContent.trim() === '') {
+          t.parentNode.removeChild(t);
+        }
+      });
+    }
+  }).observe(document.head, { childList: true });
+</script>
   </head>
   <body>
     <div id="root"></div>
