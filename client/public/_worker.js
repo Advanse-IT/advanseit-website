@@ -27,7 +27,7 @@ export default {
       : ROUTE_META["/"]);
     let html = await response.text();
     html = html.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
-    html = html.replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${meta.description}">`);
+  html = html.replace(/<meta[^>]*name="description"[^>]*>/s, `<meta name="description" content="${meta.description}">`);
     return new Response(html, {
       status: response.status,
       headers: response.headers,
