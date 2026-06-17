@@ -16,7 +16,7 @@ const ROUTE_META = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const pathname = url.pathname;
+   const pathname = url.pathname.replace(/\/$/, "") || "/";
     const response = await env.ASSETS.fetch(request);
     if (!response.headers.get("content-type")?.includes("text/html")) {
       return response;
