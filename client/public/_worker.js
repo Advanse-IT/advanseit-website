@@ -26,7 +26,7 @@ export default {
       ? { title: "Blog | AdvanseIT", description: "Insights from the AdvanseIT team." }
       : ROUTE_META["/"]);
     let html = await response.text();
-    html = html.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
+   html = html.replace(/<\/head>/, `<title>${meta.title}</title></head>`);
 html = html.replace(/<meta[^>]*name="description"[^>]*>/g, `<meta name="description" content="${meta.description}">`);
     return new Response(html, {
       status: response.status,
