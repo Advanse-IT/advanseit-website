@@ -1,16 +1,16 @@
 const ROUTE_META = {
-  "/": { title: "AdvanseIT | AI-Powered IT for Australian Business", description: "We build websites, apps & AI solutions that drive real results. Brisbane IT company trusted by Australian businesses." },
-  "/services/web-design": { title: "Web Design & Development Brisbane | AdvanseITs", description: "Professional web design and development in Brisbane. Responsive, fast, SEO-optimised websites." },
-  "/services/app-development": { title: "App Development Brisbane — iOS & Android | AdvanseITs", description: "Custom iOS and Android app development in Brisbanes." },
-  "/services/custom-software": { title: "Custom Software Development Brisbane | AdvanseITs", description: "Bespoke software solutions designed for your business." },
-  "/services/ai-solutions": { title: "AI Solutions & Development Brisbane | AdvanseIT", description: "Harness the power of AI for your business." },
-  "/services/testing": { title: "Software Testing & QA Services Brisbane | AdvanseIT", description: "Comprehensive software testing and QA services in Brisbane." },
-  "/services/it-staffing": { title: "IT Staffing & Outsourcing Brisbane | AdvanseIT", description: "Flexible IT staffing and outsourcing solutions from Brisbane." },
-  "/blog": { title: "Blog & Insights — AI, Web Dev & IT | AdvanseIT", description: "Expert articles on AI, web development, and IT solutions." },
-  "/privacy": { title: "Privacy Policy | AdvanseIT", description: "AdvanseIT privacy policy." },
-  "/terms": { title: "Terms & Conditions | AdvanseIT", description: "Terms and conditions for AdvanseIT services." },
-  "/cookies": { title: "Cookie Policy | AdvanseIT", description: "How AdvanseIT uses cookies." },
-  "/security": { title: "Security & Compliance | AdvanseIT", description: "AdvanseIT security practices." },
+  // "/": { title: "AdvanseIT | AI-Powered IT for Australian Business", description: "We build websites, apps & AI solutions that drive real results. Brisbane IT company trusted by Australian businesses." },
+  "/services/web-design": { title: "Trusted Web Design Company Brisbane | AdvanseIT", description: "Build a strong online presence with a web design company Brisbane offering custom designs and business-focused solutions." },
+  "/services/app-development": { title: "Custom Mobile App Development Company Brisbane", description: "AdvanseIT is an app development company Brisbane businesses trust for custom iOS and Android apps built for performance and growth." },
+  "/services/custom-software": { title: "Custom Software Development Brisbane | AdvanseIT", description: "Replace manual processes with tailored software. AdvanseIT offers custom software development Brisbane businesses can depend on." },
+  "/services/ai-solutions": { title: "Trusted AI Software Development Company Australia", description: "Build smarter systems with AI software development Company Australia experts specializing in machine learning and business automation." },
+  "/services/testing": { title: "Professional Software Testing Brisbane | AdvanseIT", description: "AdvanseIT provides software testing Brisbane services including QA, automation, performance, and security testing for reliable software." },
+  "/services/it-staffing": { title: "Best Outsourced IT Staffing Services | AdvanseIT", description: "Access top technology talent through outsourced IT staffing services designed to support projects, growth, and digital initiatives." },
+  // "/blog": { title: "Blog & Insights — AI, Web Dev & IT | AdvanseIT", description: "Expert articles on AI, web development, and IT solutions." },
+  // "/privacy": { title: "Privacy Policy | AdvanseIT", description: "AdvanseIT privacy policy." },
+  // "/terms": { title: "Terms & Conditions | AdvanseIT", description: "Terms and conditions for AdvanseIT services." },
+  // "/cookies": { title: "Cookie Policy | AdvanseIT", description: "How AdvanseIT uses cookies." },
+  // "/security": { title: "Security & Compliance | AdvanseIT", description: "AdvanseIT security practices." },
 };
 
 export default {
