@@ -1,6 +1,6 @@
 const ROUTE_META = {
   "/": { title: "AdvanseIT | AI-Powered IT for Australian Business", description: "We build websites, apps & AI solutions that drive real results. Brisbane IT company trusted by Australian businesses." },
-  "/services/web-design": { title: "Web Design & Development Brisbane | AdvanseIT", description: "Professional web design and development in Brisbane. Responsive, fast, SEO-optimised websites." },
+  "/services/web-design": { title: "Web Design & Development Brisbane | AdvanseITs", description: "Professional web design and development in Brisbane. Responsive, fast, SEO-optimised websites." },
   "/services/app-development": { title: "App Development Brisbane — iOS & Android | AdvanseIT", description: "Custom iOS and Android app development in Brisbane." },
   "/services/custom-software": { title: "Custom Software Development Brisbane | AdvanseIT", description: "Bespoke software solutions designed for your business." },
   "/services/ai-solutions": { title: "AI Solutions & Development Brisbane | AdvanseIT", description: "Harness the power of AI for your business." },
