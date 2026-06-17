@@ -281,7 +281,7 @@ export default function SEO({
   return (
     <Helmet>
       {/* ── Primary ── */}
-      <title>{fullTitle}</title>
+     
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={canonicalUrl} />
