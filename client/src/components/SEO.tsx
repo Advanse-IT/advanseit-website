@@ -118,7 +118,7 @@ const PAGE_META: Record<
   "app-development": {
     title: "App Development Brisbane — iOS & Android | AdvanseITs",
     description:
-      "Custom iOS and Android app development in Brisbane. We build scalable, user-friendly mobile and web applications for Australian businesses.",
+      "Custom iOS and Android app development in Brisbane. We build scalable, user-friendly mobile and web applications for Australian businessess.",
     keywords: [
       "app development Brisbane",
       "mobile app development Brisbane",
