@@ -10,7 +10,7 @@ const SITE_URL = "https://advanseit.com.au";
 const OG_IMAGE = "/images/og-image-social.png";
 
 const ALL_SERVICES = [
-  { slug: "web-design", title: "Web Design & Development", description: "Responsive websites and web apps built for performance and conversion.", icon: "🌐" },
+  { slug: "web-design", title: "Trusted Web Design Company Brisbane | AdvanseIT", description: "Responsive websites and web apps built for performance and conversion.", icon: "🌐" },
   { slug: "app-development", title: "App Development", description: "Native and cross-platform iOS & Android apps for your business.", icon: "📱" },
   { slug: "custom-software", title: "Custom Software", description: "Bespoke software tailored to your unique workflows and processes.", icon: "⚙️" },
   { slug: "ai-solutions", title: "AI Solutions", description: "Chatbots, ML models, and AI automation that drive real results.", icon: "🤖" },
