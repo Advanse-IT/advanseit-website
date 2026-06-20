@@ -7,7 +7,7 @@ export default function CustomSoftwarePage() {
       slug="custom-software"
       serviceType="Custom Software Development"
       pageTitle="Custom Software Development Brisbane"
-      metaDescription="AdvanseIT is a bespoke software development company in Brisbane. We deliver custom software development in Australia and Queensland — AI-powered, scalable, and built for your workflows. ABN 12 656 409 850."
+      metaDescription="Replace manual processes with tailored software. AdvanseIT offers custom software development Brisbane businesses can depend on."
       keywords={[
         "custom software development Brisbane",
         "bespoke software Brisbane",
