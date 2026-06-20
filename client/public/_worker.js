@@ -6,7 +6,7 @@ const ROUTE_META = {
   "/services/ai-solutions": { title: "Trusted AI Software Development Company Australia", description: "Build smarter systems with AI software development Company Australia experts specializing in machine learning and business automation." },
   "/services/testing": { title: "Professional Software Testing Brisbane | AdvanseIT", description: "AdvanseIT provides software testing Brisbane services including QA, automation, performance, and security testing for reliable software." },
   "/services/it-staffing": { title: "Best Outsourced IT Staffing Services | AdvanseIT", description: "Access top technology talent through outsourced IT staffing services designed to support projects, growth, and digital initiatives." },
-   "/blog": { title: "Blog & Insights — AI, Web Dev & IT | AdvanseIT", description: "Expert articles on AI, web development, and IT solutions." },
+   "/blog": { title: "Blogs & Insights — AI, Web Dev & IT | AdvanseIT", description: "Expert articles on AI, web development, and IT solutions." },
   // "/privacy": { title: "Privacy Policy | AdvanseIT", description: "AdvanseIT privacy policy." },
   // "/terms": { title: "Terms & Conditions | AdvanseIT", description: "Terms and conditions for AdvanseIT services." },
   // "/cookies": { title: "Cookie Policy | AdvanseIT", description: "How AdvanseIT uses cookies." }, 
