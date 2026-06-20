@@ -5,8 +5,8 @@ export default function WebDesignPage() {
   return (
     <ServicePageTemplate
       slug="web-design"
-      serviceType="Web Design & Developments"
-      pageTitle="Web Design & Development Brisbanes"
+      serviceType="Web Design & Development"
+      pageTitle="Web Design & Development Brisbaness"
       metaDescription="AdvanseIT is a professional web design agency in Brisbane. We are a website development company building responsive, SEO-optimised websites and web apps for Australian businesses. Fixed-price quotes. ABN 12 656 409 850."
       keywords={[
         "web design Brisbane",
