@@ -9,7 +9,7 @@ const ROUTE_META = {
    "/blog": { title: "Blog & Insights — AI, Web Dev & IT | AdvanseIT", description: "Expert articles on AI, web development, and IT solutions." },
   // "/privacy": { title: "Privacy Policy | AdvanseIT", description: "AdvanseIT privacy policy." },
   // "/terms": { title: "Terms & Conditions | AdvanseIT", description: "Terms and conditions for AdvanseIT services." },
-  // "/cookies": { title: "Cookie Policy | AdvanseIT", description: "How AdvanseIT uses cookies." },
+  // "/cookies": { title: "Cookie Policy | AdvanseIT", description: "How AdvanseIT uses cookies." }, 
   // "/security": { title: "Security & Compliance | AdvanseIT", description: "AdvanseIT security practices." },
 };
 
