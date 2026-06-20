@@ -101,9 +101,9 @@ const PAGE_META: Record<
     ],
   },
   "web-design": {
-    title: "Web Design & Development Brisbane | AdvanseIT",
+    title: "Trusted Web Design Company Brisbane | AdvanseIT",
     description:
-      "Professional web design and development in Brisbane. Responsive, fast, SEO-optimised websites built for Australian businesses. Fixed-price quotes.",
+      "Build a strong online presence with a web design company Brisbane offering custom designs and business-focused solutions.",
     keywords: [
       "web design Brisbane",
       "website development Brisbane",
