@@ -6,8 +6,8 @@ export default function AISolutionsPage() {
     <ServicePageTemplate
       slug="ai-solutions"
       serviceType="Artificial Intelligence Solutions"
-      pageTitle="AI Solutions & Development Brisbane"
-      metaDescription="AdvanseIT is an AI software development company delivering AI solutions in Brisbane and across Australia. Custom chatbots, machine learning, and AI automation for SMEs. ABN 12 656 409 850."
+      pageTitle="Trusted AI Software Development Company Australia"
+      metaDescription="Build smarter systems with AI software development Company Australia experts specializing in machine learning and business automation."
       keywords={[
         "AI solutions Brisbane",
         "artificial intelligence development Brisbane",
