@@ -6,8 +6,8 @@ export default function AppDevelopmentPage() {
     <ServicePageTemplate
       slug="app-development"
       serviceType="Mobile App Development"
-      pageTitle="App Development Brisbane — iOS & Android"
-      metaDescription="AdvanseIT is a leading app development company in Brisbane. We offer mobile app development in Brisbane and across Australia — iOS, Android, and cross-platform. Best app developer Australia trusts. Fixed-price quotes. ABN 12 656 409 850."
+      pageTitle="Custom Mobile App Development Company Brisbane"
+      metaDescription="AdvanseIT is an app development company Brisbane businesses trust for custom iOS and Android apps built for performance and growth."
       keywords={[
         "app development Brisbane",
         "mobile app development Brisbane",
