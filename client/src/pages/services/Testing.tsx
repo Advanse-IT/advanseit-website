@@ -6,8 +6,8 @@ export default function TestingPage() {
     <ServicePageTemplate
       slug="testing"
       serviceType="Software Testing & Quality Assurance"
-      pageTitle="Software Testing & QA Services Brisbane"
-      metaDescription="AdvanseIT delivers expert software testing in Brisbane — manual, automated, performance, and security testing for web and mobile apps. Leading QA services for Australian businesses. ABN 12 656 409 850."
+      pageTitle="Professional Software Testing Brisbane"
+      metaDescription="AdvanseIT provides software testing Brisbane services including QA, automation, performance, and security testing for reliable software."
       keywords={[
         "software testing Brisbane",
         "QA testing Brisbane",
