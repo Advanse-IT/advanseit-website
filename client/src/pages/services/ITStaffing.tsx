@@ -6,8 +6,8 @@ export default function ITStaffingPage() {
     <ServicePageTemplate
       slug="it-staffing"
       serviceType="IT Staffing & Outsourcing"
-      pageTitle="IT Staffing & Outsourcing Brisbane"
-      metaDescription="AdvanseIT provides outsourced IT staffing and IT outsourcing in Brisbane for Australian businesses. Access pre-vetted developers, testers, and project managers. ABN 12 656 409 850."
+      pageTitle="Best Outsourced IT Staffing Services"
+      metaDescription="Access top technology talent through outsourced IT staffing services designed to support projects, growth, and digital initiatives."
       keywords={[
         "IT staffing Brisbane",
         "IT outsourcing Brisbane",
