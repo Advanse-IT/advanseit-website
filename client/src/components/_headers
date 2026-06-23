@@ -1,0 +1,67 @@
+# Cloudflare Pages _headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  # Security headers
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
+
+  # Content Security Policy — allows GA4, self-hosted fonts, and no external image CDNs
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://ssl.google-analytics.com https://www.openstreetmap.org; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://challenges.cloudflare.com ; frame-src https://www.openstreetmap.org https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+
+  # GA4 Consent Mode v2 — required header
+  X-Robots-Tag: index, follow
+
+# HTML pages — no cache (always fresh for crawlers and SPA routing)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# SPA root
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# JS/CSS bundles — immutable long cache (Vite adds content hash)
+/assets/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts — immutable
+/fonts/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: https://advanseit.com.au
+
+# Images — 7 days + stale-while-revalidate
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# SEO files — 1 hour cache so updates propagate quickly
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/sitemap-pages.xml
+  Cache-Control: public, max-age=3600
+/sitemap-images.xml
+  Cache-Control: public, max-age=3600
+
+# LLMs.txt / humans.txt
+/llms.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=utf-8
+/humans.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+
+# Security.txt
+/.well-known/security.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+
+# Web manifest
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
