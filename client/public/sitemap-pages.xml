@@ -1,87 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
+  <!-- Core pages -->
   <url>
     <loc>https://advanseit.com.au/</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Blog listing -->
   <url>
     <loc>https://advanseit.com.au/blog</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- Service pages -->
   <url>
     <loc>https://advanseit.com.au/services/web-design</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/services/app-development</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/services/custom-software</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/services/ai-solutions</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/services/testing</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/services/it-staffing</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.9</priority>
   </url>
 
-  <!-- Legal / policy pages -->
+  <!-- Legal / info pages -->
   <url>
     <loc>https://advanseit.com.au/privacy</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/terms</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/cookies</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://advanseit.com.au/security</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

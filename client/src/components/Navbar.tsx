@@ -26,6 +26,7 @@ const navLinks = [
   { label: "About", href: "#about", type: "hash" },
   { label: "Why Us", href: "#why-us", type: "hash" },
   { label: "Blog", href: "/blog", type: "page" },
+  { label: "Testwise", href: "/testwise", type: "external" },
   { label: "Training", href: "/training", type: "page" },
   { label: "Contact", href: "#contact", type: "hash" },
 ];
@@ -61,6 +62,10 @@ export default function Navbar() {
     setServicesOpen(false);
     if (type === "page") {
       navigate(href);
+      return;
+    }
+    if (type === "external") {
+      window.open("https://testwise.advanseit.com.au", "_blank", "noopener,noreferrer");
       return;
     }
     if (type === "dropdown") {
@@ -198,6 +203,8 @@ export default function Navbar() {
                     className={`px-4 py-2 text-sm font-body font-500 transition-colors duration-200 rounded-lg hover:bg-white/5 ${
                       link.type === "page" && location.startsWith(link.href)
                         ? "text-[#00C8D4]"
+                        : link.type === "external"
+                        ? "text-white/80 hover:text-[#00C8D4]"
                         : "text-white/80 hover:text-[#00C8D4]"
                     }`}
                   >
@@ -305,7 +312,7 @@ export default function Navbar() {
                       link.type === "page" && location.startsWith(link.href)
                         ? "text-[#00C8D4]"
                         : "text-white/80 hover:text-white"
-                    }`}
+                    } ${link.type === "external" ? "flex items-center gap-1.5" : ""}`}
                   >
                     {link.label}
                   </motion.button>

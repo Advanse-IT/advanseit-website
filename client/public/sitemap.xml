@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <sitemap>
     <loc>https://advanseit.com.au/sitemap-pages.xml</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
   </sitemap>
+
   <sitemap>
     <loc>https://advanseit.com.au/sitemap-images.xml</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
   </sitemap>
+
+  <sitemap>
+    <loc>https://training.advanseit.com.au/sitemap-training.xml</loc>
+    <lastmod>2026-06-23</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://testwise.advanseit.com.au/sitemap-testwise.xml</loc>
+    <lastmod>2026-06-23</lastmod>
+  </sitemap>
+
 </sitemapindex>
