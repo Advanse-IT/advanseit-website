@@ -6,7 +6,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 import { trackConversion, trackEvent } from "@/components/Analytics";
 import { toast } from "sonner";
 
@@ -29,6 +28,7 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const turnstileRef = useRef<HTMLDivElement>(null);
 
@@ -68,52 +68,61 @@ export default function Contact() {
     }
   }, []);
 
-  const submitMutation = trpc.contact.submit.useMutation({
-    onSuccess: (data) => {
-      // Always show success to the user — even if email delivery had
-      // a hiccup, the submission was received by the server
-      setSubmitted(true);
-      // GA4 conversion event — tracked as a lead
-      trackConversion({ value: 1, currency: "AUD" });
-      trackEvent("contact_form_submit", {
-        service: form.service || "general",
-        page_path: window.location.pathname,
-      });
-      if (data && !data.emailSent) {
-        console.warn("[Contact] Form submitted but email delivery failed — admin notified via backup channel.");
-      }
-    },
-    onError: (err) => {
-      // tRPC error — show a friendly message, never crash
-      console.error("[Contact] Submission error:", err.message);
-      toast.error("Failed to send message. Please try again or email us directly.", {
-        description: "admin@advanseit.com.au",
-      });
-    },
-  });
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
     // If Turnstile is configured, require a valid token before submitting
     if (siteKey && !turnstileToken) return;
-    submitMutation.mutate({
-      name: form.name,
-      email: form.email,
-      company: form.company || undefined,
-      service: form.service || undefined,
-      message: form.message,
-      turnstileToken: turnstileToken || undefined,
-    });
-  };
 
-  const loading = submitMutation.isPending;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company || undefined,
+          service: form.service || undefined,
+          message: form.message,
+          turnstileToken: turnstileToken || undefined,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({ success: false }));
+
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        // GA4 conversion event — tracked as a lead
+        trackConversion({ value: 1, currency: "AUD" });
+        trackEvent("contact_form_submit", {
+          service: form.service || "general",
+          page_path: window.location.pathname,
+        });
+        if (!data.emailSent) {
+          console.warn("[Contact] Form submitted but email delivery failed — check MailChannels config.");
+        }
+      } else {
+        console.error("[Contact] Submission failed:", data?.error ?? res.status);
+        toast.error("Failed to send message. Please try again or email us directly.", {
+          description: "admin@advanseit.com.au",
+        });
+      }
+    } catch (err: any) {
+      console.error("[Contact] Network error:", err?.message ?? err);
+      toast.error("Failed to send message. Please try again or email us directly.", {
+        description: "admin@advanseit.com.au",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="section-py bg-[#0D1B2E] relative overflow-hidden">
