@@ -19,7 +19,7 @@ async function sendContactEmail(data: {
   message: string;
 }) {
   const smtpHost = process.env.SMTP_HOST;
-  const smtpPort = parseInt(process.env.SMTP_PORT ?? "465");
+  const smtpPort = parseInt(process.env.SMTP_PORT ?? "587");
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const toEmail = "admin@advanseit.com.au";
@@ -32,14 +32,12 @@ async function sendContactEmail(data: {
   const transporter = nodemailer.createTransport({
     host: smtpHost,
     port: smtpPort,
-    secure: smtpPort === 465,
+    secure: smtpPort === 465,        // true for port 465 (implicit TLS)
     auth: { user: smtpUser, pass: smtpPass },
-    // Timeouts prevent the request from hanging indefinitely
-    connectionTimeout: 10000,   // 10 seconds to establish connection
-    greetingTimeout:   8000,    // 8 seconds for SMTP greeting
-    socketTimeout:     15000,   // 15 seconds of socket inactivity
-    // cPanel/shared hosting often uses self-signed TLS certs
-    tls: { rejectUnauthorized: false },
+    connectionTimeout: 10000,        // 10s to establish TCP connection
+    greetingTimeout:   8000,         // 8s for SMTP EHLO greeting
+    socketTimeout:     15000,        // 15s of socket inactivity
+    tls: { rejectUnauthorized: false }, // accept cPanel self-signed certs
   });
 
   const html = `
@@ -152,6 +150,10 @@ export const appRouter = router({
               port: smtpPort,
               secure: smtpPort === 465,
               auth: { user: smtpUser, pass: smtpPass },
+              connectionTimeout: 10000,
+              greetingTimeout:   8000,
+              socketTimeout:     15000,
+              tls: { rejectUnauthorized: false },
             });
             const internalHtml = `
               <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
@@ -230,18 +232,17 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         try {
-          // 1. Send email via SMTP (if configured)
-          // Wrapped in Promise.race so a hanging SMTP connection
-          // never kills the HTTP response
+          // 1. Send email via SMTP
+          // Promise.race ensures a hanging SMTP connection never kills the
+          // HTTP response — the mutation always returns within 20 seconds
           const emailSent = await Promise.race([
             sendContactEmail(input).catch(err => {
               console.error("[Contact] Email send failed:", err.message);
               return false;
             }),
-            // Hard timeout — always respond within 20 seconds
             new Promise<boolean>(resolve =>
               setTimeout(() => {
-                console.warn("[Contact] Email send timed out after 20s");
+                console.warn("[Contact] SMTP timed out after 20s");
                 resolve(false);
               }, 20000)
             ),
@@ -267,8 +268,8 @@ export const appRouter = router({
           return { success: true, emailSent };
 
         } catch (err: any) {
-          // Catch-all — always return a valid tRPC response
-          // so the client never receives "Unexpected end of JSON input"
+          // Catch-all — always return valid JSON so the client never gets
+          // "Unexpected end of JSON input"
           console.error("[Contact] Mutation error:", err?.message ?? err);
           return { success: false, emailSent: false };
         }
