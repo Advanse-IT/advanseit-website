@@ -69,7 +69,9 @@ export default function Contact() {
   }, []);
 
   const submitMutation = trpc.contact.submit.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      // Always show success to the user — even if email delivery had
+      // a hiccup, the submission was received by the server
       setSubmitted(true);
       // GA4 conversion event — tracked as a lead
       trackConversion({ value: 1, currency: "AUD" });
@@ -77,10 +79,15 @@ export default function Contact() {
         service: form.service || "general",
         page_path: window.location.pathname,
       });
+      if (data && !data.emailSent) {
+        console.warn("[Contact] Form submitted but email delivery failed — admin notified via backup channel.");
+      }
     },
     onError: (err) => {
+      // tRPC error — show a friendly message, never crash
+      console.error("[Contact] Submission error:", err.message);
       toast.error("Failed to send message. Please try again or email us directly.", {
-        description: err.message,
+        description: "admin@advanseit.com.au",
       });
     },
   });
