@@ -8,6 +8,9 @@ const ROUTE_META = {
   "/services/testing": { title: "Professional Software Testing Brisbane | AdvanseIT", description: "AdvanseIT provides software testing Brisbane services including QA, automation, performance, and security testing for reliable software." },
   "/services/it-staffing": { title: "Best Outsourced IT Staffing Services | AdvanseIT", description: "Access top technology talent through outsourced IT staffing services designed to support projects, growth, and digital initiatives." },
   "/blog": { title: "Blogs & Insights — AI, Web Dev & IT | AdvanseIT", description: "Expert articles on AI, web development, and IT solutions." },
+  "/blog/ai-assisted-testing-transforming-qa-australia-2026": { title: "AI-Assisted Testing: How Australian Dev Teams Ship Faster | AdvanseIT", description: "Discover how Australian development teams are using AI-assisted testing to ship faster without compromising quality. Real strategies for QA teams in 2026." },
+  "/blog/agentic-ai-australia-enterprise-2026": { title: "Agentic AI for Australian Enterprise: What IT Leaders Need to Know | AdvanseIT", description: "Agentic AI is transforming Australian enterprise IT in 2026. Learn what it means, why it matters, and how to build a strategy that delivers real business value." },
+  "/blog/ai-advancements-reshaping-australian-software-development-2026": { title: "AI Advancements Reshaping Australian Software Development 2026 | AdvanseIT", description: "Explore the AI advancements transforming Australian software development in 2026 — from repository intelligence to autonomous testing." },
 };
 
 // ── Contact form handler ──────────────────────────────────────────────────────
@@ -222,6 +225,36 @@ function escHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
+// ── Blog API handler ──────────────────────────────────────────────────────────
+async function handleBlogs(request, env, pathname) {
+  const headers = { "Content-Type": "application/json", "Cache-Control": "public, max-age=300" };
+
+  // Fetch the static blogs.json from assets
+  const blogsReq = new Request(new URL("/blogs.json", request.url).toString());
+  const blogsRes = await env.ASSETS.fetch(blogsReq);
+  if (!blogsRes.ok) return new Response(JSON.stringify({ error: "Blogs not found" }), { status: 404, headers });
+
+  const allPosts = await blogsRes.json();
+  const published = allPosts.filter(p => p.status === "published")
+    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+  // GET /api/blogs/:slug
+  const slugMatch = pathname.match(/^\/api\/blogs\/(.+)$/);
+  if (slugMatch) {
+    const post = published.find(p => p.slug === slugMatch[1]);
+    if (!post) return new Response(JSON.stringify({ error: "Not found" }), { status: 404, headers });
+    return new Response(JSON.stringify(post), { status: 200, headers });
+  }
+
+  // GET /api/blogs?page=1&limit=9
+  const url = new URL(request.url);
+  const page = Math.max(1, parseInt(url.searchParams.get("page") || "1"));
+  const limit = Math.min(20, Math.max(1, parseInt(url.searchParams.get("limit") || "9")));
+  const offset = (page - 1) * limit;
+  const posts = published.slice(offset, offset + limit);
+  return new Response(JSON.stringify({ posts, total: published.length, page, limit }), { status: 200, headers });
+}
+
 // ── Main worker entry point ───────────────────────────────────────────────────
 export default {
   async fetch(request, env) {
@@ -231,6 +264,11 @@ export default {
     // Route /api/contact to the contact handler
     if (pathname === "/api/contact") {
       return handleContact(request, env);
+    }
+
+    // Route /api/blogs and /api/blogs/:slug to the blog handler
+    if (pathname === "/api/blogs" || pathname.startsWith("/api/blogs/")) {
+      return handleBlogs(request, env, pathname);
     }
 
     // All other requests: serve static assets with SEO meta injection

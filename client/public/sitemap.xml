@@ -46,6 +46,24 @@
   </url>
   <url>
     <loc>https://advanseit.com.au/blog</loc>
+  </url>
+  <url>
+    <loc>https://advanseit.com.au/blog/ai-assisted-testing-transforming-qa-australia-2026</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://advanseit.com.au/blog/agentic-ai-australia-enterprise-2026</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://advanseit.com.au/blog/ai-advancements-reshaping-australian-software-development-2026</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
     <lastmod>2026-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

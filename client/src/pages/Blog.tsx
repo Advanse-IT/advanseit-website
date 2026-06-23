@@ -4,11 +4,10 @@
    and pagination. Matches the site's navy/cyan design system.
    ============================================================ */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, Tag, ArrowRight, BookOpen, Rss } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -88,11 +87,19 @@ function BlogCard({ post, index }: { post: any; index: number }) {
 export default function Blog() {
   const [page, setPage] = useState(1);
   const limit = 9;
-
-  const { data, isLoading } = trpc.blog.list.useQuery({ page, limit });
-  const posts = data?.posts ?? [];
-  const total = data?.total ?? 0;
+  const [posts, setPosts] = useState<any[]>([]);
+  const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const totalPages = Math.ceil(total / limit);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`/api/blogs?page=${page}&limit=${limit}`)
+      .then(r => r.json())
+      .then(data => { setPosts(data.posts ?? []); setTotal(data.total ?? 0); })
+      .catch(() => { setPosts([]); setTotal(0); })
+      .finally(() => setIsLoading(false));
+  }, [page]);
 
   return (
     <div className="min-h-screen bg-gray-50">
