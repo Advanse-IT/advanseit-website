@@ -8,11 +8,11 @@ import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Clock, Tag, ArrowLeft, Calendar, Share2, Linkedin, Twitter } from "lucide-react";
 import { Streamdown } from "streamdown";
-import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import ReadingProgress from "@/components/ReadingProgress";
+import { trpc } from "@/lib/trpc";
 
 const SITE_URL = "https://advanseit.com.au";
 
@@ -43,19 +43,10 @@ export default function BlogPost() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug ?? "";
 
-  const [post, setPost] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
-
-  useEffect(() => {
-    if (!slug) return;
-    setIsLoading(true);
-    fetch(`/api/blogs/${slug}`)
-      .then(r => { if (!r.ok) throw new Error("Not found"); return r.json(); })
-      .then(data => { setPost(data); setError(null); })
-      .catch(err => setError(err))
-      .finally(() => setIsLoading(false));
-  }, [slug]);
+  const { data: post, isLoading, error } = trpc.blog.bySlug.useQuery(
+    { slug },
+    { enabled: !!slug, retry: false }
+  );
 
   if (isLoading) {
     return (

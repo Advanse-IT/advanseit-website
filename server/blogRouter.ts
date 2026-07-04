@@ -334,20 +334,29 @@ export async function runBlogGenerationPipeline(topicOverride?: string): Promise
 // ─── tRPC Router ─────────────────────────────────────────────────────────────
 
 export const blogRouter = router({
-  /** Public: list published posts (paginated) */
+  /** Public: list published posts (paginated, optionally filtered by category) */
   list: publicProcedure
-    .input(z.object({ page: z.number().min(1).default(1), limit: z.number().min(1).max(20).default(9) }).optional())
+    .input(z.object({
+      page: z.number().min(1).default(1),
+      limit: z.number().min(1).max(20).default(9),
+      category: z.string().optional(),
+    }).optional())
     .query(async ({ input }) => {
       const db = await getDb();
       if (!db) return { posts: [], total: 0 };
       const page = input?.page ?? 1;
       const limit = input?.limit ?? 9;
       const offset = (page - 1) * limit;
+      const category = input?.category;
+
+      const whereClause = category
+        ? and(eq(blogPosts.status, "published"), eq(blogPosts.category, category))
+        : eq(blogPosts.status, "published");
 
       const posts = await db
         .select()
         .from(blogPosts)
-        .where(eq(blogPosts.status, "published"))
+        .where(whereClause)
         .orderBy(desc(blogPosts.publishedAt))
         .limit(limit)
         .offset(offset);
@@ -355,7 +364,7 @@ export const blogRouter = router({
       const [{ count }] = await db
         .select({ count: sql<number>`count(*)` })
         .from(blogPosts)
-        .where(eq(blogPosts.status, "published"));
+        .where(whereClause);
 
       return { posts, total: Number(count) };
     }),

@@ -4,13 +4,14 @@
    and pagination. Matches the site's navy/cyan design system.
    ============================================================ */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
-import { Clock, Tag, ArrowRight, BookOpen, Rss } from "lucide-react";
+import { Link, useSearch } from "wouter";
+import { Clock, Tag, ArrowRight, BookOpen, Rss, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { trpc } from "@/lib/trpc";
 
 const PLACEHOLDER_COVER = "/images/blog-placeholder.svg";
 
@@ -19,7 +20,7 @@ function formatDate(date: Date | string | null | undefined): string {
   return new Date(date).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
 }
 
-function BlogCard({ post, index }: { post: any; index: number }) {
+function BlogCard({ post, index, onCategoryClick }: { post: any; index: number; onCategoryClick: (c: string) => void }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -36,9 +37,12 @@ function BlogCard({ post, index }: { post: any; index: number }) {
             loading="lazy"
           />
           {post.category && (
-            <span className="absolute top-3 left-3 bg-cyan-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+            <button
+              onClick={(e) => { e.preventDefault(); onCategoryClick(post.category); }}
+              className="absolute top-3 left-3 bg-cyan-500 hover:bg-cyan-600 text-white text-xs font-semibold px-3 py-1 rounded-full transition-colors"
+            >
               {post.category}
-            </span>
+            </button>
           )}
         </div>
       </Link>
@@ -85,21 +89,22 @@ function BlogCard({ post, index }: { post: any; index: number }) {
 }
 
 export default function Blog() {
+  const search = useSearch();
+  const category = new URLSearchParams(search).get("category") || undefined;
   const [page, setPage] = useState(1);
   const limit = 9;
-  const [posts, setPosts] = useState<any[]>([]);
-  const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+
+  const { data, isLoading } = trpc.blog.list.useQuery({ page, limit, category });
+  const posts = data?.posts ?? [];
+  const total = data?.total ?? 0;
   const totalPages = Math.ceil(total / limit);
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(`/api/blogs?page=${page}&limit=${limit}`)
-      .then(r => r.json())
-      .then(data => { setPosts(data.posts ?? []); setTotal(data.total ?? 0); })
-      .catch(() => { setPosts([]); setTotal(0); })
-      .finally(() => setIsLoading(false));
-  }, [page]);
+  const setCategoryFilter = (next: string | undefined) => {
+    setPage(1);
+    const url = next ? `/blog?category=${encodeURIComponent(next)}` : "/blog";
+    window.history.pushState({}, "", url);
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -133,6 +138,15 @@ export default function Blog() {
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
               Expert insights on AI, web development, app development, IT staffing, and cost-effective technology strategies for Australian businesses.
             </p>
+            {category && (
+              <button
+                onClick={() => setCategoryFilter(undefined)}
+                className="inline-flex items-center gap-2 mt-6 bg-white/10 hover:bg-white/15 border border-white/20 rounded-full px-4 py-2 text-sm text-white transition-colors"
+              >
+                Filtered: <span className="font-semibold text-cyan-300">{category}</span>
+                <X size={14} />
+              </button>
+            )}
           </motion.div>
         </div>
         {/* Wave divider */}
@@ -162,16 +176,28 @@ export default function Blog() {
         ) : posts.length === 0 ? (
           <div className="text-center py-24">
             <BookOpen size={48} className="mx-auto text-gray-300 mb-4" />
-            <h2 className="text-2xl font-bold text-gray-700 mb-2">Articles coming soon</h2>
+            <h2 className="text-2xl font-bold text-gray-700 mb-2">
+              {category ? `No articles yet in "${category}"` : "Articles coming soon"}
+            </h2>
             <p className="text-gray-400 max-w-md mx-auto">
-              We publish new articles every Tuesday and Friday. Check back soon for expert insights on AI, web development, and IT solutions.
+              {category
+                ? "Check back soon, or browse all articles in the meantime."
+                : "We publish new articles every Tuesday and Friday. Check back soon for expert insights on AI, web development, and IT solutions."}
             </p>
+            {category && (
+              <button
+                onClick={() => setCategoryFilter(undefined)}
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
+              >
+                View all articles <ArrowRight size={14} />
+              </button>
+            )}
           </div>
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post, i) => (
-                <BlogCard key={post.id} post={post} index={i} />
+                <BlogCard key={post.id} post={post} index={i} onCategoryClick={setCategoryFilter} />
               ))}
             </div>
 
