@@ -102,7 +102,7 @@
   },
   {
     "id": 4,
-    "slug": "autonomous-qa-dynamics-365-sales-zero-manual-testing",
+    "slug": "testwise-autonomous-qa-d365-sales-demo",
     "title": "Autonomous QA for Dynamics 365 Sales: What Zero Manual Testing Actually Looks Like",
     "excerpt": "D365 Sales implementations move fast \u2014 customised entities, business process flows, and Power Automate logic change every sprint. Here's how an autonomous QA pipeline keeps up without a manual regression cycle.",
     "category": "Testwise",
