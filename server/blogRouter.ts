@@ -9,6 +9,7 @@ import { generateImage } from "./_core/imageGeneration";
 import { storagePut } from "./storage";
 import { nanoid } from "nanoid";
 import { logger } from "./_core/logger";
+import staticBlogs from "../client/public/blogs.json";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -371,29 +372,22 @@ export const blogRouter = router({
       }
 
       // Fallback: use static blogs.json for environments without database
-      try {
-        const staticBlogsPath = "./client/public/blogs.json";
-        const fs = require("fs");
-        const blogsJson = JSON.parse(fs.readFileSync(staticBlogsPath, "utf-8")) as any[];
-        
-        // Filter by status and category
-        let filtered = blogsJson.filter((p: any) => p.status === "published");
-        if (category) {
-          filtered = filtered.filter((p: any) => p.category === category);
-        }
-        
-        // Sort by publishedAt descending
-        filtered.sort((a: any, b: any) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-        
-        // Paginate
-        const posts = filtered.slice(offset, offset + limit);
-        const total = filtered.length;
-        
-        return { posts, total };
-      } catch (err) {
-        logger.warn("[Blog] Static blogs.json fallback failed:", err);
-        return { posts: [], total: 0 };
+      const blogsArray = Array.isArray(staticBlogs) ? staticBlogs : (staticBlogs as any).default || [];
+      
+      // Filter by status and category
+      let filtered = blogsArray.filter((p: any) => p.status === "published");
+      if (category) {
+        filtered = filtered.filter((p: any) => p.category === category);
       }
+      
+      // Sort by publishedAt descending
+      filtered.sort((a: any, b: any) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+      
+      // Paginate
+      const posts = filtered.slice(offset, offset + limit);
+      const total = filtered.length;
+      
+      return { posts, total };
     }),
 
   /** Public: get single post by slug */
