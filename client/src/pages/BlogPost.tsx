@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Clock, Tag, ArrowLeft, Calendar, Share2, Linkedin, Twitter } from "lucide-react";
-import { Streamdown } from "streamdown";
+import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -141,9 +141,9 @@ export default function BlogPost() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="prose prose-lg max-w-none"
+            className="prose prose-lg max-w-none prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-700 prose-a:text-cyan-600 prose-a:underline prose-strong:font-bold prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:border-cyan-500 prose-blockquote:pl-4 prose-blockquote:italic"
           >
-            <Streamdown text={post.content || ""} />
+            <ReactMarkdown>{post.content || ""}</ReactMarkdown>
           </motion.div>
 
           {/* Inline Images */}
