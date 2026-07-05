@@ -246,21 +246,13 @@ async function handleBlogs(request, env, pathname) {
     return new Response(JSON.stringify(post), { status: 200, headers });
   }
 
-  // GET /api/blogs?page=1&limit=9&category=Testwise
+  // GET /api/blogs?page=1&limit=9
   const url = new URL(request.url);
   const page = Math.max(1, parseInt(url.searchParams.get("page") || "1"));
   const limit = Math.min(20, Math.max(1, parseInt(url.searchParams.get("limit") || "9")));
-  const category = url.searchParams.get("category");
-  
-  // Filter by category if provided
-  let filtered = published;
-  if (category) {
-    filtered = published.filter(p => p.category === category);
-  }
-  
   const offset = (page - 1) * limit;
-  const posts = filtered.slice(offset, offset + limit);
-  return new Response(JSON.stringify({ posts, total: filtered.length, page, limit }), { status: 200, headers });
+  const posts = published.slice(offset, offset + limit);
+  return new Response(JSON.stringify({ posts, total: published.length, page, limit }), { status: 200, headers });
 }
 
 // ── Main worker entry point ───────────────────────────────────────────────────

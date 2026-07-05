@@ -1,335 +1,214 @@
-/* ============================================================
-   AdvanseIT Blog Post Page
-   Displays a single article with cover image, inline images,
-   rich markdown content, and cross-platform share links.
-   ============================================================ */
-
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Clock, Tag, ArrowLeft, Calendar, Share2, Linkedin, Twitter } from "lucide-react";
 import { Streamdown } from "streamdown";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import ReadingProgress from "@/components/ReadingProgress";
-import { trpc } from "@/lib/trpc";
-
-const SITE_URL = "https://advanseit.com.au";
-
-function formatDate(date: Date | string | null | undefined): string {
-  if (!date) return "";
-  return new Date(date).toLocaleDateString("en-AU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
-function ShareButton({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:border-cyan-400 hover:text-cyan-600 transition-colors"
-    >
-      {icon}
-      {label}
-    </a>
-  );
-}
 
 export default function BlogPost() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug ?? "";
 
-  const { data: post, isLoading, error } = trpc.blog.bySlug.useQuery(
-    { slug },
-    { enabled: !!slug, retry: false }
-  );
+  const [post, setPost] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
 
-  if (isLoading) {
+  useEffect(() => {
+    if (!slug) return;
+    setIsLoading(true);
+    
+    // Fetch from static blogs.json
+    fetch("/blogs.json")
+      .then(r => { if (!r.ok) throw new Error("Not found"); return r.json(); })
+      .then(data => {
+        const found = data.find((post: any) => post.slug === slug);
+        if (!found) throw new Error("Post not found");
+        setPost(found);
+        setError(null);
+      })
+      .catch(err => setError(err))
+      .finally(() => setIsLoading(false));
+  }, [slug]);
+
+  if (isLoading)
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <Navbar />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-24 sm:py-32 animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-3/4 mb-4" />
-          <div className="h-4 bg-gray-200 rounded w-1/3 mb-8" />
-          <div className="aspect-[16/9] bg-gray-200 rounded-2xl mb-8" />
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="h-4 bg-gray-200 rounded mb-3" />
-          ))}
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500" />
+          <p className="text-gray-400 mt-4">Loading article...</p>
         </div>
-        <Footer />
       </div>
     );
-  }
 
-  if (error || !post) {
+  if (error || !post)
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
         <Navbar />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">Article Not Found</h1>
-          <p className="text-gray-500 mb-8">This article may have been moved or doesn't exist.</p>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-32 text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Article not found</h1>
+          <p className="text-gray-500 mb-6">The article you're looking for doesn't exist or has been removed.</p>
           <Link href="/blog">
-            <span className="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 cursor-pointer">
-              <ArrowLeft size={16} /> Back to Blog
-            </span>
+            <a className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-700 font-semibold">
+              <ArrowLeft size={16} />
+              Back to blog
+            </a>
           </Link>
         </div>
         <Footer />
       </div>
     );
-  }
 
-  const postUrl = `${SITE_URL}/blog/${post.slug}`;
-  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
-  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}&via=AdvanseIT`;
-
-  // Parse inline images
-  type InlineImage = { url: string; caption: string; altText: string };
-  let inlineImages: InlineImage[] = [];
-  try {
-    if (post.inlineImages) {
-      const raw = typeof post.inlineImages === "string"
-        ? JSON.parse(post.inlineImages)
-        : post.inlineImages;
-      inlineImages = Array.isArray(raw) ? (raw as InlineImage[]) : [];
-    }
-  } catch {
-    inlineImages = [];
-  }
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": postUrl,
-    headline: post.title,
-    description: post.excerpt ?? "",
-    url: postUrl,
-    datePublished: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
-    dateModified: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
-    author: {
-      "@type": "Organization",
-      name: "AdvanseIT",
-      url: "https://advanseit.com.au",
-    },
-    publisher: {
-      "@type": "Organization",
-      "@id": "https://advanseit.com.au/#organization",
-      name: "AdvanseIT",
-      logo: {
-        "@type": "ImageObject",
-        url: "/images/advanseit-logo-schema.png",
-      },
-    },
-    image: post.coverImageUrl
-      ? { "@type": "ImageObject", url: post.coverImageUrl, width: 1200, height: 630 }
-      : undefined,
-    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
-    keywords: Array.isArray(post.tags) ? post.tags.join(", ") : (post.tags ?? ""),
-    wordCount: post.content ? post.content.split(/\s+/).length : undefined,
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: ["h1", "h2", ".speakable"],
-    },
-    articleSection: post.category ?? "Technology",
-    inLanguage: "en-AU",
-    isPartOf: { "@id": "https://advanseit.com.au/#website" },
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://advanseit.com.au/" },
-      { "@type": "ListItem", position: 2, name: "Blog", item: "https://advanseit.com.au/blog" },
-      { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
-    ],
-  };
+  const shareUrl = `https://advanseit.com.au/blog/${slug}`;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <ReadingProgress />
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>{post.title} | AdvanseIT Blog</title>
-        <meta name="description" content={post.excerpt ?? ""} />
-        <meta name="author" content="AdvanseIT" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        {/* Open Graph */}
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="AdvanseIT" />
+        <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt ?? ""} />
-        <meta property="og:url" content={postUrl} />
-        {post.coverImageUrl && <meta property="og:image" content={post.coverImageUrl} />}
-        {post.coverImageUrl && <meta property="og:image:width" content="1200" />}
-        {post.coverImageUrl && <meta property="og:image:height" content="630" />}
-        <meta property="og:locale" content="en_AU" />
-        {post.publishedAt && <meta property="article:published_time" content={new Date(post.publishedAt).toISOString()} />}
-        {post.updatedAt && <meta property="article:modified_time" content={new Date(post.updatedAt).toISOString()} />}
-        <meta property="article:publisher" content="https://www.linkedin.com/company/advanseit" />
-        <meta property="article:section" content={post.category ?? "Technology"} />
-        {/* Twitter / X Card */}
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.coverImageUrl} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@AdvanseIT" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.excerpt ?? ""} />
-        {post.coverImageUrl && <meta name="twitter:image" content={post.coverImageUrl} />}
-        <link rel="canonical" href={postUrl} />
-        {/* hreflang */}
-        <link rel="alternate" hrefLang="en-AU" href={postUrl} />
-        <link rel="alternate" hrefLang="en" href={postUrl} />
-        <link rel="alternate" hrefLang="x-default" href="https://advanseit.com.au/" />
-        {/* Keywords from tags */}
-        {post.tags && Array.isArray(post.tags) && post.tags.length > 0 && (
-          <meta name="keywords" content={(post.tags as string[]).join(", ")} />
-        )}
-        {/* Article tags */}
-        {post.tags && Array.isArray(post.tags) && (post.tags as string[]).map((tag) => (
-          <meta key={tag} property="article:tag" content={tag} />
-        ))}
-        {/* OG image fallback */}
-        {!post.coverImageUrl && <meta property="og:image" content="https://advanseit.com.au/images/og-image-social.png" />}
-        {!post.coverImageUrl && <meta property="og:image:width" content="1200" />}
-        {!post.coverImageUrl && <meta property="og:image:height" content="630" />}
-        {/* Geo */}
-        <meta name="geo.region" content="AU-QLD" />
-        <meta name="geo.placename" content="Brisbane, Queensland, Australia" />
-        {/* Article JSON-LD for AI grounding */}
-        <script type="application/ld+json">{JSON.stringify(articleSchema, null, 2)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema, null, 2)}</script>
       </Helmet>
-
+      <ReadingProgress />
       <Navbar />
 
-      {/* Hero cover */}
+      {/* Hero */}
+      <section className="bg-gray-50 py-12 sm:py-16 md:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <Link href="/blog">
+            <a className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 hover:text-cyan-700 mb-8">
+              <ArrowLeft size={14} />
+              Back to blog
+            </a>
+          </Link>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {post.category && (
+              <div className="inline-block mb-4">
+                <span className="bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full">
+                  {post.category}
+                </span>
+              </div>
+            )}
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              {post.title}
+            </h1>
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-sm text-gray-500">
+              <span className="flex items-center gap-2">
+                <Calendar size={16} />
+                {new Date(post.publishedAt).toLocaleDateString("en-AU", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric"
+                })}
+              </span>
+              {post.readTimeMinutes && (
+                <span className="flex items-center gap-2">
+                  <Clock size={16} />
+                  {post.readTimeMinutes} min read
+                </span>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Cover Image */}
       {post.coverImageUrl && (
-        <div className="w-full h-64 md:h-96 overflow-hidden relative">
+        <div className="mb-12">
           <img
             src={post.coverImageUrl}
             alt={post.title}
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E]/80 via-transparent to-transparent" />
         </div>
       )}
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {/* Back link */}
-        <Link href="/blog">
-          <span className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-600 transition-colors cursor-pointer mb-8">
-            <ArrowLeft size={14} /> Back to Blog
-          </span>
-        </Link>
+      {/* Content */}
+      <section className="py-12 sm:py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="prose prose-lg max-w-none"
+          >
+            <Streamdown text={post.content || ""} />
+          </motion.div>
 
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Category badge */}
-          {post.category && (
-            <span className="inline-block bg-cyan-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
-              {post.category}
-            </span>
-          )}
-
-          {/* Title */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            {post.title}
-          </h1>
-
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-6 pb-6 border-b border-gray-100">
-            {post.publishedAt && (
-              <span className="flex items-center gap-1.5">
-                <Calendar size={13} />
-                {formatDate(post.publishedAt)}
-              </span>
-            )}
-            {post.readTimeMinutes && (
-              <span className="flex items-center gap-1.5">
-                <Clock size={13} />
-                {post.readTimeMinutes} min read
-              </span>
-            )}
-          </div>
-
-          {/* Tags */}
-          {post.tags && Array.isArray(post.tags) && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-8">
-              {(post.tags as string[]).map((tag) => (
-                <span key={tag} className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full flex items-center gap-1">
-                  <Tag size={10} />
-                  {tag}
-                </span>
+          {/* Inline Images */}
+          {post.inlineImages && post.inlineImages.length > 0 && (
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {post.inlineImages.map((img: any, i: number) => (
+                <figure key={i} className="border border-gray-200 rounded-lg overflow-hidden">
+                  <img
+                    src={img.url}
+                    alt={img.altText || ""}
+                    className="w-full h-auto object-cover"
+                  />
+                  {img.caption && (
+                    <figcaption className="p-4 text-sm text-gray-600 bg-gray-50">
+                      {img.caption}
+                    </figcaption>
+                  )}
+                </figure>
               ))}
             </div>
           )}
 
-          {/* Article content */}
-          <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-cyan-600 prose-strong:text-gray-800 prose-code:text-cyan-700 prose-code:bg-cyan-50 prose-code:px-1 prose-code:rounded prose-pre:bg-gray-900 prose-blockquote:border-cyan-400 prose-blockquote:text-gray-600">
-            <Streamdown>{post.content}</Streamdown>
-          </div>
-
-          {/* Inline images gallery */}
-          {inlineImages.length > 0 && (
-            <div className="mt-10">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">Related Images</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {inlineImages.map((img, i) => (
-                  <figure key={i} className="m-0">
-                    <img
-                      src={img.url}
-                      alt={img.altText || `Illustration ${i + 1} for ${post.title}`}
-                      className="w-full rounded-xl object-cover aspect-video"
-                      loading="lazy"
-                    />
-                    {img.caption && (
-                      <figcaption className="text-xs text-gray-400 text-center mt-2">{img.caption}</figcaption>
-                    )}
-                  </figure>
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                  >
+                    <Tag size={12} />
+                    {tag}
+                  </span>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Share section */}
-          <div className="mt-12 pt-8 border-t border-gray-100">
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="flex items-center gap-2 text-sm font-medium text-gray-500">
-                <Share2 size={14} />
-                Share this article:
-              </span>
-              <ShareButton
-                href={linkedinShareUrl}
-                label="LinkedIn"
-                icon={<Linkedin size={14} />}
-              />
-              <ShareButton
-                href={twitterShareUrl}
-                label="X / Twitter"
-                icon={<Twitter size={14} />}
-              />
+          {/* Share */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Share this article</h3>
+            <div className="flex gap-3">
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-cyan-400 hover:text-cyan-600 transition-colors"
+              >
+                <Linkedin size={16} />
+                LinkedIn
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-cyan-400 hover:text-cyan-600 transition-colors"
+              >
+                <Twitter size={16} />
+                Twitter
+              </a>
             </div>
           </div>
-
-          {/* CTA */}
-          <div className="mt-12 bg-gradient-to-r from-[#0D1B2E] to-[#1a2f4e] rounded-2xl p-8 text-white text-center">
-            <h3 className="text-xl font-bold mb-2">Ready to transform your business with AI-first IT?</h3>
-            <p className="text-gray-300 text-sm mb-6">
-              AdvanseIT delivers cost-effective web, app, AI, and staffing solutions from Brisbane.
-            </p>
-            <Link href="/#contact">
-              <span className="inline-block bg-cyan-500 hover:bg-cyan-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors cursor-pointer">
-                Get a Free Consultation
-              </span>
-            </Link>
-          </div>
-        </motion.article>
-      </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

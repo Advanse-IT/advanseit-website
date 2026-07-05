@@ -4,14 +4,13 @@
    and pagination. Matches the site's navy/cyan design system.
    ============================================================ */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useSearch } from "wouter";
 import { Clock, Tag, ArrowRight, BookOpen, Rss, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import { trpc } from "@/lib/trpc";
 
 const PLACEHOLDER_COVER = "/images/blog-placeholder.svg";
 
@@ -92,12 +91,36 @@ export default function Blog() {
   const search = useSearch();
   const category = new URLSearchParams(search).get("category") || undefined;
   const [page, setPage] = useState(1);
+  const [allPosts, setAllPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const limit = 9;
 
-  const { data, isLoading } = trpc.blog.list.useQuery({ page, limit, category });
-  const posts = data?.posts ?? [];
-  const total = data?.total ?? 0;
-  const totalPages = Math.ceil(total / limit);
+  // Load blogs from static JSON file
+  useEffect(() => {
+    const loadBlogs = async () => {
+      try {
+        const response = await fetch("/blogs.json");
+        const data = await response.json();
+        // Filter published posts
+        const published = data.filter((post: any) => post.status === "published");
+        setAllPosts(published);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to load blogs:", error);
+        setAllPosts([]);
+        setIsLoading(false);
+      }
+    };
+    loadBlogs();
+  }, []);
+
+  // Filter by category if needed
+  const filteredPosts = category
+    ? allPosts.filter((post) => post.category === category)
+    : allPosts;
+
+  const totalPages = Math.ceil(filteredPosts.length / limit);
+  const paginatedPosts = filteredPosts.slice((page - 1) * limit, page * limit);
 
   const setCategoryFilter = (next: string | undefined) => {
     setPage(1);
@@ -150,91 +173,86 @@ export default function Blog() {
           </motion.div>
         </div>
         {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-12">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#f9fafb" />
-          </svg>
-        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gray-50" style={{
+          clipPath: "polygon(0 50%, 100% 0, 100% 100%, 0 100%)"
+        }} />
       </section>
 
-      {/* Blog grid */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-md animate-pulse">
-                <div className="aspect-[16/9] bg-gray-200" />
-                <div className="p-6 space-y-3">
-                  <div className="h-3 bg-gray-200 rounded w-1/3" />
-                  <div className="h-5 bg-gray-200 rounded w-4/5" />
-                  <div className="h-4 bg-gray-200 rounded w-full" />
-                  <div className="h-4 bg-gray-200 rounded w-3/4" />
-                </div>
+      {/* Blog Grid */}
+      <section className="bg-gray-50 py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {isLoading ? (
+            <div className="text-center py-24">
+              <div className="inline-block">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500" />
               </div>
-            ))}
-          </div>
-        ) : posts.length === 0 ? (
-          <div className="text-center py-24">
-            <BookOpen size={48} className="mx-auto text-gray-300 mb-4" />
-            <h2 className="text-2xl font-bold text-gray-700 mb-2">
-              {category ? `No articles yet in "${category}"` : "Articles coming soon"}
-            </h2>
-            <p className="text-gray-400 max-w-md mx-auto">
-              {category
-                ? "Check back soon, or browse all articles in the meantime."
-                : "We publish new articles every Tuesday and Friday. Check back soon for expert insights on AI, web development, and IT solutions."}
-            </p>
-            {category && (
-              <button
-                onClick={() => setCategoryFilter(undefined)}
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
-              >
-                View all articles <ArrowRight size={14} />
-              </button>
-            )}
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post, i) => (
-                <BlogCard key={post.id} post={post} index={i} onCategoryClick={setCategoryFilter} />
-              ))}
+              <p className="text-gray-400 mt-4">Loading articles...</p>
             </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex justify-center gap-2 mt-12">
+          ) : paginatedPosts.length === 0 ? (
+            <div className="text-center py-24">
+              <BookOpen size={48} className="mx-auto text-gray-300 mb-4" />
+              <h2 className="text-2xl font-bold text-gray-700 mb-2">
+                {category ? `No articles yet in "${category}"` : "Articles coming soon"}
+              </h2>
+              <p className="text-gray-400 max-w-md mx-auto">
+                {category
+                  ? "Check back soon, or browse all articles in the meantime."
+                  : "We publish new articles regularly. Check back soon for expert insights on AI, web development, and IT solutions."}
+              </p>
+              {category && (
                 <button
-                  onClick={() => setPage(p => Math.max(1, p - 1))}
-                  disabled={page === 1}
-                  className="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:border-cyan-400 hover:text-cyan-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  onClick={() => setCategoryFilter(undefined)}
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
                 >
-                  Previous
+                  View all articles <ArrowRight size={14} />
                 </button>
-                {[...Array(totalPages)].map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setPage(i + 1)}
-                    className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
-                      page === i + 1
-                        ? "bg-cyan-500 text-white"
-                        : "border border-gray-200 text-gray-600 hover:border-cyan-400 hover:text-cyan-600"
-                    }`}
-                  >
-                    {i + 1}
-                  </button>
+              )}
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {paginatedPosts.map((post, i) => (
+                  <BlogCard key={post.id} post={post} index={i} onCategoryClick={setCategoryFilter} />
                 ))}
-                <button
-                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                  disabled={page === totalPages}
-                  className="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:border-cyan-400 hover:text-cyan-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                >
-                  Next
-                </button>
               </div>
-            )}
-          </>
-        )}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-16">
+                  <button
+                    disabled={page === 1}
+                    onClick={() => setPage(page - 1)}
+                    className="px-4 py-2 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    ← Previous
+                  </button>
+                  <div className="flex gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                      <button
+                        key={p}
+                        onClick={() => setPage(p)}
+                        className={`px-3 py-2 rounded-lg transition-colors ${
+                          p === page
+                            ? "bg-cyan-500 text-white"
+                            : "border border-gray-200 text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        {p}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    disabled={page === totalPages}
+                    onClick={() => setPage(page + 1)}
+                    className="px-4 py-2 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Next →
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </section>
 
       <Footer />
