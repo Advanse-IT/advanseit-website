@@ -343,30 +343,57 @@ export const blogRouter = router({
     }).optional())
     .query(async ({ input }) => {
       const db = await getDb();
-      if (!db) return { posts: [], total: 0 };
       const page = input?.page ?? 1;
       const limit = input?.limit ?? 9;
       const offset = (page - 1) * limit;
       const category = input?.category;
 
-      const whereClause = category
-        ? and(eq(blogPosts.status, "published"), eq(blogPosts.category, category))
-        : eq(blogPosts.status, "published");
+      // If database available, use it
+      if (db) {
+        const whereClause = category
+          ? and(eq(blogPosts.status, "published"), eq(blogPosts.category, category))
+          : eq(blogPosts.status, "published");
 
-      const posts = await db
-        .select()
-        .from(blogPosts)
-        .where(whereClause)
-        .orderBy(desc(blogPosts.publishedAt))
-        .limit(limit)
-        .offset(offset);
+        const posts = await db
+          .select()
+          .from(blogPosts)
+          .where(whereClause)
+          .orderBy(desc(blogPosts.publishedAt))
+          .limit(limit)
+          .offset(offset);
 
-      const [{ count }] = await db
-        .select({ count: sql<number>`count(*)` })
-        .from(blogPosts)
-        .where(whereClause);
+        const [{ count }] = await db
+          .select({ count: sql<number>`count(*)` })
+          .from(blogPosts)
+          .where(whereClause);
 
-      return { posts, total: Number(count) };
+        return { posts, total: Number(count) };
+      }
+
+      // Fallback: use static blogs.json for environments without database
+      try {
+        const staticBlogsPath = "./client/public/blogs.json";
+        const fs = require("fs");
+        const blogsJson = JSON.parse(fs.readFileSync(staticBlogsPath, "utf-8")) as any[];
+        
+        // Filter by status and category
+        let filtered = blogsJson.filter((p: any) => p.status === "published");
+        if (category) {
+          filtered = filtered.filter((p: any) => p.category === category);
+        }
+        
+        // Sort by publishedAt descending
+        filtered.sort((a: any, b: any) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+        
+        // Paginate
+        const posts = filtered.slice(offset, offset + limit);
+        const total = filtered.length;
+        
+        return { posts, total };
+      } catch (err) {
+        logger.warn("[Blog] Static blogs.json fallback failed:", err);
+        return { posts: [], total: 0 };
+      }
     }),
 
   /** Public: get single post by slug */
