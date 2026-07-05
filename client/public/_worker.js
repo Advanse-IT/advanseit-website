@@ -252,6 +252,7 @@ async function handleBlogs(request, env, pathname) {
   const limit = Math.min(20, Math.max(1, parseInt(url.searchParams.get("limit") || "9")));
   const category = url.searchParams.get("category");
   
+  // Filter by category if provided
   let filtered = published;
   if (category) {
     filtered = published.filter(p => p.category === category);
