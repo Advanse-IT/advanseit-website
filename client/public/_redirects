@@ -20,5 +20,7 @@
 /training                https://training.advanseit.com.au  301
 /training/*              https://training.advanseit.com.au/:splat  301
 
-# SPA fallback — all unmatched routes serve index.html
-/*                       /index.html              200
+# SPA fallback: not needed here — Cloudflare Pages automatically serves
+# index.html for unmatched client-side routes when there's no 404.html at
+# the root. Adding an explicit "/* /index.html 200" rule triggers a known
+# Cloudflare false-positive "infinite loop" error that blocks deployment.

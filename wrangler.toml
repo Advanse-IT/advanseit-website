@@ -1,3 +1,11 @@
 name = "advanseit-main"
 compatibility_date = "2024-11-01"
 pages_build_output_dir = "./dist/public"
+
+# D1 database binding for the blog module (functions/api/*).
+# Replace database_id after running: wrangler d1 create advanseit-blog
+[[d1_databases]]
+binding = "DB"
+database_name = "advanseit-blog"
+database_id = "15f11f66-8030-47ac-961c-10d0cf3aa478"
+

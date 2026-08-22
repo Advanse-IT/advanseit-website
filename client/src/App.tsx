@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { Suspense, lazy } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -17,6 +18,11 @@ import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+// Lazy-loaded: pulls in the Tiptap rich text editor, which is only needed
+// on this one admin route — keeps it out of the public site's main bundle.
+const PostEditor = lazy(() => import("./pages/admin/PostEditor"));
 import WebDesignPage from "./pages/services/WebDesign";
 import AppDevelopmentPage from "./pages/services/AppDevelopment";
 import CustomSoftwarePage from "./pages/services/CustomSoftware";
@@ -36,6 +42,14 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
+      <Route path={"/admin/login"} component={AdminLogin} />
+      <Route path={"/admin"} component={AdminDashboard} />
+      <Route path={"/admin/posts/new"}>
+        <Suspense fallback={null}><PostEditor /></Suspense>
+      </Route>
+      <Route path={"/admin/posts/:id/edit"}>
+        <Suspense fallback={null}><PostEditor /></Suspense>
+      </Route>
       <Route path={"/services/web-design"} component={WebDesignPage} />
       <Route path={"/services/app-development"} component={AppDevelopmentPage} />
       <Route path={"/services/custom-software"} component={CustomSoftwarePage} />

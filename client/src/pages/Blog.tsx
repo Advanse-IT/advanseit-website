@@ -95,14 +95,14 @@ export default function Blog() {
   const [isLoading, setIsLoading] = useState(true);
   const limit = 9;
 
-  // Load blogs from static JSON file
+  // Load blogs from the live blog API (Cloudflare D1 via Pages Functions)
   useEffect(() => {
     const loadBlogs = async () => {
       try {
-        const response = await fetch("/blogs.json");
+        const response = await fetch("/api/posts");
         const data = await response.json();
-        // Filter published posts
-        const published = data.filter((post: any) => post.status === "published");
+        // API already returns only published posts, but keep the filter as a safety net
+        const published = data.filter((post: any) => post.status === "published" || !post.status);
         setAllPosts(published);
         setIsLoading(false);
       } catch (error) {
