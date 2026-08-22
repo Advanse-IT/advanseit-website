@@ -2,6 +2,7 @@ import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Clock, Tag, ArrowLeft, Calendar, Share2, Linkedin, Twitter } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import DOMPurify from "dompurify";
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -20,13 +21,11 @@ export default function BlogPost() {
     if (!slug) return;
     setIsLoading(true);
     
-    // Fetch from static blogs.json
-    fetch("/blogs.json")
+    // Fetch from the live blog API (Cloudflare D1 via Pages Functions)
+    fetch(`/api/posts/${slug}`)
       .then(r => { if (!r.ok) throw new Error("Not found"); return r.json(); })
       .then(data => {
-        const found = data.find((post: any) => post.slug === slug);
-        if (!found) throw new Error("Post not found");
-        setPost(found);
+        setPost(data);
         setError(null);
       })
       .catch(err => setError(err))
@@ -63,14 +62,18 @@ export default function BlogPost() {
     );
 
   const shareUrl = `https://advanseit.com.au/blog/${slug}`;
+  const seoTitle = post.metaTitle || post.title;
+  // Posts created with the rich text editor store HTML; the 4 legacy posts
+  // migrated from blogs.json are still Markdown. Detect and render either.
+  const isHtmlContent = /^\s*</.test(post.content || "");
 
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
-        <title>{post.title} | AdvanseIT Blog</title>
-        <meta name="description" content={post.excerpt} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
+        <title>{seoTitle} | AdvanseIT Blog</title>
+        <meta name="description" content={post.metaDescription || post.excerpt} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={post.metaDescription || post.excerpt} />
         <meta property="og:image" content={post.coverImageUrl} />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -143,7 +146,11 @@ export default function BlogPost() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="prose prose-lg max-w-none prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-700 prose-a:text-cyan-600 prose-a:underline prose-strong:font-bold prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:border-cyan-500 prose-blockquote:pl-4 prose-blockquote:italic"
           >
-            <ReactMarkdown>{post.content || ""}</ReactMarkdown>
+            {isHtmlContent ? (
+              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content || "") }} />
+            ) : (
+              <ReactMarkdown>{post.content || ""}</ReactMarkdown>
+            )}
           </motion.div>
 
           {/* Inline Images */}
