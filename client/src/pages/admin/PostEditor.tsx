@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useLocation } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import RichTextEditor from "@/components/admin/RichTextEditor";
+import RichTextEditor, { uploadImage } from "@/components/admin/RichTextEditor";
 
 function slugify(title: string) {
   return title
@@ -28,6 +28,8 @@ export default function PostEditor() {
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [coverImage, setCoverImage] = useState("");
+  const [coverUploading, setCoverUploading] = useState(false);
+  const coverFileInputRef = useRef<HTMLInputElement>(null);
   const [category, setCategory] = useState("");
   const [tagsInput, setTagsInput] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
@@ -71,6 +73,26 @@ export default function PostEditor() {
   function handleTitleChange(value: string) {
     setTitle(value);
     if (!slugTouched) setSlug(slugify(value));
+  }
+
+  function triggerCoverUpload() {
+    coverFileInputRef.current?.click();
+  }
+
+  async function handleCoverFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setCoverUploading(true);
+    try {
+      const url = await uploadImage(file);
+      setCoverImage(url);
+    } catch (err: any) {
+      window.alert(err?.message || "Image upload failed. Try again.");
+    } finally {
+      setCoverUploading(false);
+    }
   }
 
   async function handleSave(publishStatus: string) {
@@ -179,8 +201,24 @@ export default function PostEditor() {
 
               <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-4">
                 <h3 className="text-sm font-semibold text-gray-900">Featured Image</h3>
+                <input
+                  ref={coverFileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  className="hidden"
+                  onChange={handleCoverFileSelected}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={triggerCoverUpload}
+                  disabled={coverUploading}
+                  className="w-full border-dashed"
+                >
+                  {coverUploading ? "Uploading…" : "⬆ Upload Image"}
+                </Button>
                 <div className="space-y-1.5">
-                  <Label htmlFor="cover">Featured image URL</Label>
+                  <Label htmlFor="cover">or paste an Image URL</Label>
                   <Input id="cover" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} placeholder="https://..." />
                 </div>
                 {coverImage && (

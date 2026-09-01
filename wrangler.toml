@@ -9,3 +9,9 @@ binding = "DB"
 database_name = "advanseit-blog"
 database_id = "15f11f66-8030-47ac-961c-10d0cf3aa478"
 
+# R2 bucket for uploaded blog images (featured images + in-content images).
+# Replace bucket_name after running: wrangler r2 bucket create advanseit-blog-images
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "advanseit-blog-images"
+

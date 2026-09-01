@@ -521,6 +521,68 @@ async function handleAdminPostDelete(env, id) {
   return jsonResponse({ ok: true });
 }
 
+// ── Image upload (R2-backed) ────────────────────────────────────────────────
+const UPLOAD_MAX_BYTES = 8 * 1024 * 1024; // 8MB
+const UPLOAD_ALLOWED_TYPES = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+  "image/gif": "gif",
+};
+
+function randomHex(bytes) {
+  return Array.from(crypto.getRandomValues(new Uint8Array(bytes)))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function handleImageUpload(request, env) {
+  if (!env.IMAGES) {
+    return jsonResponse({ error: "Image storage is not configured (R2 binding missing)." }, 500);
+  }
+
+  let formData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return jsonResponse({ error: "Expected multipart/form-data with a file field." }, 400);
+  }
+
+  const file = formData.get("file");
+  if (!file || typeof file === "string") {
+    return jsonResponse({ error: "No file provided." }, 400);
+  }
+
+  const ext = UPLOAD_ALLOWED_TYPES[file.type];
+  if (!ext) {
+    return jsonResponse({ error: "Unsupported file type. Use JPEG, PNG, WebP, or GIF." }, 400);
+  }
+  if (file.size > UPLOAD_MAX_BYTES) {
+    return jsonResponse({ error: "File too large. Maximum size is 8MB." }, 400);
+  }
+
+  const key = `${Date.now().toString(36)}-${randomHex(8)}.${ext}`;
+  const buffer = await file.arrayBuffer();
+  await env.IMAGES.put(key, buffer, { httpMetadata: { contentType: file.type } });
+
+  return jsonResponse({ ok: true, url: `/api/images/${key}` }, 201);
+}
+
+async function handleImageServe(env, key) {
+  if (!env.IMAGES) {
+    return new Response("Image storage is not configured.", { status: 500 });
+  }
+  const object = await env.IMAGES.get(key);
+  if (!object) {
+    return new Response("Not found", { status: 404 });
+  }
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("etag", object.httpEtag);
+  headers.set("Cache-Control", "public, max-age=31536000, immutable");
+  return new Response(object.body, { headers });
+}
+
 // ── D1-backed blog module: router ──────────────────────────────────────────────
 async function handleBlogModule(request, env, pathname) {
   // Public, unauthenticated routes
@@ -548,6 +610,8 @@ async function handleBlogModule(request, env, pathname) {
       if (request.method === "PUT") return handleAdminPostUpdate(request, env, id);
       if (request.method === "DELETE") return handleAdminPostDelete(env, id);
     }
+
+    if (pathname === "/api/admin/upload" && request.method === "POST") return handleImageUpload(request, env);
   }
 
   return null; // not a blog-module route
@@ -567,6 +631,12 @@ export default {
     // Legacy static blogs.json API (kept working for backward compatibility)
     if (pathname === "/api/blogs" || pathname.startsWith("/api/blogs/")) {
       return handleLegacyBlogs(request, env, pathname);
+    }
+
+    // Uploaded blog images (public, no auth — just serving already-uploaded files)
+    const imageMatch = pathname.match(/^\/api\/images\/(.+)$/);
+    if (imageMatch && request.method === "GET") {
+      return handleImageServe(env, imageMatch[1]);
     }
 
     // New D1-backed blog module (admin login, CRUD, live /api/posts)
